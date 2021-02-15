@@ -16,9 +16,45 @@ Descripcion: Prueba de la clase Cromosoma
 @author: gustavo
 """
 
-
 from cromosoma import Cromosoma as cromo  
+from fitness import printFitness
 
 a = cromo()
 a.printCromosoma()
+a.mutacion()
+a.printCromosoma()
+
+padre = cromo()
+madre = cromo()
+
+print("Padre: ")
+padre.printCromosoma()
+print("Madre: ")
+madre.printCromosoma()
+
+hijos = padre.cruza(madre)
+print("Hijo A: ")
+hijos[0].printCromosoma()
+print("Hijo B: ")
+hijos[1].printCromosoma()
+
+
+print("-----------------------------------------")
+print("Padre: ")
+printFitness(padre)
+
+print("Madre: ")
+printFitness(madre)
+
+print("Hijo 0: ")
+printFitness(hijos[0])
+
+print("Hijo 1: ")
+printFitness(hijos[1])
+
+
+
+
+
+
 
