@@ -17,8 +17,8 @@ Descripcion: Prueba de la clase Cromosoma
 """
 
 
-from Cromosoma import Cromosoma as cromo  
+from cromosoma import Cromosoma as cromo  
 
 a = cromo()
-a.printCromosoma
+a.printCromosoma()
 

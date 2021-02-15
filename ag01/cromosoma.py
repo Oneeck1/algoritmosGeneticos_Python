@@ -26,9 +26,9 @@ class Cromosoma:
         self.alfabeto = "aeiou"
         self.cromosoma=self.generarCadena()
         
-    def generarCadena(self, longitud):
+    def generarCadena(self):
         cad = ""
-        for i in range(0, longitud):
+        for i in range(0, self.tamCad):
             j = np.random.randint(0,self.tamCad)
             cad = cad+self.alfabeto[j]
         return cad
@@ -40,6 +40,6 @@ class Cromosoma:
         pass
     
     def printCromosoma(self):
-        print(self)
+        print(self.cromosoma)
             
             
