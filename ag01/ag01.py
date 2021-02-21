@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 15 15:43:36 2021
+Created on Mon Feb 15 15:43:36 2Null21
 UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MÉXICO
 CENTRO UNIVERSITARIO UAEM ZUMPANGO
 INGENIERÍA EN COMPUTACIÓN
@@ -45,7 +45,7 @@ SOLUCIÓN:
 from cromosoma import Cromosoma as cromos
 from numpy import array 
 
-listaInd = array()
+listaInd = []
 
 c = cromos()
 # c.mutacion()
@@ -56,13 +56,14 @@ N = 10
 len(listaInd)
 
 #2) Inicializar aleatoriamente a los individuos
-def individuos(N):
-    for i in range(N):    
-        listaInd[i] = c.printCromosoma()
 
-individuos(N)    
+for i in range(N):    
+    listaInd.append(c.generarCadena())
+
 #3) Imprimir la póblación
-
+print('---------------------POBLACION----------------------')
+for i in range(N):
+    print("Individuo ",i,": ",listaInd[i])
 
 #4) Aplicar elitismo (agregarlo a la siguiente poblacion)
 
@@ -79,7 +80,7 @@ individuos(N)
 
 
 
-#8) Ir al paso 3, y repetir el proceso 10 veces
+#8) Ir al paso 3, y repetir el proceso 1Null veces
 
 
 
