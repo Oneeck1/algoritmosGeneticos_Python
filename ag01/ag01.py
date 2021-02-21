@@ -62,47 +62,52 @@ N = 10
 for i in range(N):    
     listaInd.append(c.generarCadena())
 
-#3) Imprimir la póblación
-print('---------------------POBLACION----------------------')
-for i in range(N):
-    print("Individuo ",i,": ",listaInd[i])
 
-poblacion = cromos()
+for uno in range(0,10):
+    #3) Imprimir la póblación
+    print('---------------------POBLACION----------------------')
+    for i in range(N):
+        print("Individuo ",i,": ",listaInd[i])
 
-#4) Aplicar elitismo (agregarlo a la siguiente poblacion)
-print('---------------------ELITISMO----------------------')
-for i in listaInd:      
-    poblacion = i
-    aptitud = 0
-    for j in range(0,len(i)): # Un for para recorrer cada uno de los individuos
-        if password[j] == poblacion[j]: # Revisa caracter por caracter
-            aptitud += 1 # Si es igual un caracter, suma 1
-            print(poblacion + "->" + str(aptitud)) # Imprime el resultado
-            eli.append(aptitud) # Guarda en una lista los valores de las aptitudes
-maximo_sort = sorted(enumerate(eli), key=itemgetter(1), reverse=True) # Conocer el valor maximo y en que posicion
-index, value = maximo_sort[0] # Se guardan en 2 variables
-print("Indice: {}, Valor Maximo: {}".format(index,value)) # Imprime los datos
-valorM = listaInd[index] # De la lista original, tomar el indice de donde es más alto la aptitud
-print("EL VALOR MAYOR ES: {}".format(valorM)) # Lo imprime
+    poblacion = cromos()
 
-
-#5) Cruzar individuos de la poblacion actual y generar N hijos
-print('---------------------GENERAR N HIJOS----------------------')
-
-madre = cromos()
-padre = cromos()
-
-hijos = padre.cruza(madre)
-print("Hijo 1: ")
-hijos[0].printCromosoma()
-print("Hijo 2: ")
-hijos[1].printCromosoma()
-#6) Agregar a los N hijos a la siguiente población
+    #4) Aplicar elitismo (agregarlo a la siguiente poblacion)
+    print('---------------------ELITISMO----------------------')
+    for i in listaInd:      
+        poblacion = i
+        aptitud = 0
+        for j in range(0,len(i)): # Un for para recorrer cada uno de los individuos
+            if password[j] == poblacion[j]: # Revisa caracter por caracter
+                aptitud += 1 # Si es igual un caracter, suma 1
+                print(poblacion + "->" + str(aptitud)) # Imprime el resultado
+                eli.append(aptitud) # Guarda en una lista los valores de las aptitudes
+    maximo_sort = sorted(enumerate(eli), key=itemgetter(1), reverse=True) # Conocer el valor maximo y en que posicion
+    index, value = maximo_sort[0] # Se guardan en 2 variables
+    print("Indice: {}, Valor Maximo: {}".format(index,value)) # Imprime los datos
+    valorM = listaInd[index] # De la lista original, tomar el indice de donde es más alto la aptitud
+    print("EL VALOR MAYOR ES: {}".format(valorM)) # Lo imprime
 
 
+    #5) Cruzar individuos de la poblacion actual y generar N hijos
+    print('---------------------GENERAR N HIJOS----------------------')
 
-#7) Mutar al 5% esta nueva poblacion (elegido aleatoriamente)
+    madre = cromos()
+    padre = cromos()
+    poblacion2 = cromos()
+    hijos = padre.cruza(madre)
+    numHijos = 2
+    for h in range(0,numHijos):
+        print("Hijo {}: ".format(h))
+        hijos[h].printCromosoma()
+        poblacion2 = (hijos[h])    
+        
+    #6) Agregar a los N hijos a la siguiente población
+            
+            # Hecho en el paso anterior
 
-
-#8) Ir al paso 3, y repetir el proceso 1Null veces
+            
+    #7) Mutar al 5% esta nueva poblacion (elegido aleatoriamente)
+    poblacion2.mutacion()
+    print(poblacion2)
+    #8) Ir al paso 3, y repetir el proceso 1Null veces
 
