@@ -22,10 +22,11 @@ from cromosoma import Cromosoma
 
 passwordd = "aeio"
 
+# Elitismo
 def fitness(individuo):
     aptitud = 0
     for i in range(0,len(passwordd)):
-        if passwordd[1] == individuo.cromosoma[i]:
+        if passwordd[i] == individuo.cromosoma[i]:
             aptitud += 1
     return aptitud
 

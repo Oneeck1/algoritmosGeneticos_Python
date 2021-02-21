@@ -43,17 +43,17 @@ SOLUCIÓN:
 @author: gustavo
 """
 from cromosoma import Cromosoma as cromos
-from numpy import array 
+from fitness import printFitness
 
+# Lista para los individuos 
 listaInd = []
 
 c = cromos()
-# c.mutacion()
-# c.printCromosoma()
+password = "aeio"
+
 
 #1) Generar N individuos
 N = 10
-len(listaInd)
 
 #2) Inicializar aleatoriamente a los individuos
 
@@ -65,7 +65,18 @@ print('---------------------POBLACION----------------------')
 for i in range(N):
     print("Individuo ",i,": ",listaInd[i])
 
+poblacion = cromos()
+
 #4) Aplicar elitismo (agregarlo a la siguiente poblacion)
+print('---------------------ELITISMO----------------------')
+for i in listaInd:      
+    poblacion = i
+    aptitud = 0
+    for j in range(0,len(password)):
+        if password[j] == poblacion[j]:
+            aptitud += 1
+            print(poblacion + "->" + str(aptitud))
+                    
 
 
 #5) Cruzar individuos de la poblacion actual y generar N hijos
