@@ -42,15 +42,25 @@ SOLUCIÓN:
 
 @author: gustavo
 """
+from cromosoma import Cromosoma as cromos
+from numpy import array 
 
+listaInd = array()
+
+c = cromos()
+# c.mutacion()
+# c.printCromosoma()
 
 #1) Generar N individuos
 N = 10
-
+len(listaInd)
 
 #2) Inicializar aleatoriamente a los individuos
+def individuos(N):
+    for i in range(N):    
+        listaInd[i] = c.printCromosoma()
 
-
+individuos(N)    
 #3) Imprimir la póblación
 
 
