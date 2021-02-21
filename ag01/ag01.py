@@ -44,9 +44,11 @@ SOLUCIÓN:
 """
 from cromosoma import Cromosoma as cromos
 from fitness import printFitness
+from operator import itemgetter
 
 # Lista para los individuos 
 listaInd = []
+eli = []
 
 c = cromos()
 password = "aeio"
@@ -72,17 +74,29 @@ print('---------------------ELITISMO----------------------')
 for i in listaInd:      
     poblacion = i
     aptitud = 0
-    for j in range(0,len(password)):
-        if password[j] == poblacion[j]:
-            aptitud += 1
-            print(poblacion + "->" + str(aptitud))
-                    
+    for j in range(0,len(i)): # Un for para recorrer cada uno de los individuos
+        if password[j] == poblacion[j]: # Revisa caracter por caracter
+            aptitud += 1 # Si es igual un caracter, suma 1
+            print(poblacion + "->" + str(aptitud)) # Imprime el resultado
+            eli.append(aptitud) # Guarda en una lista los valores de las aptitudes
+maximo_sort = sorted(enumerate(eli), key=itemgetter(1), reverse=True) # Conocer el valor maximo y en que posicion
+index, value = maximo_sort[0] # Se guardan en 2 variables
+print("Indice: {}, Valor Maximo: {}".format(index,value)) # Imprime los datos
+valorM = listaInd[index] # De la lista original, tomar el indice de donde es más alto la aptitud
+print("EL VALOR MAYOR ES: {}".format(valorM)) # Lo imprime
 
 
 #5) Cruzar individuos de la poblacion actual y generar N hijos
+print('---------------------GENERAR N HIJOS----------------------')
 
+madre = cromos()
+padre = cromos()
 
-
+hijos = padre.cruza(madre)
+print("Hijo 1: ")
+hijos[0].printCromosoma()
+print("Hijo 2: ")
+hijos[1].printCromosoma()
 #6) Agregar a los N hijos a la siguiente población
 
 
@@ -90,9 +104,5 @@ for i in listaInd:
 #7) Mutar al 5% esta nueva poblacion (elegido aleatoriamente)
 
 
-
 #8) Ir al paso 3, y repetir el proceso 1Null veces
 
-
-
-#9) Elegir el mejor individuo
