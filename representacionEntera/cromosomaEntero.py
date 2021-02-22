@@ -17,14 +17,20 @@ enteros
 
 @author: gustavo
 """
-
+import numpy as np
 
 
 class Entero:
     
     def __init__(self):
         pass
-    def inicializa(self, min=0, max=32):
+    def inicializa(self, minimo=0, maximo=32): 
+        v = np.max(np.abs(minimo), np.abs(maximo))
+        self.nbits = np.ceil(np.log(v+1)/np.log(2))
+        self.minimo = minimo
+        self.maximo = maximo # Hasta aqui vamos a saber los N bits de minimo y maximo
+        self.cromosoma = random.choices([0,1], k = self.nbits)
+        
         pass
     def mutar(self):
         pass
