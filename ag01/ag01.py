@@ -42,6 +42,9 @@ SOLUCIÓN:
 
 @author: gustavo
 """
+
+"""
+
 from cromosoma import Cromosoma as cromos
 from fitness import printFitness
 from operator import itemgetter
@@ -110,4 +113,78 @@ for uno in range(0,10):
     poblacion2.mutacion()
     print(poblacion2)
     #8) Ir al paso 3, y repetir el proceso 1Null veces
+"""
+
+
+
+
+
+
+from cromosoma import Cromosoma
+from fitness import fitness, printFitness
+import random
+import numpy as np
+
+N = 10
+poblacion = []
+#fit = printFitness()
+
+print("Generacion: ", 1)
+for i in range(0,N):
+    ind = Cromosoma()
+    # ind.printCromosoma()
+    printFitness(ind)
+    poblacion.append(ind)
+    
+
+for iteraciones in range (N):
+    # Elitismo 
+        
+    siguientePoblacion = []    
+    aptitudes = []
+    for i in range(0, N):
+        # ind = poblacion[i]
+        # f = fitness(ind)
+        # aptitudes.append(f)  
+        aptitudes.append(fitness(poblacion[i]))
+        
+    idxBest = aptitudes.index(max(aptitudes))
+    siguientePoblacion.append(poblacion[idxBest])
+        
+    totalPadres = int(N/2)
+        
+    idx = random.sample(range(0,N),N)
+    for i in range(totalPadres):
+        hijos = poblacion[i].cruza(poblacion[i + 1])
+        siguientePoblacion.append(hijos[0])
+        siguientePoblacion.append(hijos[1])
+    
+    
+    totalMutar = int(np.ceil(N*0.05))
+    idx = random.sample(range(0,N),N)
+    for i in range(totalMutar):
+        if i== idxBest:
+            i -= 1
+        else:
+            siguientePoblacion[i].mutacion()
+    poblacion = siguientePoblacion
+    print("Generacion: ",iteraciones)
+    for i in range (N):
+        printFitness(poblacion[i])
+
+
+idxBest = aptitudes.index(max(aptitudes))
+print("Mejor Solucion Mejorada")
+printFitness(poblacion[idxBest])
+
+
+
+
+
+
+
+
+
+
+
 
