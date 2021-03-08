@@ -23,6 +23,28 @@ from CromosomaEntero import Entero
 
 class Gray(Entero): # Una clase que hereda de entero
     pass
+# ------------------------- TAREA --------------------
+    def fenotipo(self):
+        # Sobre escribe el método fenotipo()
+        print("Fenotipo en Gray")
+        # Implementar la conversion del cromosoma 
+        # a gray, luego calcular el valor en decimal
+# ------------------------------------------------------
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
