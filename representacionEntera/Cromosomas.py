@@ -31,8 +31,7 @@ class GenNum:
     '''
 
     def __init__(self, vMin, mMax):
-        self.vMin = vMin
-        self.mMax = mMax
+        pass
         
 
     def inicializa(self, vMin=0, mMax=15):
@@ -120,7 +119,7 @@ class GenNum:
         return [h1, h2]
         
 
-    def _str__():
+    def _str__(self):
         '''
         Imprime como una cadena el gen.
 
@@ -162,8 +161,32 @@ class GenEntero(GenNum):
         :param `gray`: Valor para indicar si el gen 
         representa valores en Gray o en Binario
         '''
-        super.inicializa()
+        while gray:
+            v = max([np.abs(vMin), np.abs(vMax)])
+            self.nbitss = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+            self.vMin = vMin
+            self.vMax = vMax         
+            self.cromosoma = random.choices([0, 1], k = self.nbits)
+            
+            while not self.isFactible():
+                self.cromosoma = random.choices([0, 1], k = self.nbits)
+                
         
+        
+    def isFactible(self):
+        super().isFactible()        
+        
+    def mutar(self,nbitss):
+        super().mutar()
+        
+    def cruzar(self, otro):
+        super().cruzar()        
+        
+    def _str__(self):
+        super()._str__()
+        
+    def fenotipo(self):
+        super().fenotipo()
 
 
 class GenReal(GenNum):
@@ -189,6 +212,20 @@ class GenReal(GenNum):
         '''
         super.inicializa()
         
+    def isFactible(self):
+        super().isFactible()        
+        
+    def mutar(self,nbitss):
+        super().mutar()
+        
+    def cruzar(self, otro):
+        super().cruzar()        
+        
+    def _str__(self):
+        super()._str__()
+        
+    def fenotipo(self):
+        super().fenotipo()
 
 
 class Cromosoma:
