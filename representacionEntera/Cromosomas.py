@@ -14,7 +14,7 @@ DESCRIPCIÓN: Super clase de todas las cromosomas numéricas
 
 Created on Mon Mar  8 16:49:47 2021
 
-@author: asdruballopezchau
+@author: gustavo
 """
 
 import numpy as np
@@ -30,8 +30,10 @@ class GenNum:
     TODO: Implementa todos los métodos que sean posibles
     '''
 
-    def __init__(self):
-        pass
+    def __init__(self, vMin, mMax):
+        self.vMin = vMin
+        self.mMax = mMax
+        
 
     def inicializa(self, vMin=0, mMax=15):
 
@@ -59,9 +61,10 @@ class GenNum:
         :returns: True si el gen es factible, False en otro caso
         :rtype: bool
         '''
-        if self.fenotipo() >= self.minimo and self.fenotipo() <= self.maximo:
+        if self.fenotipo() >= self.vMin and self.fenotipo() <= self.mMax:
             return True
-        else: return False
+        else: 
+            return False
         
 
     def mutar(self, nbits):
@@ -97,7 +100,25 @@ class GenNum:
         :returns: Dos hijos
         :rtype: GenNum
         '''
-        pass
+        a = self.cromosoma
+        b = otro.cromosoma
+        
+        tempA = a[1]+a[2]
+        tempB = b[1]+b[2]
+        
+        temppA = tempA+b[3]
+        temppB = tempB+a[3]
+        
+        hijo1 = a[0] + temppA
+        hijo2 = b[0] + temppB
+
+        h1 = Cromosoma()
+        h2 = Cromosoma()
+        h1.cromosoma = hijo1
+        h2.cromosoma = hijo2
+        
+        return [h1, h2]
+        
 
     def _str__():
         '''
@@ -105,16 +126,19 @@ class GenNum:
 
         :returns: Una cadena que representa al gen
         :rtype: str
-        '''
+        '''                
         pass
     
-    def fenotipo():
+    def fenotipo(self):
         '''
-
         :returns: Valor del fenotipo que representa el gen
-        :rtype: int o float
+        :rtype: int o float    
         '''
-        pass
+        cad = str(self.cromosoma[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+        if self.cromosoma[0] == 0: 
+            return int(cad, 2)
+        else: 
+            return -int(cad, 2)        
 
 
 class GenEntero(GenNum):
@@ -136,9 +160,10 @@ class GenEntero(GenNum):
         :param `vMin`: El valor mínimo  a representar
         :param `vMax`: El valor máximo  a representar
         :param `gray`: Valor para indicar si el gen 
-                    representa valores en Gray o en Binario
+        representa valores en Gray o en Binario
         '''
-        pass
+        super.inicializa()
+        
 
 
 class GenReal(GenNum):
@@ -162,7 +187,8 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        pass
+        super.inicializa()
+        
 
 
 class Cromosoma:
