@@ -17,6 +17,11 @@ Created on Mon Mar  8 16:49:47 2021
 @author: asdruballopezchau
 """
 
+import numpy as np
+import random
+import time
+
+
 class GenNum:
 
     '''
@@ -36,7 +41,15 @@ class GenNum:
         :param `vMin`: El valor mínimo  a representar
         :param `vMax`: El valor máximo  a representar
         '''
-        pass
+        v = max([np.abs(vMin), np.abs(mMax)])
+        self.nbitss = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+        self.vMin = vMin
+        self.mMax = mMax         
+        self.cromosoma = random.choices([0, 1], k = self.nbits)
+        while not self.isFactible():
+            self.cromosoma = random.choices([0, 1], k = self.nbits)
+            
+
 
     def isFactible(self):
 
@@ -46,15 +59,34 @@ class GenNum:
         :returns: True si el gen es factible, False en otro caso
         :rtype: bool
         '''
-        pass
+        if self.fenotipo() >= self.minimo and self.fenotipo() <= self.maximo:
+            return True
+        else: return False
+        
 
     def mutar(self, nbits):
 
         '''
         Aplica mutación al gen        
         '''
-
-        pass
+        respaldo = self.cromosoma.copy()
+        start = time.time()
+        while True:
+            currentTime = time.time()
+            if currentTime-start > 0.3:
+                print('Timeout')
+                while self.cromosoma == respaldo:
+                    self.inicializa(self.vMin, self.mMax)
+                return
+                
+            idxs = random.sample(range(self.nbitss), nbits)
+            for i in idxs:
+                self.cromosoma[i] = 1 - self.cromosoma[i]
+                if not self.isFactible():
+                    self.cromosoma = respaldo.copy()
+                    break    
+            if respaldo != self.cromosoma:#  Comprobar que sea diferente al individuo antes de mutar
+                    break
 
     def cruzar(self, otro):
         
