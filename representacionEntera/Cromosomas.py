@@ -30,7 +30,7 @@ class GenNum:
     TODO: Implementa todos los métodos que sean posibles
     '''
 
-    def __init__(self, vMin, mMax):
+    def __init__(self):
         pass
         
 
@@ -125,7 +125,8 @@ class GenNum:
 
         :returns: Una cadena que representa al gen
         :rtype: str
-        '''                
+        '''         
+        print(self.cromosoma)
         pass
     
     def fenotipo(self):
@@ -219,7 +220,7 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        super.inicializa()
+        GenEntero.inicializa()
         
     def isFactible(self):
         super().isFactible()        
@@ -248,16 +249,15 @@ class Cromosoma:
     TODO: LA CLASE CROMOSOMA TIENE GENES" APROVECHA LO QUE 
     PUEDAS DE LAS CLASES GenNum, GenEntero y GenReal.
     '''
-    pass
 
     def __init__(self, listaGenes):
         
         '''
         Forma un cromosoma con los genes del inidividuo en la lista.
-
         :param `listaGenes`: Una lista con genes (subtipos de GenNum).
         '''        
-        pass
+        self.listaGenes = listaGenes[GenNum]
+        
 
     def inicializa(self, vMins, vMaxs, grays):
         '''
@@ -269,18 +269,19 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si 
         la codificación es gray o binaria para cada gen
         '''
-        pass
+        GenEntero.inicializa(vMins, vMaxs, grays)
     
     def isFactible(self):
-        pass
+        GenNum.isFactible(self)
+
 
     def mutar(self, nbits):
 
         '''
         Aplica mutación al individuo completo
         '''
-
-        pass
+        GenNum.mutar(self,nbits)
+        
 
     def cruzar(self, otro):
 
@@ -291,9 +292,10 @@ class Cromosoma:
         :returns: Dos hijos
         :rtype: Cromosma
         '''
-        pass
+        GenNum.cruzar(self, otro)     
 
-    def _str__():
+
+    def _str__(self):
         
         '''
         Imprime como una cadena el cromosoma.
@@ -301,11 +303,12 @@ class Cromosoma:
         :returns: Una cadena que representa al cromosoma completo
         :rtype: str
         '''
-        pass
-    def fenotipo():
+        GenNum._str__(self)
+        
+    def fenotipo(self):
         '''
 
         :returns: Valores del cromosoma
         :rtype: int o float
         '''
-        pass
+        GenNum.fenotipo(self)
