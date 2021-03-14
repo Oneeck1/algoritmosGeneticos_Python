@@ -161,16 +161,26 @@ class GenEntero(GenNum):
         :param `gray`: Valor para indicar si el gen 
         representa valores en Gray o en Binario
         '''
-        while gray:
+        if gray:
             v = max([np.abs(vMin), np.abs(vMax)])
-            self.nbitss = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+            self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
             self.vMin = vMin
-            self.vMax = vMax         
-            self.cromosoma = random.choices([0, 1], k = self.nbits)
+            self.vMax = vMax
+            gray = str()
+            cad = str(self.cromosoma[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+
+            for i in range(len(cad) - 1):
+                if (cad[i] == cad[i + 1]):
+                    gray += "0"
+                else :
+                    gray += "1"
             
+            self.cromosoma = gray
             while not self.isFactible():
-                self.cromosoma = random.choices([0, 1], k = self.nbits)
-                
+                self.cromosoma = gray
+        else:
+            super().inicializa()
+            
         
         
     def isFactible(self):
@@ -187,7 +197,6 @@ class GenEntero(GenNum):
         
     def fenotipo(self):
         super().fenotipo()
-
 
 class GenReal(GenNum):
 
