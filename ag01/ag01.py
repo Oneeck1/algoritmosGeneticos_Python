@@ -12,9 +12,6 @@ Profesor: Asdrúbal Lopez Chau
 Descripcion: Implementa algoritmo genético
 
 
-
-
-
 Ejercicio: Crear un algoritmo genético para "adivinar" una contraseña de 
 4 vocales
 
@@ -112,7 +109,7 @@ for uno in range(0,10):
     #7) Mutar al 5% esta nueva poblacion (elegido aleatoriamente)
     poblacion2.mutacion()
     print(poblacion2)
-    #8) Ir al paso 3, y repetir el proceso 1Null veces
+    #8) Ir al paso 3, y repetir el proceso  Null veces
 """
 
 
