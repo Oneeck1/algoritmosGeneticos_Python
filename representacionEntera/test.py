@@ -18,19 +18,25 @@ Created on Mon Mar 22 13:31:17 2021
 @author: gustavo
 """
 
-from AG_Base import GenEntero
+from AG_Base import GenEntero, Cromosoma
 
 gen = GenEntero()
-gen.inicializa(-4,15, gray=True)
+gen.inicializa(-4,15, gray=False)
 
 print("Cromosoma Normal")
-print(gen.cromosoma)
-print(gen.fenotipo())
+print(gen)
 
-
-gen.mutar(1)
 print("Cromosoma Mutado")
-print(gen.cromosoma)
-print(gen.fenotipo())
+gen.mutar(1)
+print(gen)
+
+
+
+c = Cromosoma()
+c.inicializa([1, 10, 10],[100, 50, 100],[True, False, True])
+
+print(c.genes[0])
+print(c.genes[1])
+print(c.genes[2])
 
 

@@ -157,6 +157,12 @@ class GenEntero(GenNum):
             if self.isFactible():
                 break
 
+    def cruzar(self, otro):
+        pass
+    
+    def __str__(self):
+        str(str(self.cromosoma) +"( "+str(self.fenotipo+" )")
+    
 class GenReal(GenNum):
 
     '''
@@ -179,7 +185,7 @@ class GenReal(GenNum):
                     representa valores en Gray o en Binario
         '''
         pass
-
+    pass
 
 class Cromosoma:
     '''
@@ -213,7 +219,20 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si 
         la codificación es gray o binaria para cada gen
         '''
-        pass
+        genes = []
+        if len(vMins) != len(vMaxs):
+            return 
+        
+        for i in range(len(vMins)):
+            if vMins[i] is float or vMaxs is float:
+                # Representacion Real
+                pass
+            else:
+                # Representacion Entera
+                g = GenEntero()
+                g.inicaliza(vMins[i], vMaxs[i], gray = grays[i])
+                genes.append(g)
+        self.genes = genes    
     
     def isFactible(self):
         pass
