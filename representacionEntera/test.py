@@ -11,32 +11,15 @@ PROFESOR: ASDRÚBAL LÓPEZ CHAU
 
 DESCRIPCIÓN: Prueba cromosomas P.O.O
 
-
-
 Created on Mon Mar 22 13:31:17 2021
 
 @author: gustavo
 """
 
-from AG_Base import GenEntero, Cromosoma
-
-gen = GenEntero()
-gen.inicializa(-4,15, gray=False)
-
-print("Cromosoma Normal")
-print(gen)
-
-print("Cromosoma Mutado")
-gen.mutar(1)
-print(gen)
-
-
+from AG_Base import Cromosoma
 
 c = Cromosoma()
-c.inicializa([1, 10, 10],[100, 50, 100],[True, False, True])
-
-print(c.genes[0])
-print(c.genes[1])
-print(c.genes[2])
-
-
+c.inicializa([1, 1, 10],[100, 50, 100], [True, False, True])
+print(c)
+c.mutar(1)
+print(c)

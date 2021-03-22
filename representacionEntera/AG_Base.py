@@ -17,7 +17,6 @@ Created on Mon Mar 22 13:07:59 2021
 
 @author: gustavo
 """
-
 import numpy as np
 import random
 class GenNum:
@@ -56,7 +55,6 @@ class GenNum:
 
         '''
         Aplica mutación al gen        
-        toma algunos bits del gen y los muta
         '''
 
         pass
@@ -119,50 +117,46 @@ class GenEntero(GenNum):
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k = self.nbits)
 
-
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
             cad = str(self.cromosoma[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
             if self.cromosoma[0] == 0: return int(cad, 2)
             else: return -int(cad, 2)
-        else:  # Representación en Gray            
+        else:  # Representación en Gray
             binario = self.cromosoma.copy()
-            for i in range(2,len(self.cromosoma)):
-                a =self.cromosoma[i-1]
-                b =self.cromosoma[i]
+            for i in range(2, len(self.cromosoma)):
+                a = self.cromosoma[i - 1]
+                b = self.cromosoma[i]
                 if a == b:
                     binario[i] = 0
-                else: 
+                else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-            if binario[0] == 0: 
-                return int(cad, 2)
-            else:
-                return -int(cad,2)
-                    
+            if binario[0] == 0: return int(cad, 2)
+            else: return -int(cad, 2)
+
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
         if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
             return True
         else:
             return False
-        
-        
+
     def mutar(self, nbits):
-        bit_cambiar = random.choices(range(len(self.cromosoma)), k = int(nbits))    
         while True:
-            for i in bit_cambiar:
-                self.cromosoma[i] = 1-self.cromosoma[i]
+            bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
+            for i in bits_cambiar:
+                self.cromosoma[i] = 1 - self.cromosoma[i]
             if self.isFactible():
                 break
-
     def cruzar(self, otro):
         pass
-    
+
     def __str__(self):
-        str(str(self.cromosoma) +"( "+str(self.fenotipo+" )")
-    
+        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+        
+
 class GenReal(GenNum):
 
     '''
@@ -185,11 +179,11 @@ class GenReal(GenNum):
                     representa valores en Gray o en Binario
         '''
         pass
-    pass
+
 
 class Cromosoma:
     '''
-    La clase representa soluciones con uno o más genes 
+    La clase representa soluciones con uno o más genes
     que son parte de un Algoritmo genético.
 
     Cada cromosoma puede tener uno o más genes de tipo numérico, ya
@@ -200,7 +194,7 @@ class Cromosoma:
     '''
     pass
 
-    def __init__(self, listaGenes):
+    def __init__(self):
         
         '''
         Forma un cromosoma con los genes del inidividuo en la lista.
@@ -216,34 +210,37 @@ class Cromosoma:
 
         :param `vMins`: Lista de valores mínimos para cada gen
         :param `vMax`:  Lista de valores máximos para cada gen
-        :param `grays`: Lista de valores bool indicando si 
+        :param `grays`: Lista de valores bool indicando si
         la codificación es gray o binaria para cada gen
         '''
         genes = []
         if len(vMins) != len(vMaxs):
-            return 
-        
+            return
+
         for i in range(len(vMins)):
-            if vMins[i] is float or vMaxs is float:
-                # Representacion Real
+            if vMins[i] is float or vMaxs[i] is float:
+                # Genes representación real
                 pass
             else:
-                # Representacion Entera
+                #  Representación entera
                 g = GenEntero()
-                g.inicaliza(vMins[i], vMaxs[i], gray = grays[i])
+                g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
                 genes.append(g)
-        self.genes = genes    
-    
+        self.genes = genes
+
     def isFactible(self):
-        pass
+        factible = True
+        for gen in self.genes:
+            factible = factible and gen.isFactible()
+        return factible
 
     def mutar(self, nbits):
-
         '''
         Aplica mutación al individuo completo
         '''
+        for gen in self.genes:
+            gen.mutar(nbits)
 
-        pass
 
     def cruzar(self, otro):
 
@@ -256,7 +253,7 @@ class Cromosoma:
         '''
         pass
 
-    def _str__():
+    def __str__(self):
         
         '''
         Imprime como una cadena el cromosoma.
@@ -264,11 +261,18 @@ class Cromosoma:
         :returns: Una cadena que representa al cromosoma completo
         :rtype: str
         '''
-        pass
-    def fenotipo():
+        cad = ""
+        for gen in self.genes:
+            cad = cad + str(gen) + "\n"
+        return cad
+
+    def fenotipo(self):
         '''
 
         :returns: Valores del cromosoma
         :rtype: int o float
         '''
-        pass
+        fenotipos = []
+        for gen in self.genes:
+            fenotipos.append(gen.fenotipo())
+        return fenotipos
