@@ -17,10 +17,9 @@ Created on Mon Mar 22 13:07:59 2021
 
 @author: gustavo
 """
+
 import numpy as np
 import random
-
-
 class GenNum:
 
     '''
@@ -32,7 +31,7 @@ class GenNum:
     def __init__(self):
         pass
 
-    def inicializa(self, vMin=0, mMax=15):
+    def inicializa(self, vMin=0, vMax=15):
 
         '''
         Inicializa de manera pseudo aleatoria al inidividuo.
@@ -42,8 +41,6 @@ class GenNum:
         '''
         self.vMin = vMin
         self.vMax = vMax
-        
-        
 
     def isFactible(self):
 
@@ -53,7 +50,7 @@ class GenNum:
         :returns: True si el gen es factible, False en otro caso
         :rtype: bool
         '''
-        pass
+        return True
 
     def mutar(self, nbits):
 
@@ -116,12 +113,39 @@ class GenEntero(GenNum):
         super().inicializa(vMin, vMax)
         self.gray = gray
         v = max([np.abs(vMin), np.abs(vMax)])
-        self.nbitss = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
-        self.vMin = vMin
-        self.vMax = vMax         
+        self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k = self.nbits)
+
+
+    # Regresa el fenotipo: El valor que representa el cromosoma
+    def fenotipo(self):
+        if not self.gray :  #  Representación en binario
+            cad = str(self.cromosoma[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+            if self.cromosoma[0] == 0: return int(cad, 2)
+            else: return -int(cad, 2)
+        else:  # Representación en Gray            
+            binario = self.cromosoma.copy()
+            for i in range(2,len(self.cromosoma)):
+                a =self.cromosoma[i-1]
+                b =self.cromosoma[i]
+                if a == b:
+                    binario[i] = 0
+                else: 
+                    binario[i] = 1
+            cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+            if binario[0] == 0: 
+                return int(cad, 2)
+            else:
+                return -int(cad,2)
+                    
+    #  Regresa True si el individuo representa una solucion factible, y False en otro caso
+    def isFactible(self):
+        if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
+            return True
+        else:
+            return False
 
 
 class GenReal(GenNum):
@@ -150,7 +174,7 @@ class GenReal(GenNum):
 
 class Cromosoma:
     '''
-    La clase representa soluciones numéricas con uno o más genes 
+    La clase representa soluciones con uno o más genes 
     que son parte de un Algoritmo genético.
 
     Cada cromosoma puede tener uno o más genes de tipo numérico, ya
@@ -171,7 +195,6 @@ class Cromosoma:
         pass
 
     def inicializa(self, vMins, vMaxs, grays):
-    
         '''
         Inicializa de manera pseudo aleatoria a cada uno de los genes 
         del inidividuo.
@@ -181,7 +204,7 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si 
         la codificación es gray o binaria para cada gen
         '''
-        
+        pass
     
     def isFactible(self):
         pass
