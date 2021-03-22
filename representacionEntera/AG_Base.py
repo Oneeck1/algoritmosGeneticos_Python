@@ -56,6 +56,7 @@ class GenNum:
 
         '''
         Aplica mutación al gen        
+        toma algunos bits del gen y los muta
         '''
 
         pass
@@ -146,7 +147,15 @@ class GenEntero(GenNum):
             return True
         else:
             return False
-
+        
+        
+    def mutar(self, nbits):
+        bit_cambiar = random.choices(range(len(self.cromosoma)), k = int(nbits))    
+        while True:
+            for i in bit_cambiar:
+                self.cromosoma[i] = 1-self.cromosoma[i]
+            if self.isFactible():
+                break
 
 class GenReal(GenNum):
 

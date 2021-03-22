@@ -23,8 +23,14 @@ from AG_Base import GenEntero
 gen = GenEntero()
 gen.inicializa(-4,15, gray=True)
 
+print("Cromosoma Normal")
 print(gen.cromosoma)
 print(gen.fenotipo())
 
+
+gen.mutar(1)
+print("Cromosoma Mutado")
+print(gen.cromosoma)
+print(gen.fenotipo())
 
 
