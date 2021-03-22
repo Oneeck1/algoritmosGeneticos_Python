@@ -17,6 +17,8 @@ Created on Mon Mar 22 13:07:59 2021
 
 @author: gustavo
 """
+import numpy as np
+import random
 
 
 class GenNum:
@@ -38,7 +40,10 @@ class GenNum:
         :param `vMin`: El valor mínimo  a representar
         :param `vMax`: El valor máximo  a representar
         '''
-        pass
+        self.vMin = vMin
+        self.vMax = vMax
+        
+        
 
     def isFactible(self):
 
@@ -108,7 +113,15 @@ class GenEntero(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        pass
+        super().inicializa(vMin, vMax)
+        self.gray = gray
+        v = max([np.abs(vMin), np.abs(vMax)])
+        self.nbitss = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+        self.vMin = vMin
+        self.vMax = vMax         
+        self.cromosoma = random.choices([0, 1], k = self.nbits)
+        while not self.isFactible():
+            self.cromosoma = random.choices([0, 1], k = self.nbits)
 
 
 class GenReal(GenNum):
@@ -158,6 +171,7 @@ class Cromosoma:
         pass
 
     def inicializa(self, vMins, vMaxs, grays):
+    
         '''
         Inicializa de manera pseudo aleatoria a cada uno de los genes 
         del inidividuo.
@@ -167,7 +181,7 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si 
         la codificación es gray o binaria para cada gen
         '''
-        pass
+        
     
     def isFactible(self):
         pass
