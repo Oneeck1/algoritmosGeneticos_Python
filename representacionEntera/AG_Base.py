@@ -19,6 +19,8 @@ Created on Mon Mar 22 13:07:59 2021
 """
 import numpy as np
 import random
+import copy
+
 class GenNum:
 
     '''
@@ -151,7 +153,26 @@ class GenEntero(GenNum):
             if self.isFactible():
                 break
     def cruzar(self, otro):
-        pass
+        # Implementar el metodo de cruza por 2 puntos
+        #
+        padre = self.cromosoma.copy()
+        madre = otro.cromosoma.copy()
+
+        cp1 = int(np.ceil(len(padre)/3))
+        cp2 = int(2*(cp1))
+
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+        
+        hijo1[cp1:cp2] = madre[cp1:cp2]
+        hijo2[cp1:cp2] = padre[cp1:cp2]
+        
+        h1 = copy.deepcopy(self)
+        h1.cromosoma = hijo1
+        h2 = copy.deepcopy(otro)
+        h2.cromosoma = hijo2
+        
+        return [h1, h2]
 
     def __str__(self):
         return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
@@ -218,9 +239,9 @@ class Cromosoma:
             return
 
         for i in range(len(vMins)):
-            if vMins[i] is float or vMaxs[i] is float:
+            if type(vMins[i]) is float or type(vMaxs[i]) is float:
                 # Genes representación real
-                pass
+                print("Es real")
             else:
                 #  Representación entera
                 g = GenEntero()
