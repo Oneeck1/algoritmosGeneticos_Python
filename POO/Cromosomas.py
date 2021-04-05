@@ -56,7 +56,6 @@ class GenNum:
         '''
         Aplica mutación al gen        
         '''
-
         pass
 
     def cruzar(self, otro):
@@ -70,7 +69,7 @@ class GenNum:
         '''
         pass
 
-    def _str__():
+    def __str__():
         '''
         Imprime como una cadena el gen.
 
@@ -111,18 +110,20 @@ class GenEntero(GenNum):
         '''
         super().inicializa(vMin, vMax)
         self.gray = gray
+        # Calculo del número mínimo de bits para representar un valor entre
+        # vMin y vMax
         v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
+        # Generar un individuo factible
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k = self.nbits)
 
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
-            cad = str(self.cromosoma[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-            if self.cromosoma[0] == 0: return int(cad, 2)
-            else: return -int(cad, 2)
+            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
         else:  # Representación en Gray
             binario = self.cromosoma.copy()
             for i in range(2, len(self.cromosoma)):
@@ -133,8 +134,10 @@ class GenEntero(GenNum):
                 else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-            if binario[0] == 0: return int(cad, 2)
-            else: return -int(cad, 2)
+        if binario[0] == 0: 
+            return int(cad, 2)
+        else: 
+            return -int(cad, 2)
 
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
