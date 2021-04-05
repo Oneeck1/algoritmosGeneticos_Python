@@ -17,15 +17,40 @@ Created on Mon Mar 22 13:31:09 2021
 @author: asdruballopezchau
 """
 from Cromosomas import GenEntero, Cromosoma
+import numpy as np
+# El mejor individuo que el número 50
+
+def MyFuncion(ind):
+    valor = ind.fenotipo()    
+    return np.exp(-np.abs(50-valor))
 
 p = GenEntero()
 m = GenEntero()
 p.inicializa(0, 100, True)
 m.inicializa(0, 100, True)
+print("Padre: ")
 print(p)
+print("Madre: ")
 print(m)
-hijos = p.cruzar(m)
+hijos = p.cruzar(m, MyFuncion)
+print("Hijo 0: ")
 print(hijos[0])
+print("Hijo 1: ")
 print(hijos[1])
 
+print("-----------GEN ENTERO Y REAL---------")
+print("Padre: ")
+p = Cromosoma()
+p.inicializa([1,0], [10,8], [True, True])
+print(p)
 
+print("Madre: ")
+m = Cromosoma()
+m.inicializa([1,0], [10,8], [True, True])
+print(m)
+
+hijos = p.cruzar(m)
+print("Hijo 0: ")
+print(hijos[0])
+print("Hijo 0: ")
+print(hijos[1])

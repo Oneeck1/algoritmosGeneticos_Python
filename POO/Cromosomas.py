@@ -154,7 +154,7 @@ class GenEntero(GenNum):
             if self.isFactible():
                 break
 
-    def cruzar(self, otro):
+    def cruzar(self, otro, FuncionAptitud=None):
         padre = self.cromosoma
         madre = otro.cromosoma
         # Crear hijos con cruza por dos puntos
@@ -174,8 +174,21 @@ class GenEntero(GenNum):
         # Clonado de un objeto, incluyendo metodos y funciones, etc
         h2 = copy.deepcopy(otro)
         h2.cromosoma = hijo2
-        return [h1, h2]
         
+        if FuncionAptitud is None:
+            return [h1, h2]
+        aptitudPadre = FuncionAptitud(self)
+        aptitudMadre = FuncionAptitud(otro)
+        aptitudHijo1 = FuncionAptitud(h1)
+        aptitudHijo2 = FuncionAptitud(h2)            
+
+        # Genera hijos mejores siempre
+        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
+            h1 = GenEntero()
+            h1.inicializa(self.vMin, self.vMax)
+            h2 = GenEntero()
+            h2.inicializa(otro.vMin, otro.vMax)
+            return [h1, h2]
 
     def __str__(self):
         return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
@@ -256,7 +269,9 @@ class Cromosoma:
         factible = True
         for gen in self.genes:
             factible = factible and gen.isFactible()
-        return factible
+            if not factible:
+                return False
+        return True
 
     def mutar(self, nbits):
         '''
@@ -267,7 +282,6 @@ class Cromosoma:
 
 
     def cruzar(self, otro):
-
         '''
         Operador de cruza con otro gen
 
@@ -275,7 +289,23 @@ class Cromosoma:
         :returns: Dos hijos
         :rtype: Cromosma
         '''
-        pass
+        h1 = copy.deepcopy(self)
+        h2 = copy.deepcopy(otro)        
+        genesHijos1 = []
+        genesHijos2 = []
+
+        for i in range(len(self.genes)):
+            GenPadre = self.genes[i]
+            GenMadre = otro.genes[i]
+            genHijos = GenPadre.cruzar(GenMadre)
+            genesHijos1.append(genHijos[0])
+            genesHijos2.append(genHijos[1])
+        h1.genes = genesHijos1
+        h2.genes = genesHijos2
+        return [h1, h2]
+
+    # LABORATORIO IMPLEMENTAR LA CRUZA CON FUNCION DE AOTITUD
+    # PARA PRODUCIR SIEMPRE MEJORES HIJOS
 
     def __str__(self):
         
