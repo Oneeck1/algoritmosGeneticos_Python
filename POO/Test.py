@@ -54,3 +54,8 @@ print("Hijo 0: ")
 print(hijos[0])
 print("Hijo 0: ")
 print(hijos[1])
+
+print("Mutacion: ")
+# Mutaremos al padre
+p.mutar(1)
+print(p)

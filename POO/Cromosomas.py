@@ -273,7 +273,7 @@ class Cromosoma:
                 return False
         return True
 
-    def mutar(self, nbits):
+    def mutar(self, nbits=1):
         '''
         Aplica mutación al individuo completo
         '''
