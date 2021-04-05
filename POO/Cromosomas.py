@@ -134,7 +134,7 @@ class GenEntero(GenNum):
                 else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-        if binario[0] == 0: 
+        if self.cromosoma[0] == 0: 
             return int(cad, 2)
         else: 
             return -int(cad, 2)
@@ -164,10 +164,14 @@ class GenEntero(GenNum):
         hijo2 = madre.copy()
         medio1 = madre[cp1:cp2]
         medio2 = padre[cp1:cp2]
+        # Extremos del padre y centro de la madre
         hijo1[cp1:cp2] = medio1        
+        # Extremos de la madre y centro del padre
         hijo2[cp1:cp2] = medio2
+        # Crea una copia exacta
         h1 = copy.deepcopy(self)
         h1.cromosoma = hijo1
+        # Clonado de un objeto, incluyendo metodos y funciones, etc
         h2 = copy.deepcopy(otro)
         h2.cromosoma = hijo2
         return [h1, h2]
