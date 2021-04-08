@@ -227,6 +227,82 @@ class GenReal(GenNum):
             self.cromosoma = random.choices([0, 1], k = self.nbits)
 
 
+    # Regresa el fenotipo: El valor que representa el cromosoma
+    def fenotipo(self):
+        if not self.gray :  #  Representación en binario
+            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
+        else:  # Representación en Gray
+            binario = self.cromosoma.copy()
+            for i in range(2, len(self.cromosoma)):
+                a = self.cromosoma[i - 1]
+                b = self.cromosoma[i]
+                if a == b:
+                    binario[i] = 0
+                else:
+                    binario[i] = 1
+            cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+        if self.cromosoma[0] == 0: 
+            return int(cad, 2)
+        else: 
+            return -int(cad, 2)
+
+    #  Regresa True si el individuo representa una solucion factible, y False en otro caso
+    def isFactible(self):
+        if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
+            return True
+        else:
+            return False
+
+    def mutar(self, nbits):
+        while True:
+            bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
+            for i in bits_cambiar:
+                self.cromosoma[i] = 1 - self.cromosoma[i]
+            if self.isFactible():
+                break
+
+    def cruzar(self, otro, FuncionAptitud=None):
+        padre = self.cromosoma
+        madre = otro.cromosoma
+        # Crear hijos con cruza por dos puntos
+        cp1 = int(np.ceil(len(padre)/3))
+        cp2 = int(2*cp1)
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+        medio1 = madre[cp1:cp2]
+        medio2 = padre[cp1:cp2]
+        # Extremos del padre y centro de la madre
+        hijo1[cp1:cp2] = medio1        
+        # Extremos de la madre y centro del padre
+        hijo2[cp1:cp2] = medio2
+        # Crea una copia exacta
+        h1 = copy.deepcopy(self)
+        h1.cromosoma = hijo1
+        # Clonado de un objeto, incluyendo metodos y funciones, etc
+        h2 = copy.deepcopy(otro)
+        h2.cromosoma = hijo2
+        
+        if FuncionAptitud is None:
+            return [h1, h2]
+        aptitudPadre = FuncionAptitud(self)
+        aptitudMadre = FuncionAptitud(otro)
+        aptitudHijo1 = FuncionAptitud(h1)
+        aptitudHijo2 = FuncionAptitud(h2)            
+
+        # Genera hijos mejores siempre
+        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
+            h1 = GenEntero()
+            h1.inicializa(self.vMin, self.vMax)
+            h2 = GenEntero()
+            h2.inicializa(otro.vMin, otro.vMax)
+            return [h1, h2]
+
+    def __str__(self):
+        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+
+
+
 class Cromosoma:
     '''
     La clase representa soluciones con uno o más genes
