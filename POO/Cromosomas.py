@@ -219,7 +219,6 @@ class GenReal(GenNum):
         self.gray = gray
         # Calculo del número mínimo de bits para representar un valor entre
         # vMin y vMax
-        v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
         # Generar un individuo factible
@@ -342,7 +341,10 @@ class Cromosoma:
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
                 # Genes representación real
-                pass
+                g = GenReal()
+                g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
+                genes.append(g)
+            
             else:
                 #  Representación entera
                 g = GenEntero()
