@@ -215,7 +215,16 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        pass
+        super().inicializa(vMin, vMax)
+        self.gray = gray
+        # Calculo del número mínimo de bits para representar un valor entre
+        # vMin y vMax
+        v = max([np.abs(vMin), np.abs(vMax)])
+        self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+        self.cromosoma = random.choices([0, 1], k = self.nbits)
+        # Generar un individuo factible
+        while not self.isFactible():
+            self.cromosoma = random.choices([0, 1], k = self.nbits)
 
 
 class Cromosoma:
