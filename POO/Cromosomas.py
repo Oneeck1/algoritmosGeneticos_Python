@@ -300,7 +300,7 @@ class GenReal(GenNum):
             return [h1, h2]
 
     def __str__(self):
-        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+        return str(self.cromosoma) + " (" + str(self.fenotipo()) + ")" + "     <-------->REAL"
 
 
 
