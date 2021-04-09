@@ -220,7 +220,7 @@ class GenReal(GenNum):
         # Calculo del número mínimo de bits para representar un valor entre
         # vMin y vMax
         v = max([np.abs(vMin), np.abs(vMax)])  
-        v2 = max([np.abs(vMin), np.abs(vMax)])
+        
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1) # Saber cuantos bits ocupo para parte entera
         self.cromosoma = random.choices([0, 1], k = self.nbits)
         # Generar un individuo factible
@@ -244,9 +244,9 @@ class GenReal(GenNum):
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
         if self.cromosoma[0] == 0: 
-            return int(cad, 2)
+            return float(cad, 2)
         else: 
-            return -int(cad, 2)
+            return -float(cad, 2)
 
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
