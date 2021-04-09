@@ -244,9 +244,9 @@ class GenReal(GenNum):
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
         if self.cromosoma[0] == 0: 
-            return float(cad, 2)
+            return int(cad, 2)
         else: 
-            return -float(cad, 2)
+            return -int(cad, 2)
 
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
