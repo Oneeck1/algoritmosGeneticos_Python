@@ -29,4 +29,8 @@ print("Numeros aleatorios punto flotante")
 cromosoma = random.uniform (vMin, vMax)
 print(cromosoma)
 
+print("Numero Convertido")
+al = bin(int(cromosoma))
+print(al)
+
 
