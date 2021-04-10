@@ -222,7 +222,9 @@ class GenReal(GenNum):
         v = max([vMin, vMax])  
         
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1) # Saber cuantos bits ocupo para parte entera
-        self.cromosoma = random.choices([0, 1], k = self.nbits)
+        # self.cromosoma = random.choices([0, 1], k = self.nbits)
+        
+        
         # Generar un individuo factible
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k = self.nbits)
