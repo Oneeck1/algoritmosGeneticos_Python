@@ -45,6 +45,12 @@ def binario(num):
     num=num//2
     numero_binario.append(1)
     numero_binario.reverse()
+    
+    if num < 0:
+        print("negativo: ", num)
+        numero_binario.insert(0,1)
+    else:
+        numero_binario.insert(0,0)
     return numero_binario
  
 def binario_decimal(decimal):
@@ -75,12 +81,16 @@ def entero_decimal(numero):
     decimal=round(partes[0],2)
     entero=int(partes[1])
     if decimal == 0.0:
-        print("El número decimal {} es en binario {}]" .format(int(numero) ,binario(entero)))
+        adada = str(binario(entero))
+        print("NUMERO ENTERO: ",entero)
+        cad = str(adada[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        print(cad)
     else:
         parte_entera=binario(entero)
         parte_decimal=binario_decimal(decimal)
         adada = str(parte_entera)+str(".")+str(parte_decimal)
-        print(adada)
+        cad = str(adada[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        print(cad)
  
 
 print("\n\n\nHaber convertido")

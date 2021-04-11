@@ -30,8 +30,8 @@ m = Cromosoma()  # Crea cromosoma de la madre
 # Inicializa aleatoriamente. La estructura del cromosoma
 # es:   entero | real | real
 # Valores     1__10 True,     0.__8. True,    -1.0__4 False
-p.inicializa([1, 0., -1.0], [10, 8., 4], [True, True, False])
-m.inicializa([1, 0., -1.0], [10, 8., 4], [True, True, False])
+p.inicializa([1, 0., 1.0], [10, 8., 4], [True, True, False])
+m.inicializa([1, 0., 1.0], [10, 8., 4], [True, True, False])
 # Imprime las cromosomas con tres genes cada una
 print('Padre: ')
 print(p)
