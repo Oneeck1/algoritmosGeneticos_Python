@@ -239,12 +239,13 @@ class GenReal(GenNum):
         
         # Numeros aleatorios punto flotante
         NumAl = random.uniform (vMin, vMax)
-        print(NumAl)
+        # print(NumAl)
                                                 
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
         entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
         #self.cromosoma = entero,decimal
@@ -253,7 +254,7 @@ class GenReal(GenNum):
         self.cromosoma = list(cadena)            
         # self.entero_decimal(NumAl)
         
-        
+       
         # Generar un individuo factible
         while not self.isFactible():
             # self.cromosoma = random.choices([0, 1], k = self.nbits)
@@ -262,24 +263,25 @@ class GenReal(GenNum):
             entero = random.choices([0, 1], k = self.nbits)
             decimal = random.choices([0, 1], k = self.nbits)
             entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+         #   entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
             cadena = str(entero2)+"."+str(decimal2)
             self.cromosoma = list(cadena)
             #self.cromosoma = entero,decimal
-            
+     
            
- #           numC = str(entero)+"."+str(decimal)
+#           numC = str(entero)+"."+str(decimal)
 
-    # Regresa el fenotipo: El valor que representa el cromosoma
+# Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
             cro = str(entero)+"."+str(decimal)
             cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             
         else:  # Representación en Gray
-            binario = self.cromosoma.copy
-            binario2 = self.cromosoma.copy
+            binario = self.cromosoma.copy()
+            binario2 = self.cromosoma.copy()
             
             for i in range(2,len(entero2)):
                 a = entero2[i-1]
@@ -306,12 +308,17 @@ class GenReal(GenNum):
             cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
             
             cadenaFull = str(cade)+"."+str(cade2)
-            
-        if(self.cromosoma[0]==0):
+        #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        if(entero2[0]==0):
             print("positivo")
+           # return int(cadenaFull, 2)
+            return int(entero2, 2)
+            
         else:
             print("negativo")
-            
+          #  return -int(cadenaFull, 2)
+            return -int(entero2, 2)
+        
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
         if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
