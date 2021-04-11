@@ -199,6 +199,69 @@ class GenEntero(GenNum):
 
 class GenReal(GenNum):
 
+    
+# Funciones para la conversion de binario a decimal con punto flotante
+
+    def binario(self, num):
+        co=0
+        resto = 0
+        numero_binario = []
+     
+        if num <= 1:
+            print("no se puede convertir")
+        else:
+            while num > 1:
+                co = num //2
+                resto=num%2
+                numero_binario.append(resto)
+                num=num//2
+            numero_binario.append(1)
+            numero_binario.reverse()
+            return numero_binario
+     
+    def binario_decimal(self, decimal):
+     
+        aux=decimal*2
+        decimal_binario=[]
+        lista=[]
+        valor=0
+        while aux not in lista :
+                lista.append(aux)
+                partes=math.modf(aux)
+                valor= int(round(partes[1],2))
+                decimal_binario.append(valor)
+                if int(round(partes[1],2)) == 1 and round(partes[0],2)== 0.0:
+                    break
+                aux=round(partes[0],2) * 2
+     
+        return decimal_binario
+     
+     
+     
+     # Funcion Principal
+    def entero_decimal(self, numero):
+        global entero
+        global decimal
+    #    global numero
+        partes=math.modf(numero)
+        decimal=round(partes[0],2)
+        entero=int(partes[1])
+        if decimal == 0.0:
+            print("El número decimal {} es en binario {}]" .format(int(numero) ,self.binario(entero)))
+        else:
+            parte_entera=self.binario(entero)
+            parte_decimal=self.binario_decimal(decimal)
+            
+            print(parte_entera,parte_decimal) 
+
+# Terminan funciones para conversio de binario a decimal con punto flotante
+
+
+    
+    
+    
+    
+    
     '''
     Sub clase de GenNum representa genes que son parte de
     soluciones numéricas reales en un Algoritmo genético.
@@ -234,14 +297,14 @@ class GenReal(GenNum):
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
         
         
+        self.entero_decimal(NumAl)
+        
+        
         # Generar un individuo factible
         while not self.isFactible():
-            self.cromosoma = random.choices([0, 1], k = self.nbits)
-
-
-
-
-
+            # self.cromosoma = random.choices([0, 1], k = self.nbits)
+            # self.entero_decimal(NumAl)
+            self.entero_decimal(NumAl)
 
 
 

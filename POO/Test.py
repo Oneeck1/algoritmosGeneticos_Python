@@ -26,8 +26,8 @@ def MyFuncion(ind):
 
 p = GenEntero()
 m = GenEntero()
-p.inicializa(0, 100, True)
-m.inicializa(0, 100, True)
+p.inicializa(0, 100.0, True)
+m.inicializa(0, 104.1, True)
 print("Padre: ")
 print(p)
 print("Madre: ")

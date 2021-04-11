@@ -10,21 +10,21 @@ import numpy as np
 import random
 import math
 
-vMin = 0.
-vMax = 8.
+vMin = -1.0
+vMax = 4
 
 v = max([vMin, vMax])
 
-print("Valor Máximo")
-print(v)
+#print("Valor Máximo")
+#print(v)
 
 print("N Bits")
 nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
 print(nbits)
 
-print("Numeros 0 y 1")
+#print("Numeros 0 y 1")
 cromosoma = random.choices([0, 1], k = nbits)
-print(cromosoma)
+#print(cromosoma)
 
 print("Numeros aleatorios punto flotante")
 cromosoma = random.uniform (vMin, vMax)
@@ -39,18 +39,13 @@ def binario(num):
     co=0
     resto = 0
     numero_binario = []
- 
-    if num <= 1:
-        print("no se puede convertir")
-    else:
-        while num > 1:
-            co = num //2
-            resto=num%2
-            numero_binario.append(resto)
-            num=num//2
-        numero_binario.append(1)
-        numero_binario.reverse()
-        return numero_binario
+    co = num //2
+    resto=num%2
+    numero_binario.append(resto)
+    num=num//2
+    numero_binario.append(1)
+    numero_binario.reverse()
+    return numero_binario
  
 def binario_decimal(decimal):
  
@@ -84,10 +79,11 @@ def entero_decimal(numero):
     else:
         parte_entera=binario(entero)
         parte_decimal=binario_decimal(decimal)
-        print("El número decimal {} es en binario {}.{}" .format(int(numero) ,parte_entera,parte_decimal))
+        adada = str(parte_entera)+str(".")+str(parte_decimal)
+        print(adada)
  
 
-print("Haber convertido")
+print("\n\n\nHaber convertido")
 conv = entero_decimal(cromosoma)
 print(conv)
 
