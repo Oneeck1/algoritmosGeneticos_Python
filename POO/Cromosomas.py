@@ -258,11 +258,12 @@ class GenReal(GenNum):
             # self.entero_decimal(NumAl)
             entero = random.choices([0, 1], k = self.nbits)
             decimal = random.choices([0, 1], k = self.nbits)
-            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
          #   entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
 
             cadena = str(entero2)+"."+str(decimal2)
+            cadena = str(cadena[1:].replace("'",""))
             self.cromosoma = list(cadena)
             #self.cromosoma = entero,decimal
      
@@ -273,7 +274,7 @@ class GenReal(GenNum):
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
             cro = str(entero)+"."+str(decimal)
-            cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
         else:  # Representación en Gray
             binario = self.cromosoma.copy()
@@ -290,7 +291,7 @@ class GenReal(GenNum):
                     pass
                 else:
                     binario[i] = 1                                
-            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')            
+            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
                         
             for i in range(2, len(decimal2)):
                 aa = decimal2[i-1]
@@ -301,7 +302,7 @@ class GenReal(GenNum):
                     pass
                 else:
                     binario2[i] = 1
-            cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+            cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
             
             cadenaFull = str(cade)+"."+str(cade2)
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
