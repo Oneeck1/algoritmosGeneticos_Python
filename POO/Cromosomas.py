@@ -304,8 +304,8 @@ class GenReal(GenNum):
                 else:
                     binario2[i] = 1
             cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-                
-            
+            cadenaFull = str(cade)+"."+str(cade2)
+        
             
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
