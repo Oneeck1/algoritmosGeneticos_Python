@@ -279,7 +279,7 @@ class GenReal(GenNum):
         else:  # Representación en Gray
             binario = self.cromosoma.copy()
             binario2 = self.cromosoma.copy()
-            
+            # PARTE ENTERA
             for i in range(2,len(entero2)):
                 a = entero2[i-1]
                 b = entero2[i]
@@ -292,7 +292,7 @@ class GenReal(GenNum):
                 else:
                     binario[i] = 1                                
             cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
-                        
+            # PARTE DECIMAL
             for i in range(2, len(decimal2)):
                 aa = decimal2[i-1]
                 bb = decimal2[i]
@@ -309,7 +309,15 @@ class GenReal(GenNum):
         #return int(entero2,2)
             
         if(cadenaFull[0]==0):
-            
+            c = int(cade,2)
+            C1 = int(cade2,2)
+            cad1 = str(c)+"."+str(C1)
+            return cad1
+        else:
+            c2 = int(cade,2)
+            C22 = int(cade2,2)
+            cad2 = "-"+str(c2)+"."+str(C22)
+            return cad2
         
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
