@@ -19,6 +19,9 @@ Created on Mon Mar  8 16:49:47 2021
 import numpy as np
 import random
 import copy
+import math
+
+
 class GenNum:
 
     '''
@@ -234,6 +237,12 @@ class GenReal(GenNum):
         # Generar un individuo factible
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k = self.nbits)
+
+
+
+
+
+
 
 
     # Regresa el fenotipo: El valor que representa el cromosoma

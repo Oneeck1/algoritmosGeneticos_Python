@@ -8,6 +8,8 @@ Created on Sat Apr 10 15:44:04 2021
 
 
 import math
+
+
 def binario(num):
     co=0
     resto = 0
