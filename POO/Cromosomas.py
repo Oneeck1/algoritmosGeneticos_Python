@@ -237,10 +237,9 @@ class GenReal(GenNum):
         print(NumAl)
                                                 
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
-        partes=math.modf(NumAl)
-        decimal=round(partes[0],2)
-        entero=int(partes[1])
-        
+        entero = random.choices([0, 1], k = self.nbits)
+        decimal = random.choices([0, 1], k = self.nbits)
+        self.cromosoma = str(entero)+"."+str(decimal)
             
         # self.entero_decimal(NumAl)
         
@@ -250,7 +249,9 @@ class GenReal(GenNum):
             # self.cromosoma = random.choices([0, 1], k = self.nbits)
             # self.entero_decimal(NumAl)
             # self.entero_decimal(NumAl)
-
+            entero = random.choices([0, 1], k = self.nbits)
+            decimal = random.choices([0, 1], k = self.nbits)
+            self.cromosoma = str(entero)+"."+str(decimal)
 
 
     # Regresa el fenotipo: El valor que representa el cromosoma
