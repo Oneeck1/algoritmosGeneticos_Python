@@ -269,8 +269,9 @@ class GenReal(GenNum):
                 else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+        # De binario a decimal
         if self.cromosoma[0] == 0: 
-            return int(cad, 2)
+            return int(cad, 2) 
         else: 
             return -int(cad, 2)
 
