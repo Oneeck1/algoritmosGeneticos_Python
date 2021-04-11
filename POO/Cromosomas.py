@@ -265,6 +265,7 @@ class GenReal(GenNum):
             decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
             cadena = str(entero2)+"."+str(decimal2)
+            self.cromosoma = list(cadena)
             #self.cromosoma = entero,decimal
             
            
@@ -277,46 +278,35 @@ class GenReal(GenNum):
             cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             
         else:  # Representación en Gray
-            """binario = self.cromosoma.copy()
-            for i in range(2, len(self.cromosoma)):
-                a = self.cromosoma[i - 1]
-                b = self.cromosoma[i]
-                if a == b:
-                    binario[i] = 0
-                else:
-                    binario[i] = 1
-            cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-        # De binario a decimal
-        if self.cromosoma[0] == 0: 
-            return int(cad, 2) 
-        else: 
-            return -int(cad, 2)                        
-        """
             binario = self.cromosoma.copy
             binario2 = self.cromosoma.copy
-            # Para parte entera
+            
             for i in range(2,len(entero2)):
                 a = entero2[i-1]
                 b = entero2[i]
+
                 if a == b:
                     binario[i] = 0
+                    
                 elif a == '.' or b == '.':
                     pass
                 else:
-                    binario[i] = 1
-            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-            # Para parte fraccionaria
-            for i in range(2,len(decimal2)):
+                    binario[i] = 1                                
+            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')            
+                        
+            for i in range(2, len(decimal2)):
                 aa = decimal2[i-1]
                 bb = decimal2[i]
-                if a == b:
+                if aa == bb:
                     binario2[i] = 0
-                elif aa == '.' or bb == '.':
+                elif  aa == '.' or bb == '.':
                     pass
                 else:
                     binario2[i] = 1
             cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+            
             cadenaFull = str(cade)+"."+str(cade2)
+            
         if(self.cromosoma[0]==0):
             print("positivo")
         else:
@@ -341,7 +331,7 @@ class GenReal(GenNum):
         padre = self.cromosoma
         madre = otro.cromosoma
         # Crear hijos con cruza por dos puntos
-        cp1 = int(np.ceil(len(padre)/3))
+        cp1 = int(np.ceil(len(entero2)/3))
         cp2 = int(2*cp1)
         hijo1 = padre.copy()
         hijo2 = madre.copy()
