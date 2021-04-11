@@ -304,10 +304,12 @@ class GenReal(GenNum):
                     binario2[i] = 1
             cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
             
-            cadenaFull = str(cade)+"."+str(cade2)
+        cadenaFull = str(cade)+"."+str(cade2)
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        return int(entero2,2)
-        
+        #return int(entero2,2)
+            
+        if(cadenaFull[0]==0):
+            
         
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
