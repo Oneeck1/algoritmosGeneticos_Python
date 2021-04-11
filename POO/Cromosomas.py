@@ -257,10 +257,10 @@ class GenReal(GenNum):
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
-            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            # cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
         else:  # Representación en Gray
-            binario = self.cromosoma.copy()
+            """binario = self.cromosoma.copy()
             for i in range(2, len(self.cromosoma)):
                 a = self.cromosoma[i - 1]
                 b = self.cromosoma[i]
@@ -274,7 +274,8 @@ class GenReal(GenNum):
             return int(cad, 2) 
         else: 
             return -int(cad, 2)
-
+        """
+        
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
         if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
