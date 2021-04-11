@@ -46,6 +46,7 @@ print(hijos[1])
 print('Mutación al Primer Hijo\n')
 print('Original: ')
 print(hijos[0])
+
 print('Modificado: ')
 hijos[0].mutar()
 print(hijos[0])
