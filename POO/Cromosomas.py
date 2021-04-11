@@ -244,8 +244,9 @@ class GenReal(GenNum):
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
-        self.cromosoma = entero,decimal
-        #self.cromosoma = str(entero)+"."+str(decimal)
+        #self.cromosoma = entero,decimal
+        
+        cadena = str(entero)+"."+str(decimal)
             
         # self.entero_decimal(NumAl)
         
@@ -257,8 +258,8 @@ class GenReal(GenNum):
             # self.entero_decimal(NumAl)
             entero = random.choices([0, 1], k = self.nbits)
             decimal = random.choices([0, 1], k = self.nbits)
-            #self.cromosoma = str(entero)+"."+str(decimal)
-            self.cromosoma = entero,decimal
+            cadena = str(entero)+"."+str(decimal)
+            #self.cromosoma = entero,decimal
             
             entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
