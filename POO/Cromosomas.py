@@ -198,10 +198,6 @@ class GenEntero(GenNum):
         
 
 class GenReal(GenNum):
-
-    
-# Funciones para la conversion de binario a decimal con punto flotante
-
     
     
     '''
@@ -238,7 +234,7 @@ class GenReal(GenNum):
         
         
         # Numeros aleatorios punto flotante
-        NumAl = random.uniform (vMin, vMax)
+        #NumAl = random.uniform (vMin, vMax)
         # print(NumAl)
                                                 
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
@@ -290,7 +286,7 @@ class GenReal(GenNum):
                 if a == b:
                     binario[i] = 0
                     
-                elif a == '.' or b == '.':
+                elif a == '.' or b == '.': # Si tiene un . que lo pase
                     pass
                 else:
                     binario[i] = 1                                
@@ -309,15 +305,8 @@ class GenReal(GenNum):
             
             cadenaFull = str(cade)+"."+str(cade2)
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        if(entero2[0]==0):
-            print("positivo")
-           # return int(cadenaFull, 2)
-            return int(entero2, 2)
-            
-        else:
-            print("negativo")
-          #  return -int(cadenaFull, 2)
-            return -int(entero2, 2)
+        return int(entero2,2)
+        
         
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
