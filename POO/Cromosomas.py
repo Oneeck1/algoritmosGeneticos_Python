@@ -223,6 +223,11 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
+        global entero
+        global decimal
+        global entero2
+        global decimal2 
+        
         super().inicializa(vMin, vMax)
         self.gray = gray
         # Calculo del número mínimo de bits para representar un valor entre
@@ -252,13 +257,17 @@ class GenReal(GenNum):
             entero = random.choices([0, 1], k = self.nbits)
             decimal = random.choices([0, 1], k = self.nbits)
             self.cromosoma = str(entero)+"."+str(decimal)
+            
+            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
+ #           numC = str(entero)+"."+str(decimal)
 
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray :  #  Representación en binario
-            # cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-
+            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            
         else:  # Representación en Gray
             """binario = self.cromosoma.copy()
             for i in range(2, len(self.cromosoma)):
@@ -273,9 +282,31 @@ class GenReal(GenNum):
         if self.cromosoma[0] == 0: 
             return int(cad, 2) 
         else: 
-            return -int(cad, 2)
+            return -int(cad, 2)                        
         """
-        
+            binario = self.cromosoma.copy()
+            binario2 = self.cromosoma.copy()
+            # Para parte entera
+            for i in range(2,len(entero2)):
+                a = entero2[i-1]
+                b = entero2[i]
+                if a == b:
+                    binario[i] = 0
+                else:
+                    binario[i] = 1
+            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+            # Para parte fraccionaria
+            for i in range(2,len(entero2)):
+                aa = decimal2[i-1]
+                bb = decimal2[i]
+                if a == b:
+                    binario2[i] = 0
+                else:
+                    binario2[i] = 1
+            cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+                
+            
+            
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
         if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
