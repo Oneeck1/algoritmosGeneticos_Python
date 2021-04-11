@@ -244,10 +244,13 @@ class GenReal(GenNum):
 #        self.cromosoma = random.choices([0, 1], k = self.nbits)
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
+        entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
         #self.cromosoma = entero,decimal
         
-        cadena = str(entero)+"."+str(decimal)
-            
+        cadena = str(entero2)+"."+str(decimal2)
+        self.cromosoma = list(cadena)            
         # self.entero_decimal(NumAl)
         
         
@@ -258,12 +261,13 @@ class GenReal(GenNum):
             # self.entero_decimal(NumAl)
             entero = random.choices([0, 1], k = self.nbits)
             decimal = random.choices([0, 1], k = self.nbits)
-            cadena = str(entero)+"."+str(decimal)
-            #self.cromosoma = entero,decimal
-            
             entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
+            cadena = str(entero2)+"."+str(decimal2)
+            #self.cromosoma = entero,decimal
+            
+           
  #           numC = str(entero)+"."+str(decimal)
 
     # Regresa el fenotipo: El valor que representa el cromosoma
@@ -296,6 +300,8 @@ class GenReal(GenNum):
                 b = entero2[i]
                 if a == b:
                     binario[i] = 0
+                elif a == '.' or b == '.':
+                    pass
                 else:
                     binario[i] = 1
             cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
@@ -305,6 +311,8 @@ class GenReal(GenNum):
                 bb = decimal2[i]
                 if a == b:
                     binario2[i] = 0
+                elif aa == '.' or bb == '.':
+                    pass
                 else:
                     binario2[i] = 1
             cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
