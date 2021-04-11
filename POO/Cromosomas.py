@@ -319,7 +319,10 @@ class GenReal(GenNum):
         while True:
             bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
             for i in bits_cambiar:
-                self.cromosoma[i] = 1 - self.cromosoma[i]
+                if i == '.':
+                    pass
+                else:
+                    self.cromosoma[i] = 1 - int(self.cromosoma[i])
             if self.isFactible():
                 break
 
