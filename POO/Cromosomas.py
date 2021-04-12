@@ -277,12 +277,12 @@ class GenReal(GenNum):
         global decimal2         
         if not self.gray :  #  Representación en binario
             cro = str(entero)+"."+str(decimal)
-            cad = str(cro[0:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
+            cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
         else:  # Representación en Gray
-            entero2 = str(entero[0:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-            decimal2 = str(decimal[0:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
 
             binario = self.cromosoma.copy()
             binario2 = self.cromosoma.copy()
@@ -298,7 +298,7 @@ class GenReal(GenNum):
                     pass
                 else:
                     binario[i] = 1                                
-            cade = str(binario[0:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
             # PARTE DECIMAL
             for i in range(2, len(decimal2)):
                 aa = decimal2[i-1]
@@ -309,7 +309,7 @@ class GenReal(GenNum):
                     pass
                 else:
                     binario2[i] = 1
-            cade2 = str(binario2[0:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+            #cade2 = str(binario2[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
             
           #  cadenaFull = str(cade)+"."+str(cade2)
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
@@ -337,10 +337,15 @@ class GenReal(GenNum):
     def mutar(self, nbits):
         while True:
             #bits_cambiar = random.choices(range(len(decimal2)), k=nbits)
-           # y = random.choices(range(1,4))
+            #y = random.choices(range(1,4))
             #bits_cambiar = decimal2[y]
-            self.cromosoma = str(cadena[:].replace("'",""))
-            self.cromosoma = self.cromosoma.replace('0','1',1)   
+            #caden = str(cadena[:].replace("'",""))
+            # self.cromosoma = self.cromosoma.replace('0','1',1)   
+            if self.cromosoma[1] == '1':
+                self.cromosoma[1] = '0'
+            else:
+                self.cromosoma[1] = '1'
+            
             if self.isFactible():
                 break
 
