@@ -12,7 +12,7 @@ Caso: Hola
 """
 
 import random 
-
+import numpy as np
 # OBJEIVO: CAFE
 
 def fitnessFuncion(individuo):
@@ -37,4 +37,7 @@ for i in range(10):
     for individuo in poblacion:
         aptitudes.append(fitnessFuncion(individuo))
     
-    
+# 2.- FRECUENCIA ESPERADA TOTAL
+     f = (np.sum(aptitudes)) / (len(aptitudes))
+     
+     
