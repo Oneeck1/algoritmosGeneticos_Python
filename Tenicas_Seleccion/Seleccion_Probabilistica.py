@@ -19,7 +19,7 @@ def fitnessFuncion(individuo):
         if letra == individuo[indice]:
             aptitud+=1
         indice +=1
-    return aptitud
+    return aptitud + 1e-4 # Sumo para evitar los 0
 
 
 poblacion = []
@@ -41,3 +41,5 @@ for i in range(10):
 print("\nAPTITUDES: ")    
 for i in range(10):
     print(aptitudes[i])    
+    
+        
