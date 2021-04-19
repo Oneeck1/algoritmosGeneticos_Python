@@ -73,4 +73,7 @@ for i in range(10):
 print("\n\nSELECCIONADOS")        
 print(seleccionados)
 
+print("\n\nGenotipos seleccionados: ")
+for i in seleccionados:
+    print(poblacion[i])
 
