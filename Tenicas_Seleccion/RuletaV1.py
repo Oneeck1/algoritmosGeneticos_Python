@@ -27,7 +27,14 @@ def fitnessFuncion(individuo):
 
 
 poblacion = []
-
 for i in range(10):
     individuo = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], k = 4)
     poblacion.append(individuo)
+    
+    #RULETA
+# 1.- CALCULO DE APTITUDES
+    aptitudes = []
+    for individuo in poblacion:
+        aptitudes.append(fitnessFuncion(individuo))
+    
+    
