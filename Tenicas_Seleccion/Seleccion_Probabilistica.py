@@ -42,4 +42,14 @@ print("\nAPTITUDES: ")
 for i in range(10):
     print(aptitudes[i])    
     
-        
+# Probabilidades
+# SOFTMAX
+    
+prob = np.exp(aptitudes)/np.sum(np.exp(aptitudes))
+print("\n\nPROBABILIDADES DE CADA UNO")    
+for i in range(10):
+    print(prob[i])
+
+elegidos = random.choices(range(len(aptitudes)),prob, k = len(aptitudes))
+print("\nELEGIDOS: ")
+print(elegidos)
