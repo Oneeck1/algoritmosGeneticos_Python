@@ -48,19 +48,29 @@ for aptitud in aptitudes:
 # 4.- SUMA DE VALORES ESPERADOS
 T = np.sum(valoresEsperados)
 
-print("POBLACION: ")
+print("\nPOBLACION: ")
 print(poblacion)
-print("APTITUDES: ")
+print("\nAPTITUDES: ")
 print(aptitudes)
-print("VALORES ESPERADOS: ")
+print("\nVALORES ESPERADOS: ")
 print(valoresEsperados)
 
 
 # 5._ REPETIR N VECES
+seleccionados = []
 for i in range(10):
     # La suma es para que toque el T
     r = np.random.uniform(0,T+1e-4)
-    
+    suma = 0
+    individuo = 0
+    for valorEsp in valoresEsperados:
+        suma += valorEsp
+        if suma >= r:
+            seleccionados.append(individuo)
+            break
+        individuo += 1
 
+print("\n\nSELECCIONADOS")        
+print(seleccionados)
 
 
