@@ -33,11 +33,18 @@ for i in range(10):
     
     #RULETA
 # 1.- CALCULO DE APTITUDES
-    aptitudes = []
-    for individuo in poblacion:
-        aptitudes.append(fitnessFuncion(individuo))
+aptitudes = []
+for individuo in poblacion:
+    aptitudes.append(fitnessFuncion(individuo))
     
 # 2.- FRECUENCIA ESPERADA TOTAL
-     f = (np.sum(aptitudes)) / (len(aptitudes))
+f = (np.sum(aptitudes))/(len(aptitudes))
      
-     
+# 3.- CALCULO DE VALORES ESPERADOS
+for aptitudes in poblacion:     
+
+
+
+
+
+
