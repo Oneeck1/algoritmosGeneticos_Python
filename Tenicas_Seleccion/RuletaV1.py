@@ -41,10 +41,24 @@ for individuo in poblacion:
 f = (np.sum(aptitudes))/(len(aptitudes))
      
 # 3.- CALCULO DE VALORES ESPERADOS
-for aptitudes in poblacion:     
+valoresEsperados = []
+for aptitud in aptitudes:
+    valoresEsperados.append(aptitud*f)     
+
+# 4.- SUMA DE VALORES ESPERADOS
+T = np.sum(valoresEsperados)
+
+print("POBLACION: ")
+print(poblacion)
+print("APTITUDES: ")
+print(aptitudes)
+print("VALORES ESPERADOS: ")
+print(valoresEsperados)
 
 
-
+# 5._ REPETIR N VECES
+# for i in range(10):
+    
 
 
 
