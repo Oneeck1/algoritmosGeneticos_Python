@@ -71,25 +71,60 @@ for i in range(10):
         entero.append(i)
     else:
         fraccionaria.append(i)
-    
+
+numerosElegidos = entero
+faltaPorElegir = fraccionaria
+
+
 # SELECCION PARTE FRACCIONARIA
 parteFraccionaria = []
 for i in range(len(fraccionaria)):
     parteFraccionaria.append(poblacion[fraccionaria[i]])
 
+parteEntera = []
+for i in range(len(fraccionaria)):
+    parteEntera.append(poblacion[fraccionaria[i]])
+
+
 
 for i in range(len(fraccionaria)):
     elegido = random.choices(parteFraccionaria, k=1)        
+    
+    
+PF =[]
+PE = []
+    
+for i in range(len(entero)):  
+    PE.append(poblacion[entero[i]])    
+    
+for i in range(len(fraccionaria)):      
+    PF.append(poblacion[fraccionaria[i]])
+    
+    
+    
     
 print("PARTES: ")    
 print(partes)
 
 print("\nPARTE ENTERA, INDICES: ")
 print(entero)
+
 print("\nPARTE FRACCIONARIA, INDICES: ")
 print(fraccionaria)
-print("\nPARTE FRACCIONARIA") 
+
+print("\nPARTE ENTERA: ")
+print(PE)
+
+print("\nPARTE FRACCIONARIA: ")
+print(PF)
+
+print("\nPARTE ENTERA, CARACTERES") 
+print(parteEntera)
+
+print("\nPARTE FRACCIONARIA, CARACTERES") 
 print(parteFraccionaria)
+
+
 print("\nELEGIDO")   
 print(elegido)    
     
