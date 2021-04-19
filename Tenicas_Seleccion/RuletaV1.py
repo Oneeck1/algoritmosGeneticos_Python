@@ -28,7 +28,7 @@ def fitnessFuncion(individuo):
 
 poblacion = []
 for i in range(10):
-    individuo = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], k = 4)
+    individuo = random.choices(['a', 'b', 'c', 'd', 'e', 'f'], k = 4)
     poblacion.append(individuo)
     
     #RULETA
@@ -57,7 +57,9 @@ print(valoresEsperados)
 
 
 # 5._ REPETIR N VECES
-# for i in range(10):
+for i in range(10):
+    # La suma es para que toque el T
+    r = np.random.uniform(0,T+1e-4)
     
 
 
