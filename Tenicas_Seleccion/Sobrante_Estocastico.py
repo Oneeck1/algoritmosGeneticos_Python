@@ -12,7 +12,7 @@ import math
 # OBJEIVO: CAFE
 
 def fitnessFuncion(individuo):
-    objetivo = ['c','a','f','e']
+    objetivo = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
     aptitud = 0
     indice = 0
     for letra in objetivo:
@@ -24,7 +24,8 @@ def fitnessFuncion(individuo):
 
 poblacion = []
 for i in range(10):
-    individuo = random.choices(['a', 'b', 'c', 'd', 'e', 'f'], k = 4)
+    individuo = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+                                'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '], k = 10)
     poblacion.append(individuo)
     
     #RULETA
