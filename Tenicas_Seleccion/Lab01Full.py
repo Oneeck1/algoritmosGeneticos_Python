@@ -14,6 +14,17 @@ class Gen():
         self.tamCad = tamCad
         self.cromosoma = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '], k = tamCad)
 
+    def Aptitud(self,individuo):
+        objetivo = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
+        aptitud = 0
+        indice = 0
+        for letra in objetivo:
+            if letra == individuo[indice]:
+                aptitud+=1
+                indice +=1
+        return aptitud + 1e-4
+
+
     def inicializa():
         pass
     
