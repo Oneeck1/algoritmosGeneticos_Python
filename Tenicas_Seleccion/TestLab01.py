@@ -22,8 +22,8 @@ from Lab01Full import Cromosoma
 p = Cromosoma()
 m = Cromosoma()
 
-p.inicializa(10)
-m.inicializa(10)
+p.inicializa(5)
+m.inicializa(5)
 
 
 print("Padre: ")

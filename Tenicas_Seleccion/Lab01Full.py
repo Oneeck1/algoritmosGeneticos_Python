@@ -10,10 +10,6 @@ import random
 
 class Gen():
     
-    def inicializa(self, tamCad):
-        self.tamCad = tamCad
-        self.cromosoma = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '], k = tamCad)
-
     def Aptitud(self,individuo):
         objetivo = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o']
         aptitud = 0
@@ -24,23 +20,27 @@ class Gen():
                 indice +=1
         return aptitud + 1e-4
 
+    
+    def inicializa(self, tamCad, numeroInd):
+        self.tamCad = tamCad
+        self.cromosoma = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '], k = tamCad)
 
-    def Poblacion(self, numero):
         poblacion = []
-        for i in range(numero):
+        for i in range(numeroInd):
             individuo = self.cromosoma
             poblacion.append(individuo)
-        return poblacion
     
-            
-    def aptitudIndividuos(self):
         aptitudes = []
-        for individuo in self.poblacion:
+        for individuo in poblacion:
             aptitudes.append(self.Aptitud(individuo)) 
-        return aptitudes
+        
+        for i in range(len (poblacion)):
+            self.aptitudes = aptitudes[i]
 
+    
     def __str__(self):
-        return "Individuo: "+str(self.poblacion)+" ----> Fitness: "+str(self.aptitudes)
+        
+        return "Individuo: "+str(self.cromosoma)+" ----> Fitness: "+str(self.aptitudes)
     
     def Mutar(self, n):
         pass
@@ -60,7 +60,7 @@ class Cromosoma():
         genes = []
         for i in range (nGenes):
              g = Gen()
-             g.inicializa(10)
+             g.inicializa(10,5)
              genes.append(g)
         self.genes = genes
         
