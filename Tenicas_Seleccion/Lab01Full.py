@@ -25,20 +25,29 @@ class Gen():
         return aptitud + 1e-4
 
 
-    def inicializa(self, numero):
-        
-        pass
-    
-    def mutar():
-        pass
-    
-    def cruzar():
-        pass
-    
+    def Poblacion(self, numero):
+        poblacion = []
+        for i in range(numero):
+            individuo = self.cromosoma
+            poblacion.append(individuo)
+        return poblacion
+            
+    def aptitudIndividuos(self):
+        aptitudes = []
+        for individuo in self.poblacion:
+            aptitudes.append(self.Aptitud(individuo)) 
+        return aptitudes
+
     def __str__():
         pass
     
-    def fenotipo():
+    def Mutar():
+        pass
+    
+    def Cruzar():
+        pass    
+    
+    def Fenotipo():
         pass
 
 class Cromosoma():
