@@ -25,7 +25,8 @@ class Gen():
         return aptitud + 1e-4
 
 
-    def inicializa():
+    def inicializa(self, numero):
+        
         pass
     
     def mutar():
