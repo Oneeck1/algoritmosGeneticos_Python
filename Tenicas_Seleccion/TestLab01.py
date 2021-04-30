@@ -19,13 +19,17 @@ Created on Mon Mar 22 13:31:09 2021
 
 from Lab01Full import Cromosoma
 
-p = Cromosoma()
+# Se crea un cromosoma padre
+p = Cromosoma() 
+# Se crea un cromosoma madre
 m = Cromosoma()
 
-p.inicializa(2)
-m.inicializa(2)
+# Se inicializan, en este caso quiero 8 padres
+p.inicializa(8)
+# Se inicializan, en este caso quiero 8 madres
+m.inicializa(8)
 
-
+# Se imprimen 
 print("Padre: ")
 print(p)
 
