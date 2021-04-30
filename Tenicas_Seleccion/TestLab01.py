@@ -25,9 +25,9 @@ p = Cromosoma()
 m = Cromosoma()
 
 # Se inicializan, en este caso quiero 8 padres
-p.inicializa(8)
+p.inicializa(6)
 # Se inicializan, en este caso quiero 8 madres
-m.inicializa(8)
+m.inicializa(6)
 
 # Se imprimen 
 print("Padre: ")
