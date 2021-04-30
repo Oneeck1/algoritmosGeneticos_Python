@@ -7,6 +7,7 @@ Created on Thu Apr 29 23:55:54 2021
 """
 import random
 import numpy as np
+import copy
 
 class Gen():
     
@@ -61,6 +62,13 @@ class Gen():
         medio2 = padre[cp1:cp2]
         hijo1[cp1:cp2] = medio1 
         hijo2[cp1:cp2] = medio2
+        
+        h1 = copy.deepcopy(self) # Clona el objeto actual
+        h1.cromosoma = hijo1
+        
+        h2 = copy.deepcopy(otro)
+        h2.cromosoma = hijo2
+        
     
     def Fenotipo():
         pass
