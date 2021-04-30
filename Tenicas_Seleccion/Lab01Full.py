@@ -57,7 +57,10 @@ class Gen():
         hijo1 = padre.copy()
         hijo2 = madre.copy()
     
-    
+        medio1 = madre[cp1:cp2]
+        medio2 = padre[cp1:cp2]
+        hijo1[cp1:cp2] = medio1 
+        hijo2[cp1:cp2] = medio2
     
     def Fenotipo():
         pass
