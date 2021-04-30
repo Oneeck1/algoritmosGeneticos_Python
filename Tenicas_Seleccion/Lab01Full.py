@@ -69,6 +69,12 @@ class Gen():
         h2 = copy.deepcopy(otro)
         h2.cromosoma = hijo2
         
+        if fitnessFunction is None:
+            return [h1,h2]
+        aptitudPadre = fitnessFunction(self)
+        aptitudMadre = fitnessFunction(otro)
+        aptitudHijo1 = fitnessFunction(h1)
+        aptitudHijo2 = fitnessFunction(h2)
     
     def Fenotipo():
         pass
