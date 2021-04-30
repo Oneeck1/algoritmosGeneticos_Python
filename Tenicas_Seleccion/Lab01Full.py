@@ -10,7 +10,7 @@ import random
 
 class Gen():
     
-    def __init__(self, tamCad):
+    def inicializa(self, tamCad):
         self.tamCad = tamCad
         self.cromosoma = random.choices(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '], k = tamCad)
 
@@ -52,13 +52,18 @@ class Gen():
         pass
 
 class Cromosoma():
-
-    def __init__():
-        pass
-
-    def inicializa():
-        pass
     
+    def __init__(self):    
+        pass
+
+    def inicializa(self,nGenes):
+        genes = []
+        for i in range (nGenes):
+             g = Gen()
+             g.inicializa(10)
+             genes.append(g)
+        self.genes = genes
+        
     def mutar():
         pass
     
