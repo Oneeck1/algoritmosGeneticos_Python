@@ -46,8 +46,12 @@ class Gen():
     def Mutar(self, n):
         pass
     
-    def Cruzar():
-        pass    
+    def Cruzar(self, otro, fitnessFunction=None):
+         # Creación de los padres
+        padre = self.cromosoma
+        madre = otro.cromosoma
+
+        
     
     def Fenotipo():
         pass
