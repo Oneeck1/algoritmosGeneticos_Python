@@ -42,7 +42,7 @@ class Gen():
     def __str__(self):
         return "Individuo: "+str(self.poblacion)+" ----> Fitness: "+str(self.aptitudes)
     
-    def Mutar():
+    def Mutar(self, n):
         pass
     
     def Cruzar():
@@ -64,14 +64,18 @@ class Cromosoma():
              genes.append(g)
         self.genes = genes
         
-    def mutar():
-        pass
+    #def mutar(self):
+        #for gen in self.genes:
+            #gen.Mutar(n)
     
     def cruzar():
         pass
     
-    def __str__():
-        pass
+    def __str__(self):
+        cad = ""
+        for gen in self.genes:
+            cad = cad + str(gen) + "\n"
+        return cad
     
     def fenotipo():
         pass

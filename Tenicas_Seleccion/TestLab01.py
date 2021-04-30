@@ -16,13 +16,8 @@ Created on Mon Mar 22 13:31:09 2021
 
 @author: gustavo
 """
-import numpy as np
 
-from Lab01 import Cromosoma
-
-def MyFuncion(ind):
-    valor = ind.fenotipo()    
-    return np.exp(-np.abs(50-valor))
+from Lab01Full import Cromosoma
 
 p = Cromosoma()
 m = Cromosoma()
@@ -33,17 +28,10 @@ m.inicializa(10)
 
 print("Padre: ")
 print(p)
-print(p)
+
 print("Madre: ")
 print(m)
-print(m)
 
-hijos = m.cruza(p)
-
-print("Hijo 0: ")
-print(hijos[0])
-print("Hijo 1: ")
-print(hijos[1])
 
 
 
