@@ -75,7 +75,13 @@ class Gen():
         aptitudMadre = fitnessFunction(otro)
         aptitudHijo1 = fitnessFunction(h1)
         aptitudHijo2 = fitnessFunction(h2)
-    
+        
+        while aptitudHijo1 < aptitudMadre or aptitudHijo1 < aptitudPadre or aptitudHijo2 < aptitudMadre or aptitudHijo2 < aptitudPadre:    
+            h1.inicializa(self.tamCad,self.numeroInd)
+            h2.inicializa(self.tamCad, self.numeroInd)
+            aptitudHijo1 = fitnessFunction(h1)                
+            aptitudHijo2 = fitnessFunction(h2)                
+        return [h1,h2]
     def Fenotipo():
         pass
 
