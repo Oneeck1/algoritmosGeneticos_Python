@@ -31,6 +31,7 @@ class Gen():
             individuo = self.cromosoma
             poblacion.append(individuo)
         return poblacion
+    
             
     def aptitudIndividuos(self):
         aptitudes = []
@@ -38,8 +39,8 @@ class Gen():
             aptitudes.append(self.Aptitud(individuo)) 
         return aptitudes
 
-    def __str__():
-        pass
+    def __str__(self):
+        return "Individuo: "+str(self.poblacion)+" ----> Fitness: "+str(self.aptitudes)
     
     def Mutar():
         pass
