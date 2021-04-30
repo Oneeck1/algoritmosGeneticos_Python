@@ -17,7 +17,7 @@ class Gen():
         for letra in objetivo:
             if letra == individuo[indice]:
                 aptitud+=1
-                indice +=1
+            indice +=1
         return aptitud + 1e-4
 
     
