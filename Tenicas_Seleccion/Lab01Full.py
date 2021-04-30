@@ -6,7 +6,7 @@ Created on Thu Apr 29 23:55:54 2021
 @author: gustavo
 """
 import random
-
+import numpy as np
 
 class Gen():
     
@@ -51,7 +51,13 @@ class Gen():
         padre = self.cromosoma
         madre = otro.cromosoma
 
-        
+        # CRUZA POR DOS PUNTOS
+        cp1 = int(np.ceil(padre)/3)
+        cp2 = int(2*cp1)        
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+    
+    
     
     def Fenotipo():
         pass
