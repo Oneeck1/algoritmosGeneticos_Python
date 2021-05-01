@@ -84,8 +84,6 @@ class Gen():
             aptitudHijo1 = fitnessFunction(h1)                
             aptitudHijo2 = fitnessFunction(h2)                
         return [h1,h2]
-    def Fenotipo():
-        pass
 
 class Cromosoma():
     
@@ -126,9 +124,6 @@ class Cromosoma():
         for gen in self.genes:
             cad = cad + str(gen) + "\n" # Se imprimen los genes
         return cad
-    
-    def fenotipo():
-        pass
 
 
 

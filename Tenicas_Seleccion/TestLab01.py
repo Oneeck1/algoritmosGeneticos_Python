@@ -44,7 +44,8 @@ print(m)
 
 
 print("-----------------------CRUZA-------------------------")
-hijos = p.Cruzar(m)
+# Se hace la cruza del padre con la madre
+hijos = p.Cruzar(m) 
 print("Hijo 0: ")
 print(hijos[0])
 print("Hijo 1: ")
