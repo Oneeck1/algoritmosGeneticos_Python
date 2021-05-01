@@ -24,11 +24,13 @@ class Gen():
 
     
     def Aptitud2(self, individuo):
-        aptitud = 0
+        aptitud2 = 0
         indice = 0
         for letra in objetivo:
-                          
-
+            if letra in individuo:
+                aptitud2 += 1                               
+            indice += 1
+        return aptitud2 + 1e-4
     
     def inicializa(self, tamCad, numeroInd): # Se pedirá el tamañoCadena y NumeroDeIndividuos
         self.tamCad = tamCad
@@ -40,21 +42,25 @@ class Gen():
             individuo = self.cromosoma # Se asigna cada individuo a cromosoma
             poblacion.append(individuo) # Se agregan los individuos para obtener la poblacion
     
+    
         aptitudes = [] # Se reserva espacio para las aptitudes
         for individuo in poblacion:
             aptitudes.append(self.Aptitud(individuo)) # Se hace el calculo de cada aptitud en cada individuo
         
-        for i in range(len (poblacion)):
+        for i in range(len(poblacion)):
             self.aptitudes = aptitudes[i] # Se guarda cada aptitud en aptitudes
 
         aptitudes2 = []
         for individuo in poblacion:
             aptitudes2.append(self.Aptitud2(individuo))
+            
+        for i in range(len(poblacion)):
+            self.aptitudes2 = aptitudes2[i]
 
     
     def __str__(self):
         # Se imprime el resultado en pantalla de los individuos y su fitnes respectivo
-        return "Individuo: "+str(self.cromosoma)+" ----> Fitness: "+str(self.aptitudes)
+        return "Ind: "+str(self.cromosoma)+" -> Fitness: "+str(self.aptitudes)+", Fitness2: "+str(self.aptitudes2)
     
     def Mutar(self, n):
         pass
