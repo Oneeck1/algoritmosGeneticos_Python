@@ -34,6 +34,7 @@ p.inicializa(3)
 # Se inicializan, en este caso quiero 8 madres
 m.inicializa(3)
 
+print("------------------------PADRES-----------------------")
 # Se imprimen 
 print("Padre: ")
 print(p)
@@ -41,6 +42,8 @@ print(p)
 print("Madre: ")
 print(m)
 
+
+print("-----------------------CRUZA-------------------------")
 hijos = p.Cruzar(m)
 print("Hijo 0: ")
 print(hijos[0])
