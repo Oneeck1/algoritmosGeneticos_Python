@@ -27,7 +27,7 @@ class Gen():
         aptitud = 0
         indice = 0
         for letra in objetivo:
-                        
+                          
 
     
     def inicializa(self, tamCad, numeroInd): # Se pedirá el tamañoCadena y NumeroDeIndividuos
