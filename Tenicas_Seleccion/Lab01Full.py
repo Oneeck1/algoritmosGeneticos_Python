@@ -9,10 +9,11 @@ import random
 import numpy as np
 import copy
 
+objetivo = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o'] # Nuestra palabra objetivo 
+
 class Gen():
     
-    def Aptitud(self,individuo): # Se pedira el individuo 
-        objetivo = ['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o'] # Nuestra palabra objetivo 
+    def Aptitud(self,individuo): # Se pedira el individuo     
         aptitud = 0 
         indice = 0
         for letra in objetivo:
@@ -20,6 +21,13 @@ class Gen():
                 aptitud+=1  # Si hay coincidencias, incrementa aptitud
             indice +=1  # Incrementa el indice en uno para seguir con busca de coincidencias
         return aptitud + 1e-4   # Se pone e-4, para que no sea cero, y hacer operaciones despues
+
+    
+    def Aptitud2(self, individuo):
+        aptitud = 0
+        indice = 0
+        for letra in objetivo:
+                        
 
     
     def inicializa(self, tamCad, numeroInd): # Se pedirá el tamañoCadena y NumeroDeIndividuos
@@ -38,6 +46,10 @@ class Gen():
         
         for i in range(len (poblacion)):
             self.aptitudes = aptitudes[i] # Se guarda cada aptitud en aptitudes
+
+        aptitudes2 = []
+        for individuo in poblacion:
+            aptitudes2.append(self.Aptitud2(individuo))
 
     
     def __str__(self):
