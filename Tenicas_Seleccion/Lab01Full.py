@@ -105,8 +105,21 @@ class Cromosoma():
         #for gen in self.genes:
             #gen.Mutar(n)
     
-    def cruzar():
-        pass
+    def Cruzar(self, otro):
+        h1 = copy.deepcopy(self)
+        h2 = copy.deepcopy(otro)        
+        genesHijos1 = []
+        genesHijos2 = []
+
+        for i in range(len(self.genes)):
+            GenPadre = self.genes[i]
+            GenMadre = otro.genes[i]
+            genHijos = GenPadre.Cruzar(GenMadre)
+            genesHijos1.append(genHijos[0])
+            genesHijos2.append(genHijos[1])
+        h1.genes = genesHijos1
+        h2.genes = genesHijos2
+        return [h1, h2]
     
     def __str__(self):
         cad = ""

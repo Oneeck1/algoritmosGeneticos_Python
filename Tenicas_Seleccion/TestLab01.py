@@ -41,7 +41,7 @@ print(p)
 print("Madre: ")
 print(m)
 
-hijos = p.cruzar(m, MyFuncion)
+hijos = p.Cruzar(m)
 print("Hijo 0: ")
 print(hijos[0])
 print("Hijo 1: ")
