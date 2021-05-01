@@ -18,6 +18,11 @@ Created on Mon Mar 22 13:31:09 2021
 """
 
 from Lab01Full import Cromosoma
+import numpy as np
+
+def MyFuncion(ind):
+    valor = ind.fenotipo()    
+    return np.exp(-np.abs(50-valor))
 
 # Se crea un cromosoma padre
 p = Cromosoma() 
@@ -36,7 +41,11 @@ print(p)
 print("Madre: ")
 print(m)
 
-
+hijos = p.cruzar(m, MyFuncion)
+print("Hijo 0: ")
+print(hijos[0])
+print("Hijo 1: ")
+print(hijos[1])
 
 
 
