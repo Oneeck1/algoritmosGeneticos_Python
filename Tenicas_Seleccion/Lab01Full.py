@@ -53,7 +53,7 @@ class Gen():
         madre = otro.cromosoma
 
         # CRUZA POR DOS PUNTOS
-        cp1 = int(np.ceil(padre)/3)
+        cp1 = int(np.ceil(len(padre))/3)
         cp2 = int(2*cp1)        
         hijo1 = padre.copy()
         hijo2 = madre.copy()
