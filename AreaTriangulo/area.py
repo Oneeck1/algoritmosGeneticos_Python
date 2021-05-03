@@ -26,7 +26,7 @@ class Gen():
     def inicializa(self, P, numeroInd):
         self.P = P
         vMin = P/100.0
-        vMax = P-vMin
+        vMax = P-2
         self.cromosoma = [random.uniform(vMin,vMax)for i in range(0,3)]
         
         poblacion = [] # Se reserva espacio para la poblacion
@@ -53,12 +53,11 @@ class Gen():
         alpha = 0.5
         perimetro = (A+B+C)
         
-        # Area sin penalizar
         aptitud = np.sqrt( S * (S-A) * (S-B) * (S-C) )
-        
-        # Area penalizando
+            
         if( perimetro > self.P):
             aptitud = aptitud * np.exp(-alpha * np.abs(self.P - (A + B + C)))
+    
         return aptitud
         
 
@@ -72,7 +71,7 @@ class Cromosoma():
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
              g = Gen()  # Se crean los objetos
-             g.inicializa(10,1) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
+             g.inicializa(30,1) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
              genes.append(g)    # Se agrega cada objeto a genes
         self.genes = genes # Se agrega a genes
 
