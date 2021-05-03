@@ -16,7 +16,7 @@ DESCRIPCIÓN: Area Máxima de un triangulo
 @author: gustavo
 """
 import random
-
+import numpy as np
 
 class Gen():
     
@@ -24,13 +24,43 @@ class Gen():
         pass
     
     def inicializa(self, P):
+        self.P = P
         vMin = P/100.0
         vMax = P-vMin
         self.cromosoma = [random.uniform(vMin,vMax)for i in range(0,3)]
+        
+                poblacion = [] # Se reserva espacio para la poblacion
+        for i in range(numeroInd):  
+            individuo = self.cromosoma # Se asigna cada individuo a cromosoma
+            poblacion.append(individuo) # Se agregan los individuos para obtener la poblacion
+        
+        aptitudes = [] # Se reserva espacio para las aptitudes
+        for individuo in poblacion:
+            aptitudes.append(self.Aptitud(individuo)) # Se hace el calculo de cada aptitud en cada individuo
+        
+        for i in range(len(poblacion)):
+    
 
     def __str__(self):
         lados = self.cromosoma
         return "A: "+str(lados[0])+", B: "+str(lados[1])+", C: "+str(lados[2])
+    
+    def Aptitud(self):
+        A = self.cromosoma[0]
+        B = self.cromosoma[1]
+        C = self.cromosoma[2]
+        S = ((A+B+C)/3)
+        alpha = 0.5
+        perimetro = (A+B+C)
+        
+        # Area sin penalizar
+        aptitud = np.sqrt(S*(S-A)*(S-B)*(S-C))
+        
+        # Area penalizando
+        if( perimetro > self.P):
+            aptitud = aptitud * np.exp(-alpha * np.abs(self.P - (A + B + C)))
+        return aptitud
+        
 
 class Cromosoma():
     
