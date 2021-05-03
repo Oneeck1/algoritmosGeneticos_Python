@@ -43,7 +43,7 @@ class Gen():
 
     def __str__(self):
         lados = self.cromosoma
-        return "A: "+str(lados[0])+", B: "+str(lados[1])+", C: "+str(lados[2])+", Aptitud: "+str(self.aptitudes)
+        return "P = "+str(self.P)+"\nA: "+str(lados[0])+", \nB: "+str(lados[1])+", \nC: "+str(lados[2])+", \nAptitud: "+str(self.aptitudes)
     
     def Aptitud(self):
         A = self.cromosoma[0]
