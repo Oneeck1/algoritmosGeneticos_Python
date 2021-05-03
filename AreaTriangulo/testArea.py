@@ -17,3 +17,14 @@ DESCRIPCIÓN: Test Area Maxima de un Triangulo
 """
 
 
+from area import Cromosoma
+
+# Se crea un cromosoma padre
+p = Cromosoma() 
+# Se crea un cromosoma madre
+m = Cromosoma()
+
+# Se inicializan, en este caso quiero 8 padres
+p.inicializa(3)
+# Se inicializan, en este caso quiero 8 madres
+m.inicializa(3)

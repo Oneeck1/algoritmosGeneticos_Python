@@ -15,20 +15,31 @@ DESCRIPCIÓN: Area Máxima de un triangulo
 
 @author: gustavo
 """
+import random
+
 
 class Gen():
     
     def __init__(self):
         pass
     
-    def inicializar(self, vMin, vMax, P):
+    def inicializa(self, P):
         self.vMin = P/100
         self.vMax = P-self.vMin
-        self.cromosoma = 3
-
-  
+        self.cromosoma = random.choices(self.vMin,self.vMax, k=3)
 
       
 
 class Cromosoma():
-    pass
+    
+    def __init__(self):    
+        pass
+
+    def inicializa(self,nPob):
+        # Se crea espacio para los genes
+        genes = []
+        for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
+             g = Gen()  # Se crean los objetos
+             g.inicializa(10) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
+             genes.append(g)    # Se agrega cada objeto a genes
+        self.genes = genes # Se agrega a genes
