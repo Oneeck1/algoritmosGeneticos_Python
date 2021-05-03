@@ -52,12 +52,17 @@ class Gen():
         S = ((A+B+C)/2)
         alpha = 0.5
         perimetro = (A+B+C)
-        
-        aptitud = np.sqrt( S * (S-A) * (S-B) * (S-C) )
+
+        if S>A and S>B and S>C:
             
-        if( perimetro > self.P):
-            aptitud = aptitud * np.exp(-alpha * np.abs(self.P - (A + B + C)))
-    
+            aptitud = np.sqrt( S * (S-A) * (S-B) * (S-C) )
+                
+            if( perimetro > self.P):
+                aptitud = aptitud * np.exp(-alpha * np.abs(self.P - (A + B + C)))
+        
+        else: 
+            aptitud = 1e-6
+        
         return aptitud
         
 
@@ -66,7 +71,7 @@ class Cromosoma():
     def __init__(self):    
         pass
 
-    def inicializa(self,tamP,nPob=20):
+    def inicializa(self,tamP,nPob=1):
         # Se crea espacio para los genes
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran

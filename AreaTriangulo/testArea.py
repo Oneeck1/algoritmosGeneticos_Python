@@ -16,6 +16,7 @@ DESCRIPCIÓN: Test Area Maxima de un Triangulo
 @author: gustavo
 """
 
+# Probabilidad 1e-6
 
 from area import Cromosoma
 
