@@ -24,11 +24,13 @@ class Gen():
         pass
     
     def inicializa(self, P):
-        self.vMin = P/100
-        self.vMax = P-self.vMin
-        self.cromosoma = random.choices(self.vMin,self.vMax, k=3)
+        vMin = P/100.0
+        vMax = P-vMin
+        self.cromosoma = [random.uniform(vMin,vMax)for i in range(0,3)]
 
-      
+    def __str__(self):
+        lados = self.cromosoma
+        return "A: "+str(lados[0])+", B: "+str(lados[1])+", C: "+str(lados[2])
 
 class Cromosoma():
     
@@ -43,3 +45,9 @@ class Cromosoma():
              g.inicializa(10) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
              genes.append(g)    # Se agrega cada objeto a genes
         self.genes = genes # Se agrega a genes
+
+    def __str__(self):
+        cad = ""
+        for gen in self.genes:
+            cad = cad + str(gen) + "\n" # Se imprimen los genes
+        return cad

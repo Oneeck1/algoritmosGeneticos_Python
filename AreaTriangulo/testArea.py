@@ -28,3 +28,11 @@ m = Cromosoma()
 p.inicializa(3)
 # Se inicializan, en este caso quiero 8 madres
 m.inicializa(3)
+
+print("------------------------PADRES-----------------------")
+# Se imprimen 
+print("Padre: ")
+print(p)
+
+print("Madre: ")
+print(m)
