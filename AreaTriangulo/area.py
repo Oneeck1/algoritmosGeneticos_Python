@@ -66,7 +66,7 @@ class Cromosoma():
     def __init__(self):    
         pass
 
-    def inicializa(self,tamP,nPob=1):
+    def inicializa(self,tamP,nPob=20):
         # Se crea espacio para los genes
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
@@ -78,5 +78,5 @@ class Cromosoma():
     def __str__(self):
         cad = ""
         for gen in self.genes:
-            cad = cad + str(gen) + "\n" # Se imprimen los genes
+            cad = cad + str(gen) + "\n\n" # Se imprimen los genes
         return cad
