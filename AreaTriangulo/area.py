@@ -16,4 +16,19 @@ DESCRIPCIÓN: Area Máxima de un triangulo
 @author: gustavo
 """
 
+class Gen():
+    
+    def __init__(self):
+        pass
+    
+    def inicializar(self, vMin, vMax, P):
+        self.vMin = P/100
+        self.vMax = P-self.vMin
+        self.cromosoma = 3
 
+  
+
+      
+
+class Cromosoma():
+    pass
