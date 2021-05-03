@@ -72,7 +72,7 @@ class Cromosoma():
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
              g = Gen()  # Se crean los objetos
-             g.inicializa(10,5) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
+             g.inicializa(10,1) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
              genes.append(g)    # Se agrega cada objeto a genes
         self.genes = genes # Se agrega a genes
 
