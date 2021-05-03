@@ -66,12 +66,12 @@ class Cromosoma():
     def __init__(self):    
         pass
 
-    def inicializa(self,nPob):
+    def inicializa(self,tamP,nPob=1):
         # Se crea espacio para los genes
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
              g = Gen()  # Se crean los objetos
-             g.inicializa(30,1) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
+             g.inicializa(tamP,1) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
              genes.append(g)    # Se agrega cada objeto a genes
         self.genes = genes # Se agrega a genes
 

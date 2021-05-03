@@ -24,10 +24,10 @@ p = Cromosoma()
 # Se crea un cromosoma madre
 m = Cromosoma()
 
-# Se inicializan, en este caso quiero 8 padres
-p.inicializa(1)
-# Se inicializan, en este caso quiero 8 madres
-m.inicializa(1)
+# Se inicializan
+p.inicializa(10) # P
+# Se inicializan
+m.inicializa(10) # P
 
 print("------------------------PADRES-----------------------")
 # Se imprimen 
