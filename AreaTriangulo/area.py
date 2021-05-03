@@ -23,38 +23,38 @@ class Gen():
     def __init__(self):
         pass
     
-    def inicializa(self, P):
+    def inicializa(self, P, numeroInd):
         self.P = P
         vMin = P/100.0
         vMax = P-vMin
         self.cromosoma = [random.uniform(vMin,vMax)for i in range(0,3)]
         
-                poblacion = [] # Se reserva espacio para la poblacion
+        poblacion = [] # Se reserva espacio para la poblacion
         for i in range(numeroInd):  
             individuo = self.cromosoma # Se asigna cada individuo a cromosoma
             poblacion.append(individuo) # Se agregan los individuos para obtener la poblacion
         
         aptitudes = [] # Se reserva espacio para las aptitudes
         for individuo in poblacion:
-            aptitudes.append(self.Aptitud(individuo)) # Se hace el calculo de cada aptitud en cada individuo
+            aptitudes.append(self.Aptitud()) # Se hace el calculo de cada aptitud en cada individuo
         
         for i in range(len(poblacion)):
-    
+            self.aptitudes = aptitudes[i] # Se guarda cada aptitud en aptitudes
 
     def __str__(self):
         lados = self.cromosoma
-        return "A: "+str(lados[0])+", B: "+str(lados[1])+", C: "+str(lados[2])
+        return "A: "+str(lados[0])+", B: "+str(lados[1])+", C: "+str(lados[2])+", Aptitud: "+str(self.aptitudes)
     
     def Aptitud(self):
         A = self.cromosoma[0]
         B = self.cromosoma[1]
         C = self.cromosoma[2]
-        S = ((A+B+C)/3)
+        S = ((A+B+C)/2)
         alpha = 0.5
         perimetro = (A+B+C)
         
         # Area sin penalizar
-        aptitud = np.sqrt(S*(S-A)*(S-B)*(S-C))
+        aptitud = np.sqrt( S * (S-A) * (S-B) * (S-C) )
         
         # Area penalizando
         if( perimetro > self.P):
@@ -72,7 +72,7 @@ class Cromosoma():
         genes = []
         for i in range (nPob): # En TestLab01 se pedirá cuanfos genes desarrollaran
              g = Gen()  # Se crean los objetos
-             g.inicializa(10) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
+             g.inicializa(10,5) # Se inicializan los objetos (de tamaño 10 y 5 individuos)
              genes.append(g)    # Se agrega cada objeto a genes
         self.genes = genes # Se agrega a genes
 
