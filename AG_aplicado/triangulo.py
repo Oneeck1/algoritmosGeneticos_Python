@@ -88,7 +88,7 @@ class FitnessFunctionTriangulo:
 ind1 = TrianguloAG(12)
 ind1.inicializa()
 ff = FitnessFunctionTriangulo()
-ind1 = setLados(3,3,3)
+ind1.setLados(3,3,3)
 print(ind1)    
 print(ff.evaluate(ind1))
         
