@@ -123,8 +123,16 @@ class ProblemaTrianguloAG:
             print(ind)
             
     def evolve(self):
-        pass
+        sigPoblacion = []
+        # 2) Aplicar Elitismo
+        mejor = self.elitismo()
+        sigPoblacion.append(mejor)
+        
+
+class TecnicaSeleccion:        
     
+    def selecciona(self, poblacion, Aptitudes, cuantosHijos=2):
+        
     
 ind1 = TrianguloAG(12)
 ind1.inicializa()
