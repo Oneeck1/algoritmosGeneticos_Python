@@ -69,7 +69,7 @@ class TrianguloAG(Triangulo):
     
 class FitnessFunctionTriangulo:
     
-    def evaluate(individuo):
+    def evaluate(self,individuo):
         TOL = 0.5
         alfa = 1
         area = individuo.area()
@@ -83,16 +83,15 @@ class FitnessFunctionTriangulo:
             if difPer < TOL:
                 return area
             else:
-                return area-np.(-difPer*alfa)
+                return area*np.exp(-difPer*alfa)
         
-    
-    
-    
-    
-    
+        
 ind1 = TrianguloAG(12)
 ind1.inicializa()
+ff = FitnessFunctionTriangulo()
+ind1 = setLados(3,3,3)
 print(ind1)    
+print(ff.evaluate(ind1))
         
         
         
