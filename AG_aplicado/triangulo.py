@@ -89,11 +89,19 @@ class ProblemaTrianguloAG:
     def __init__(self,tamanoPoblacion, perimetro):
         self.N = tamanoPoblacion
         self.poblacion = []        
+        self.ff = FitnessFunctionTriangulo()
+        
         for i in range(self.N):
             tag = TrianguloAG(perimetro)
             tag.inicializa()
             self.poblacion.append(tag)
-                
+
+    def getAptitudes(self):
+        aptitudes = []            
+         for ind in self.poblacion:
+             apt = self.ff.evaluate(ind)
+             aptitudes.append(apt
+            
     def printPoblacion(self):
         for ind in self.poblacion:
             print(ind)
