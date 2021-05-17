@@ -92,7 +92,7 @@ class ProblemaTrianguloAG:
         for i in range(self.N):
             tag = TrianguloAG(perimetro)
             tag.inicializa()
-            self.append(tag)
+            self.poblacion.append(tag)
                 
     def printPoblacion(self):
         for ind in self.poblacion:
