@@ -48,10 +48,12 @@ class TrianguloAG(Triangulo):
     
     
     def inicializa(self):
-        cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]
+        perimetro = self.perimetro
+        self.cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]
         
     
-    
+    def cruzar(self,madre):
+        self.cromo.cruzar(madre)
     
     
     
