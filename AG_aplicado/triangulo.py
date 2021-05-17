@@ -137,7 +137,7 @@ class ProblemaTrianguloAG:
         # 3) Cruza para generar hijo
         poblacionIntermedia = []
         
-        for i in range(self.N/2):
+        for i in range(int(self.N/2)):
             padres = self.tecSeleccion(self.poblacion, self.getAptitudes(), 2)
             papa = padres[0]
             mama = padres[1]
