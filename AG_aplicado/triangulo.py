@@ -54,7 +54,9 @@ class TrianguloAG(Triangulo):
     def inicializa(self):
         perimetro = self.perimetro
         self.cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]
-        
+        self.a = cromo.fenotipo()[0]
+        self.b = cromo.fenotipo()[1]
+        self.c = cromo.fenotipo()[2]
     
     def cruzar(self,madre):
         self.cromo.cruzar(madre)
