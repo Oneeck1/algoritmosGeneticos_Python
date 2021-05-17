@@ -21,6 +21,7 @@ DESCRIPCIÓN: Área máxima de un triángulo
 from Cromosomas import Cromosoma 
 import numpy as np
 import copy
+import random
 
 class Triangulo:
     def __init__(self, perimetro):
@@ -131,7 +132,10 @@ class ProblemaTrianguloAG:
 
 class TecnicaSeleccion:        
     
-    def selecciona(self, poblacion, Aptitudes, cuantosHijos=2):
+    def selecciona(self, poblacion, aptitudes, cuantosHijos=2):
+        probs = np.exp(aptitudes)/np.sum(np.exp(aptitudes))    
+        selected = random.choices(poblacion, probs, k = cuantosHijos)
+        return selected
         
     
 ind1 = TrianguloAG(12)
