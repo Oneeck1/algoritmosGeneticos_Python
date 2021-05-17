@@ -65,12 +65,29 @@ class TrianguloAG(Triangulo):
     
     def mutar(self):
         return self.cromo.mutar(1)
-    
+
     
 class FitnessFunctionTriangulo:
     
     def evaluate(individuo):
+        TOL = 0.5
+        alfa = 1
+        area = individuo.area()
+        perimetroRequerido = individuo.perimetro
+        perimetroInd = individuo.a + individuo.b + individuo.c
+        difPer = np.abs(perimetroInd - perimetroRequerido)
         
+        if area < 0:
+            return -1
+        elif area > 0:
+            if difPer < TOL:
+                return area
+            else:
+                return area-np.(-difPer*alfa)
+        
+    
+    
+    
     
     
 ind1 = TrianguloAG(12)
