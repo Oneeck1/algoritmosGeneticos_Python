@@ -100,7 +100,10 @@ class ProblemaTrianguloAG:
         aptitudes = []            
          for ind in self.poblacion:
              apt = self.ff.evaluate(ind)
-             aptitudes.append(apt
+             aptitudes.append(apt)
+             
+        maxApt = np.max(aptitudes)
+        indx = aptitudes.index(maxApt)             
             
     def printPoblacion(self):
         for ind in self.poblacion:
