@@ -20,6 +20,7 @@ DESCRIPCIÓN: Área máxima de un triángulo
 
 from Cromosomas import Cromosoma 
 import numpy as np
+import copy
 
 class Triangulo:
     def __init__(self, perimetro):
@@ -106,9 +107,16 @@ class ProblemaTrianguloAG:
             
         
     def elitismo(self):
-        aptitudes = self.getAptitudes()        
+      # Calcula todas las aptitudes
+        aptitudes = self.getAptitudes()   
+      # Identifica la más alta  
         maxApt = np.max(aptitudes)
-        indx = aptitudes.index(maxApt)             
+      # Identifica donde está el mejor individuo  
+        indx = aptitudes.index(maxApt)    
+      # Clonar al individuo  
+        mejor = self.poblacion[indx]
+        clon = copy.deepcopy(mejor)
+        return clon
         
     def printPoblacion(self):
         for ind in self.poblacion:
