@@ -98,7 +98,10 @@ class ProblemaTrianguloAG:
         for ind in self.poblacion:
             print(ind)
             
-            
+    def evolve(self):
+        pass
+    
+    
 ind1 = TrianguloAG(12)
 ind1.inicializa()
 ff = FitnessFunctionTriangulo()
