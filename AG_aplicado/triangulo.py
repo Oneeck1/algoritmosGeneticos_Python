@@ -98,13 +98,18 @@ class ProblemaTrianguloAG:
 
     def getAptitudes(self):
         aptitudes = []            
-         for ind in self.poblacion:
+        for ind in self.poblacion:
              apt = self.ff.evaluate(ind)
              aptitudes.append(apt)
-             
+        return aptitudes             
+        
+            
+        
+    def elitismo(self):
+        aptitudes = self.getAptitudes()        
         maxApt = np.max(aptitudes)
         indx = aptitudes.index(maxApt)             
-            
+        
     def printPoblacion(self):
         for ind in self.poblacion:
             print(ind)
