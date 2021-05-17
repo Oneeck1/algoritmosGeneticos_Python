@@ -28,4 +28,24 @@ class Triangulo:
         self.a = a
         self.a = b
         self.a = c
+      
+    def area(self):
+        s = self.a + self.b + self.c
+        s = s/2.0
+        
+        tmp = s*(s-self.a)*(s-self.b)*(s-self.c)
+        if tempo < 0:
+            area = -1.0
+        else:
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
