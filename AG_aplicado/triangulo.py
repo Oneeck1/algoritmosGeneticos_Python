@@ -64,10 +64,32 @@ class TrianguloAG(Triangulo):
         '''
     
     def cruzar(self, madre):
-        return self.cromo.cruzar(madre)
+        hijos = self.cromo.cruzar(madre)
+        lados = hijos[0].fenotipo()
+        a = lados[0]
+        b = lados[1]
+        c = lados[2]
+        hijo1 = copy.deepcopy(self)
+        hijo1.setLados(a, b, c)
+        hijo2 = copy.deepcopy(madre)
+        lados = hijos[1].fenotipo()
+        a = lados[0]
+        b = lados[1]
+        c = lados[2]
+        hijo2.setLados(a, b, c)
+        return [hijo1, hijo2]
+    
     
     def mutar(self):
-        return self.cromo.mutar(1)
+        mutante = self.cromo.mutar(1)
+        lados = mutante.fenotipo()
+        a = lados[0]
+        b = lados[1]
+        c = lados[2]
+        clon = copy.deepcopy(self)
+        clon.setLados(a, b, c)
+        return clon
+
     
 class FitnessFunctionTriangulo:
     
@@ -176,8 +198,8 @@ class TecnicaSeleccion:
 
 
 prob = ProblemaTrianguloAG(20,12)
-prob.evolve()
-prob.printPoblacion()
+#prob.evolve()
+#prob.printPoblacion()
     
         
         
