@@ -93,7 +93,9 @@ class ProblemaTrianguloAG:
         self.poblacion = []        
         self.ff = FitnessFunctionTriangulo()
         
+        
         for i in range(self.N):
+            # 1) Genera poblacion aleatoria
             tag = TrianguloAG(perimetro)
             tag.inicializa()
             self.poblacion.append(tag)
@@ -128,6 +130,11 @@ class ProblemaTrianguloAG:
         # 2) Aplicar Elitismo
         mejor = self.elitismo()
         sigPoblacion.append(mejor)
+        # 3) Cruza para generar hijo
+        padres = self.tecSeleccion(self.poblacion, self.getAptitudes(), 2)
+        papa = padres[0]
+        mama = padres[1]
+        hijos = papa.cruzar(mama)
         
 
 class TecnicaSeleccion:        
