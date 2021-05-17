@@ -41,7 +41,9 @@ class Triangulo:
         return area
         
         
-        
+cromo  = Cromosoma()
+perimetro = 10.0
+cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]        
         
         
         
