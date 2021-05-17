@@ -44,10 +44,12 @@ class Triangulo:
 class TrianguloAG(Triangulo):
     def __init__(self, perimetro):
         super().__init__(perimetro)
+        self.cromo = Cromosoma()
     
     
-    
-    
+    def inicializa(self):
+        cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]
+        
     
     
     
