@@ -42,10 +42,14 @@ class Triangulo:
         return area
         
 class TrianguloAG(Triangulo):
+    
     def __init__(self, perimetro):
         super().__init__(perimetro)
         self.cromo = Cromosoma()
     
+    def __str__(self):
+        return "a = {:.3f}, b = {:.3f}, c={:.3f}".format(self.a, self.b, self.c)
+        
     
     def inicializa(self):
         perimetro = self.perimetro
@@ -60,6 +64,9 @@ class TrianguloAG(Triangulo):
         return self.cromo.mutar(1)
     
     
+ind1 = TrianguloAG(12)
+ind1.inicializa()
+print(ind1)
 
 cromo  = Cromosoma()
 perimetro = 10.0
