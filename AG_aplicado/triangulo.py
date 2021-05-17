@@ -17,5 +17,15 @@ DESCRIPCIÓN: Área máxima de un triángulo
 
 @author: gustavo
 """
+from Cromosomas import GenReal
+import numpy as np
 
-
+class Triangulo:
+    def __init__(self, perimetro):
+        self.perimetro = perimetro;
+        
+    def setLados(self,a,b,c):
+        self.a = a
+        self.a = b
+        self.a = c
+        
