@@ -131,10 +131,19 @@ class ProblemaTrianguloAG:
         mejor = self.elitismo()
         sigPoblacion.append(mejor)
         # 3) Cruza para generar hijo
-        padres = self.tecSeleccion(self.poblacion, self.getAptitudes(), 2)
-        papa = padres[0]
-        mama = padres[1]
-        hijos = papa.cruzar(mama)
+        poblacionIntermedia = []
+        
+        for i in range(self.N/2):
+            padres = self.tecSeleccion(self.poblacion, self.getAptitudes(), 2)
+            papa = padres[0]
+            mama = padres[1]
+            hijos = papa.cruzar(mama)
+            hijo1 = hijos[0]
+            hijo2 = hijos[1]
+            poblacionIntermedia.append(hijo1)
+            poblacionIntermedia.append(hijo2)
+            poblacionIntermedia.append(copy.deepcopy(mama))
+            poblacionIntermedia.append(copy.deepcopy(papa))
         
 
 class TecnicaSeleccion:        
