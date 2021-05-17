@@ -84,7 +84,21 @@ class FitnessFunctionTriangulo:
             else:
                 return area*np.exp(-difPer*alfa)
         
-        
+class ProblemaTrianguloAG:
+    
+    def __init__(self,tamanoPoblacion, perimetro):
+        self.N = tamanoPoblacion
+        self.poblacion = []        
+        for i in range(self.N):
+            tag = TrianguloAG(perimetro)
+            tag.inicializa()
+            self.append(tag)
+                
+    def printPoblacion(self):
+        for ind in self.poblacion:
+            print(ind)
+            
+            
 ind1 = TrianguloAG(12)
 ind1.inicializa()
 ff = FitnessFunctionTriangulo()
