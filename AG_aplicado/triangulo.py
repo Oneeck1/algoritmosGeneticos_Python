@@ -67,15 +67,15 @@ class TrianguloAG(Triangulo):
         return self.cromo.mutar(1)
     
     
+class FitnessFunctionTriangulo:
+    
+    def evaluate(individuo):
+        
+    
+    
 ind1 = TrianguloAG(12)
 ind1.inicializa()
-print(ind1)
-
-cromo  = Cromosoma()
-perimetro = 10.0
-cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]        
-        
-        
+print(ind1)    
         
         
         
