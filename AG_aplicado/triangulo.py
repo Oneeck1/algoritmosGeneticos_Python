@@ -93,9 +93,9 @@ class ProblemaTrianguloAG:
         self.poblacion = []        
         self.ff = FitnessFunctionTriangulo()
         self.tecSeleccion = TecnicaSeleccion()
-        
+
+    # 1) Genera poblacion aleatoria        
         for i in range(self.N):
-            # 1) Genera poblacion aleatoria
             tag = TrianguloAG(perimetro)
             tag.inicializa()
             self.poblacion.append(tag)
@@ -153,11 +153,19 @@ class ProblemaTrianguloAG:
         totalMutar = int(np.ceil(0.05)*len(poblacionIntermedia))
         mutantes = self.tecSeleccion(poblacionIntermedia, self.getAptitudes(poblacionIntermedia), totalMutar)
         
-        mutados = []
+
         for mutante in mutantes:
             poblacionIntermedia.append(mutante.mutar())
             # En este punto la poblacion intermedia contiene: padres, hijos y mutantes
 
+        # 5) Crear nueva poblacion/generacion
+        seleccionados = self.tecSeleccion(poblacionIntermedia, self.getAptitudes(), self.N-1)
+        for seleccionado in seleccionados:
+            clon = copy.deepcopy(seleccionado)
+            sigPoblacion.append(clon)
+        self.poblacion = sigPoblacion
+        
+        
 class TecnicaSeleccion:        
     
     def selecciona(self, poblacion, aptitudes, cuantosHijos=2):
@@ -165,16 +173,12 @@ class TecnicaSeleccion:
         selected = random.choices(poblacion, probs, k = cuantosHijos)
         return selected
         
+
+
+prob = ProblemaTrianguloAG(20,12)
+prob.evolve()
+prob.printPoblacion()
     
-ind1 = TrianguloAG(12)
-ind1.inicializa()
-ff = FitnessFunctionTriangulo()
-ind1.setLados(3,3,3)
-print(ind1)    
-print(ff.evaluate(ind1))
-        
-        
-        
         
         
         
