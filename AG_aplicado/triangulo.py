@@ -34,10 +34,11 @@ class Triangulo:
         s = s/2.0
         
         tmp = s*(s-self.a)*(s-self.b)*(s-self.c)
-        if tempo < 0:
+        if tmp < 0:
             area = -1.0
         else:
-            
+            area = np.sqrt(tmp)
+        return area
         
         
         
