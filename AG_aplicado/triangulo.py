@@ -17,73 +17,73 @@ DESCRIPCIÓN: Área máxima de un triángulo
 
 @author: gustavo
 """
-from Cromosomas import Cromosoma
+
+from Cromosomas import Cromosoma 
 import numpy as np
 
 class Triangulo:
     def __init__(self, perimetro):
-        self.perimetro = perimetro;
+        self.a = 0
+        self.b = 0
+        self.c = 0
         
-    def setLados(self,a,b,c):
+        self.perimetro = perimetro
+    def __str__(self):
+        return "a = {:.3f}, b = {:.3f} c = {:.3f}".format(self.a, self.b, self.c)
+    
+    def setLados(self, a, b, c):
         self.a = a
-        self.a = b
-        self.a = c
-      
+        self.b = b
+        self.c = c
+    
     def area(self):
-        s = self.a + self.b + self.c
+        s = self.a + self.a + self.c
         s = s/2.0
-        
-        tmp = s*(s-self.a)*(s-self.b)*(s-self.c)
-        if tmp < 0:
-            area = -1.0
+        tempo = s*(s-self.a)*(s-self.b)*(s-self.c)
+        if tempo < 0:
+            area =  -1.0
         else:
-            area = np.sqrt(tmp)
+            area =  np.sqrt(tempo)
         return area
-        
+
 class TrianguloAG(Triangulo):
     
     def __init__(self, perimetro):
         super().__init__(perimetro)
         self.cromo = Cromosoma()
-    
-    def __str__(self):
-        return "a = {:.3f}, b = {:.3f}, c={:.3f}".format(self.a, self.b, self.c)
-        
-    
+   
     def inicializa(self):
         perimetro = self.perimetro
-        self.cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]
+        self.cromo.inicializa([perimetro/100.0, perimetro/100.0, perimetro/100.0], [perimetro, perimetro, perimetro],
+                 [True, True, True])
         '''self.a = self.cromo.fenotipo()[0]
         self.b = self.cromo.fenotipo()[1]
         self.c = self.cromo.fenotipo()[2]
         '''
-        
-    def cruzar(self,madre):
-        self.cromo.cruzar(madre)
     
+    def cruzar(self, madre):
+        return self.cromo.cruzar(madre)
     
     def mutar(self):
         return self.cromo.mutar(1)
-
     
 class FitnessFunctionTriangulo:
     
-    def evaluate(self,individuo):
+    def evaluate(self, individuo):
         TOL = 0.5
         alfa = 1
         area = individuo.area()
         perimetroRequerido = individuo.perimetro
         perimetroInd = individuo.a + individuo.b + individuo.c
-        difPer = np.abs(perimetroInd - perimetroRequerido)
-        
-        if area < 0:
+        difPerimetro = np.abs(perimetroInd - perimetroRequerido)
+        if area <= 0:
             return -1
-        elif area > 0:
-            if difPer < TOL:
+        if area > 0:
+            if difPerimetro < TOL:
                 return area
             else:
-                return area*np.exp(-difPer*alfa)
-        
+                return area * np.exp(-difPerimetro*alfa)
+
 class ProblemaTrianguloAG:
     
     def __init__(self,tamanoPoblacion, perimetro):
