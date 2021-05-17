@@ -18,6 +18,7 @@ DESCRIPCIÓN: Área máxima de un triángulo
 @author: gustavo
 """
 from Cromosomas import GenReal
+from Cromosomas import Cromosoma
 import numpy as np
 
 class Triangulo:
@@ -40,7 +41,21 @@ class Triangulo:
             area = np.sqrt(tmp)
         return area
         
-        
+class TrianguloAG(Triangulo):
+    def __init__(self, perimetro):
+        super().__init__(perimetro)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 cromo  = Cromosoma()
 perimetro = 10.0
 cromo.inicializa(perimetro/100.0, perimetro/100.0, perimetro/100.0), [perimetro, perimetro, perimetro], [True,True,True]        
