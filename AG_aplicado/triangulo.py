@@ -56,7 +56,8 @@ class TrianguloAG(Triangulo):
         self.cromo.cruzar(madre)
     
     
-    
+    def mutar(self):
+        return self.cromo.mutar(1)
     
     
 
