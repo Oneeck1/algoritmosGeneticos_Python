@@ -92,7 +92,7 @@ class ProblemaTrianguloAG:
         self.N = tamanoPoblacion
         self.poblacion = []        
         self.ff = FitnessFunctionTriangulo()
-        
+        self.tecSeleccion = TecnicaSeleccion()
         
         for i in range(self.N):
             # 1) Genera poblacion aleatoria
