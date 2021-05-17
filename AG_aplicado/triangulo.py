@@ -100,7 +100,9 @@ class ProblemaTrianguloAG:
             tag.inicializa()
             self.poblacion.append(tag)
 
-    def getAptitudes(self):
+    def getAptitudes(self, pob = None):
+        if pob is None:
+            pob = self.poblacion            
         aptitudes = []            
         for ind in self.poblacion:
              apt = self.ff.evaluate(ind)
@@ -127,9 +129,11 @@ class ProblemaTrianguloAG:
             
     def evolve(self):
         sigPoblacion = []
+        
         # 2) Aplicar Elitismo
         mejor = self.elitismo()
         sigPoblacion.append(mejor)
+        
         # 3) Cruza para generar hijo
         poblacionIntermedia = []
         
@@ -144,7 +148,15 @@ class ProblemaTrianguloAG:
             poblacionIntermedia.append(hijo2)
             poblacionIntermedia.append(copy.deepcopy(mama))
             poblacionIntermedia.append(copy.deepcopy(papa))
+            
+        # 4) Mutacion al 5% de la poblacion
+        totalMutar = int(np.ceil(0.05)*len(poblacionIntermedia))
+        mutantes = self.tecSeleccion(poblacionIntermedia, self.getAptitudes(poblacionIntermedia), totalMutar)
         
+        mutados = []
+        for mutante in mutantes:
+            poblacionIntermedia.append(mutante.mutar())
+            # En este punto la poblacion intermedia contiene: padres, hijos y mutantes
 
 class TecnicaSeleccion:        
     
