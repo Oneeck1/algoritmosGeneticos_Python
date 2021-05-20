@@ -211,6 +211,8 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
+        global entero
+        global decimal
                  
         super().inicializa(vMin, vMax)
         self.gray = gray
@@ -232,33 +234,24 @@ class GenReal(GenNum):
         if not self.gray :  #  Representación en binario
             cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
-        else:  # Representación en Gray
-    
+        else:  # Representación en Gray    
             binario = self.cromosoma.copy()
-            binario2 = self.cromosoma.copy()
+
             # PARTE ENTERA
-            for i in range(2,len(entero2)):
+            for i in range(2,len(entero)):
                 a = entero2[i-1]
                 b = entero2[i]
     
                 if a == b:
                     binario[i] = 0
                     
-                elif a == '.' or b == '.': # Si tiene un . que lo pase
-                    pass
+                elif a == '.' or b == '.': # Si tiene un . que lo ponga
+                    binario[i] = "."
                 else:
-                    binario[i] = 1                                
-            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
-            # PARTE DECIMAL
-            for i in range(2, len(decimal2)):
-                aa = decimal2[i-1]
-                bb = decimal2[i]
-                if aa == bb:
-                    binario2[i] = 0
-                elif  aa == '.' or bb == '.':
-                    pass
-                else:
-                    binario2[i] = 1
+                    binario[i] = 1                            
+                    
+            cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+
 
         if(entero2[0]==0):
             c = int(entero2,2)
