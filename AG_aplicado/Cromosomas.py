@@ -290,7 +290,8 @@ class GenReal(GenNum):
                     bina[i] = 0
                 else:
                     bina[i] = 1
-                    
+            pEntera = round(bina,2)
+            
         cad = bina
 
 
