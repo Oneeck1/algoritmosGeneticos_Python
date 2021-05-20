@@ -211,7 +211,13 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        pass
+                 
+        super().inicializa(vMin, vMax)
+        self.gray = gray
+        # Calculo del número mínimo de bits para representar un valor entre
+        # vMin y vMax
+        v = max([vMin, vMax])  
+        
 
 
 class Cromosoma:
