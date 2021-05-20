@@ -251,7 +251,7 @@ class GenReal(GenNum):
             cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
 
     
-
+        '''
         if(entero2[0]==0):
             c = int(entero2,2)
             C1 = int(decimal2,2)
@@ -262,7 +262,8 @@ class GenReal(GenNum):
             C22 = int(decimal2,2)
             cad2 = str(c2)+"."+str(C22)
             return -float(cad2)
-    
+        '''
+        return cadenaa
 
     def mutar(self, nbits):
         while True:
