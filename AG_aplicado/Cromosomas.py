@@ -19,7 +19,7 @@ Created on Mon Mar  8 16:49:47 2021
 import numpy as np
 import random
 import copy
-
+import math
 
 class GenNum:
 
@@ -201,7 +201,7 @@ class GenReal(GenNum):
     PUEDAS DE LA SUPERCLASE
     '''
 
-    def inicializa(self, vMin=0, vMax=15, gray=True):
+    def inicializa(self, vMin=1, vMax=15, gray=True):
         '''
         Inicializa de manera pseudo aleatoria al inidividuo.
 
@@ -216,29 +216,85 @@ class GenReal(GenNum):
         v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         
-        self.cromosoma = random.choices([0, 1], k=self.nbits)
+        num = random.SystemRandom()
+        valor = num.uniform(vMin,vMax)
+        
+        self.cromosoma = valor
+        #self.cromosoma = random.choices([0, 1], k=self.nbits)
+        # self.cromosoma = str(self.cromosoma[:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
         # Generar un indivividuo factible
         while not self.isFactible():
-            self.cromosoma = random.choices([0, 1], k=self.nbits)
+            #self.cromosoma = random.choices([0, 1], k=self.nbits)
+            #self.cromosoma = str(self.cromosoma[:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
+            self.cromosoma = valor    
     
-    def fenotipo(self):
-        if not self.gray:
-            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        else:  # Representación en Gray
-            binario = self.cromosoma.copy()
-            for i in range(2, len(self.cromosoma)):
-                a = self.cromosoma[i - 1]
-                b = self.cromosoma[i]
-                if a == b:
-                    binario[i] = 0
-                else:
-                    binario[i] = 1
-            cad = str(binario[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        if self.cromosoma[0] == 0:
-            fraccionaria = random.choices([0, 1], k=self.nbits) # AQUI ME QUEDE
-            return int(cad, 2)
+     # PARTE ENTERA
+    def binario(num):
+        co=0
+        resto = 0
+        numero_binario = []
+     
+        if num <= 1:
+            print("no se puede convertir")
         else:
-            return -int(cad, 2)    
+            while num > 1:
+                #co = num //2
+                resto=num%2
+                numero_binario.append(resto)
+                num=num//2
+            numero_binario.append(1)
+            numero_binario.reverse()
+            return numero_binario
+     
+        
+    # PARTE FRACCIONARIA    
+    def binario_decimal(decimal):
+     
+        aux=decimal*2
+        decimal_binario=[]
+        lista=[]
+        valor=0
+        while aux not in lista :
+                lista.append(aux)
+                partes=math.modf(aux)
+                valor= int(round(partes[1],2))
+                decimal_binario.append(valor)
+                if int(round(partes[1],2)) == 1 and round(partes[0],2)== 0.0:
+                    break
+                aux=round(partes[0],2) * 2
+     
+        return decimal_binario
+     
+ 
+    def fenotipo(self):
+        if not self.gray: #Binario
+            cad = self.cromosoma
+            pDecimal, pEntera = math.modf(cad)
+        else:  # Representación en Gray, EMPIZA NORMAL
+            c_gray = self.cromosoma.copy()
+            pDecimal, pEntera = math.modf(c_gray)
+# YA LO CONVERTI EN BINARIO Y AJUSTO A GRAY
+            pEntera = int(pEntera)
+            bina = bin(pEntera)
+            val = "0b"
+            bina = bina.replace(val,"")
+            '''            
+            pDecima = int(pDecimal)
+            bina2 = bin(pDecimal)
+            bina2 = bina2.replace(val,"")
+            '''            
+            for i in range(2, len(bina)):
+                a = bina[i - 1]
+                b = bina[i]
+                if a == b:
+                    bina[i] = 0
+                else:
+                    bina[i] = 1
+                    
+        cad = bina
+
+
+        return int(cad, 2)
 
 
 class Cromosoma:

@@ -112,6 +112,19 @@ class GenEntero(GenNum):
         while not self.isFactible():
             self.cromosoma = random.choices([0, 1], k=self.nbits)
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
         if not self.gray:  # Representación en binario
@@ -130,6 +143,8 @@ class GenEntero(GenNum):
             return int(cad, 2)
         else:
             return -int(cad, 2)
+        
+        
 
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
