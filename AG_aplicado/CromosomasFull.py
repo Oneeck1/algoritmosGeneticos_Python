@@ -221,10 +221,6 @@ class GenReal(GenNum):
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
       
-
-        # entero = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        # decimal = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-
         cadena = str(entero)+"."+str(decimal)
         self.cromosoma = list(cadena)
         
@@ -234,8 +230,7 @@ class GenReal(GenNum):
         
     def fenotipo(self):         
         if not self.gray :  #  Representación en binario
-            cro = str(entero)+"."+str(decimal)
-            cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
+            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
         else:  # Representación en Gray
             entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
