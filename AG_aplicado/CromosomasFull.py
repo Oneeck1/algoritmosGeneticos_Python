@@ -233,9 +233,6 @@ class GenReal(GenNum):
             cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
         else:  # Representación en Gray
-            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
     
             binario = self.cromosoma.copy()
             binario2 = self.cromosoma.copy()
