@@ -18,7 +18,7 @@ DESCRIPCIÓN: Área máxima de un triángulo
 @author: gustavo
 """
 
-from Cromosomas import Cromosoma 
+from CromosomasFull import Cromosoma 
 import numpy as np
 import copy
 import random
@@ -55,16 +55,18 @@ class TrianguloAG(Triangulo):
         self.cromo = Cromosoma()
    
     def inicializa(self):
-        perimetro = self.perimetro
-        self.cromo.inicializa([perimetro/100.0, perimetro/100.0, perimetro/100.0], [perimetro, perimetro, perimetro],
-                 [True, True, True])
+        p = self.perimetro
+        self.cromo.inicializa([p/100.0, p/100.0, p/100.0], 
+                              [p, p, p],
+                              [True, True, True])
         '''self.a = self.cromo.fenotipo()[0]
         self.b = self.cromo.fenotipo()[1]
         self.c = self.cromo.fenotipo()[2]
         '''
     
-    def cruzar(self, madre):
+    def cruzar(self, madre):        
         hijos = self.cromo.cruzar(madre)
+        
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
@@ -79,7 +81,6 @@ class TrianguloAG(Triangulo):
         hijo2.setLados(a, b, c)
         return [hijo1, hijo2]
     
-    
     def mutar(self):
         mutante = self.cromo.mutar(1)
         lados = mutante.fenotipo()
@@ -89,10 +90,8 @@ class TrianguloAG(Triangulo):
         clon = copy.deepcopy(self)
         clon.setLados(a, b, c)
         return clon
-
     
 class FitnessFunctionTriangulo:
-    
     def evaluate(self, individuo):
         TOL = 0.5
         alfa = 1
@@ -108,99 +107,88 @@ class FitnessFunctionTriangulo:
             else:
                 return area * np.exp(-difPerimetro*alfa)
 
+
+class TecnicaSeleccion:    
+    def selecciona(self, poblacion, aptitudes, cuantos):
+        probs = np.exp(aptitudes)/ np.sum(np.exp(aptitudes))
+        selected = random.choices(poblacion, probs, k=cuantos)
+        return selected
+    
 class ProblemaTrianguloAG:
     
-    def __init__(self,tamanoPoblacion, perimetro):
+    def __init__(self, tamanoPoblacion, perimetro):
         self.N = tamanoPoblacion
-        self.poblacion = []        
+        self.poblacion = []
         self.ff = FitnessFunctionTriangulo()
         self.tecSeleccion = TecnicaSeleccion()
-
-    # 1) Genera poblacion aleatoria        
+        # 1) Genera N individuos TrianguloAG con lados aleatorios
         for i in range(self.N):
             tag = TrianguloAG(perimetro)
             tag.inicializa()
             self.poblacion.append(tag)
-
-    def getAptitudes(self, pob = None):
+    
+    def getAptitudes(self, pob=None):
         if pob is None:
-            pob = self.poblacion            
-        aptitudes = []            
-        for ind in self.poblacion:
-             apt = self.ff.evaluate(ind)
-             aptitudes.append(apt)
-        return aptitudes             
-        
-            
-        
+            pob = self.poblacion
+        aptitudes = []
+        for ind in pob:
+            apt = self.ff.evaluate(ind)
+            aptitudes.append(apt)
+        return aptitudes
+    
     def elitismo(self):
-      # Calcula todas las aptitudes
-        aptitudes = self.getAptitudes()   
-      # Identifica la más alta  
+        # Calcula todas las aptitudes
+        aptitudes = self.getAptitudes()
+        # Identifica la aptitud más alta
         maxApt = np.max(aptitudes)
-      # Identifica donde está el mejor individuo  
-        indx = aptitudes.index(maxApt)    
-      # Clonar al individuo  
-        mejor = self.poblacion[indx]
-        clon = copy.deepcopy(mejor)
+        # Identifica en donde está el mejor individuo
+        idx = aptitudes.index(maxApt)
+        # Clonar al individuo
+        mejor = self.poblacion[idx]
+        clon =  copy.deepcopy(mejor)
         return clon
         
     def printPoblacion(self):
         for ind in self.poblacion:
             print(ind)
-            
+    
     def evolve(self):
         sigPoblacion = []
-        
-        # 2) Aplicar Elitismo
+        # 2) Aplicar elitismo
         mejor = self.elitismo()
         sigPoblacion.append(mejor)
-        
-        # 3) Cruza para generar hijo
-        poblacionIntermedia = []
-        
+        # 3) Cruzar para generar hijos
+        pobIntermedia = []
         for i in range(int(self.N/2)):
-            padres = self.tecSeleccion(self.poblacion, self.getAptitudes(), 2)
+            padres = self.tecSeleccion.selecciona(self.poblacion, self.getAptitudes(), 2)
             papa = padres[0]
             mama = padres[1]
             hijos = papa.cruzar(mama)
             hijo1 = hijos[0]
             hijo2 = hijos[1]
-            poblacionIntermedia.append(hijo1)
-            poblacionIntermedia.append(hijo2)
-            poblacionIntermedia.append(copy.deepcopy(mama))
-            poblacionIntermedia.append(copy.deepcopy(papa))
-            
-        # 4) Mutacion al 5% de la poblacion
-        totalMutar = int(np.ceil(0.05)*len(poblacionIntermedia))
-        mutantes = self.tecSeleccion(poblacionIntermedia, self.getAptitudes(poblacionIntermedia), totalMutar)
-        
-
+            pobIntermedia.append(hijo1)
+            pobIntermedia.append(hijo2)
+            pobIntermedia.append(copy.deepcopy(mama))
+            pobIntermedia.append(copy.deepcopy(papa))
+        # 4) Mutación del 5% de la población
+        totalMutar = int(np.ceil(0.05*len(pobIntermedia)))
+        mutantes = self.tecSeleccion.selecciona(pobIntermedia, 
+                                     self.getAptitudes(pobIntermedia), 
+                                     totalMutar)
+        mutados = []
         for mutante in mutantes:
-            poblacionIntermedia.append(mutante.mutar())
-            # En este punto la poblacion intermedia contiene: padres, hijos y mutantes
-
-        # 5) Crear nueva poblacion/generacion
-        seleccionados = self.tecSeleccion(poblacionIntermedia, self.getAptitudes(), self.N-1)
+            pobIntermedia.append(mutante.mutar())
+        # En este punto pobIntermedia contiene padres, hijos y mutantes
+        # 5) Crear nueva generación
+        seleccionados = self.tecSeleccion.selecciona(pobIntermedia, self.getAptitudes(pobIntermedia), self.N-1)
         for seleccionado in seleccionados:
             clon = copy.deepcopy(seleccionado)
             sigPoblacion.append(clon)
         self.poblacion = sigPoblacion
-        
-        
-class TecnicaSeleccion:        
     
-    def selecciona(self, poblacion, aptitudes, cuantosHijos=2):
-        probs = np.exp(aptitudes)/np.sum(np.exp(aptitudes))    
-        selected = random.choices(poblacion, probs, k = cuantosHijos)
-        return selected
-        
-
-
-prob = ProblemaTrianguloAG(20,12)
-#prob.evolve()
-#prob.printPoblacion()
-    
-        
-        
-        
+prob = ProblemaTrianguloAG(20, 12)
+print("-------------------------------POBLACION ORIGINAL--------------")
+prob.printPoblacion()
+prob.evolve()
+print("------------------------------POBLACION EVOLUCIONADA-----------")
+prob.printPoblacion()

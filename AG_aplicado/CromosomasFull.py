@@ -16,6 +16,7 @@ Created on Mon Mar  8 16:49:47 2021
 
 @author: asdruballopezchau
 """
+
 import numpy as np
 import random
 import copy
@@ -249,8 +250,9 @@ class Cromosoma:
 
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
-                # Genes representación real
-                pass
+                g = GenReal()
+                g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
+                genes.append(g)
             else:
                 #  Representación entera
                 g = GenEntero()
@@ -311,7 +313,6 @@ class Cromosoma:
 
     def fenotipo(self):
         '''
-
         :returns: Valores del cromosoma
         :rtype: int o float
         '''
