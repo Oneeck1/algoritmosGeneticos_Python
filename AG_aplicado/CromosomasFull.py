@@ -309,9 +309,9 @@ class GenReal(GenNum):
 
         # Genera hijos mejores siempre
         while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
-            h1 = GenEntero()
+            h1 = GenReal()
             h1.inicializa(self.vMin, self.vMax)
-            h2 = GenEntero()
+            h2 = GenReal()
             h2.inicializa(otro.vMin, otro.vMax)
             return [h1, h2]
 
