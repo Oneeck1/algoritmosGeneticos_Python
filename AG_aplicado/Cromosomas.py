@@ -16,7 +16,6 @@ Created on Mon Mar  8 16:49:47 2021
 
 @author: asdruballopezchau
 """
-
 import numpy as np
 import random
 import copy
@@ -69,7 +68,12 @@ class GenNum:
         pass
 
     def __str__():
+        '''
+        Imprime como una cadena el gen.
 
+        :returns: Una cadena que representa al gen
+        :rtype: str
+        '''
         pass
 
     def fenotipo():
@@ -206,118 +210,7 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        global entero
-        global decimal
-                 
-        super().inicializa(vMin, vMax)
-        self.gray = gray
-        # Calculo del número mínimo de bits para representar un valor entre
-        # vMin y vMax
-        v = max([vMin, vMax])  
-        self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1) # Saber cuantos bits ocupo para parte entera
-        entero = random.choices([0, 1], k = self.nbits)
-        decimal = random.choices([0, 1], k = self.nbits)
-      
-        
-        
-        cadena = str(entero)+"."+str(decimal)
-        self.cromosoma = list(cadena)
-        
-        
-    def fenotipo(self):       
-        c1 = 0
-        c2 = 0
-        if not self.gray :  #  Representación en binario
-            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
-            
-        else:  # Representación en Gray
-            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-            binario = self.cromosoma.copy()
-
-            # PARTE ENTERA
-            for i in range(2,len(entero)):
-                a = entero[i-1]
-                b = entero[i]
-    
-                if a == b:
-                    binario[i] = 0
-                    
-                elif a == '.' or b == '.': # Si tiene un . que lo ponga
-                    binario[i] = "."
-                else:
-                    binario[i] = 1                            
-                    
-            cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
-
-    
-        '''
-        if(entero2[0]==0):
-            c = int(entero2,2)
-            C1 = int(decimal2,2)
-            cad1 = str(c)+"."+str(C1)
-            return float(cad1)
-        else:
-            c2 = int(entero2,2)
-            C22 = int(decimal2,2)
-            cad2 = str(c2)+"."+str(C22)
-            return -float(cad2)
-        '''
-        return cadenaa
-
-    def mutar(self, nbits):
-        while True:
-            #bits_cambiar = random.choices(range(len(decimal2)), k=nbits)
-            #y = random.choices(range(1,4))
-            #bits_cambiar = decimal2[y]
-            #caden = str(cadena[:].replace("'",""))
-            # self.cromosoma = self.cromosoma.replace('0','1',1)   
-            if self.cromosoma[1] == '1':
-                self.cromosoma[1] = '0'
-            else:
-                self.cromosoma[1] = '1'
-            
-            if self.isFactible():
-                break
-
-    def cruzar(self, otro, FuncionAptitud=None):
-        padre = self.cromosoma
-        madre = otro.cromosoma
-        # Crear hijos con cruza por dos puntos
-        cp1 = int(np.ceil(len(entero)/3))
-        cp2 = int(2*cp1)
-        hijo1 = padre.copy()
-        hijo2 = madre.copy()
-        medio1 = madre[cp1:cp2]
-        medio2 = padre[cp1:cp2]
-        # Extremos del padre y centro de la madre
-        hijo1[cp1:cp2] = medio1        
-        # Extremos de la madre y centro del padre
-        hijo2[cp1:cp2] = medio2
-        # Crea una copia exacta
-        h1 = copy.deepcopy(self)
-        h1.cromosoma = hijo1
-        # Clonado de un objeto, incluyendo metodos y funciones, etc
-        h2 = copy.deepcopy(otro)
-        h2.cromosoma = hijo2
-        
-        if FuncionAptitud is None:
-            return [h1, h2]
-        aptitudPadre = FuncionAptitud(self)
-        aptitudMadre = FuncionAptitud(otro)
-        aptitudHijo1 = FuncionAptitud(h1)
-        aptitudHijo2 = FuncionAptitud(h2)            
-
-        # Genera hijos mejores siempre
-        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
-            h1 = GenReal()
-            h1.inicializa(self.vMin, self.vMax)
-            h2 = GenReal()
-            h2.inicializa(otro.vMin, otro.vMax)
-            return [h1, h2]
-
-    def __str__(self):
-        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+        pass
 
 
 class Cromosoma:
@@ -356,9 +249,8 @@ class Cromosoma:
 
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
-                g = GenReal()
-                g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
-                genes.append(g)
+                # Genes representación real
+                pass
             else:
                 #  Representación entera
                 g = GenEntero()
@@ -382,20 +274,28 @@ class Cromosoma:
             gen.mutar(nbits)
 
     def cruzar(self, otro):
+        '''
+        Operador de cruza con otro gen
+
+        :param `otro`: Otro cromosoma con la misma estuctura
+        :returns: Dos hijos
+        :rtype: Cromosma
+        '''
         h1 = copy.deepcopy(self)
-        h2 = copy.deepcopy(otro)        
+        h2 = copy.deepcopy(otro)
         genesHijos1 = []
         genesHijos2 = []
-
         for i in range(len(self.genes)):
-            #GenPadre = self.genes[i]
-            #GenMadre = otro.genes[i]
-            genHijos = self.genes[i].cruzar(otro.genes[i])
+            genPadre = self.genes[i]
+            genMadre = otro.genes[i]
+            genHijos = genPadre.cruzar(genMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
         h1.genes = genesHijos1
         h2.genes = genesHijos2
         return [h1, h2]
+        # LABORATORIO: Implementar la cruza con función de aptitud
+        # para producir siempre mejores hijos.
 
     def __str__(self):
         '''

@@ -474,7 +474,7 @@ class Cromosoma:
         for i in range(len(self.genes)):
             GenPadre = self.genes[i]
             GenMadre = otro.genes[i]
-            genHijos = GenPadre.cruzar(GenMadre)
+            genHijos = self.genes.cruzar(otro)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
         h1.genes = genesHijos1
