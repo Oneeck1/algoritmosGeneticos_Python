@@ -217,7 +217,16 @@ class GenReal(GenNum):
         # Calculo del número mínimo de bits para representar un valor entre
         # vMin y vMax
         v = max([vMin, vMax])  
-        
+        self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1) # Saber cuantos bits ocupo para parte entera
+        entero = random.choices([0, 1], k = self.nbits)
+        decimal = random.choices([0, 1], k = self.nbits)
+      
+        #self.cromosoma = entero,decimal
+        # self.entero_decimal(NumAl)
+        entero = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        decimal = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
 
 
 class Cromosoma:
