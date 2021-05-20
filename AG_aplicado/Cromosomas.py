@@ -249,8 +249,10 @@ class Cromosoma:
 
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
-                # Genes representación real
-                pass
+# -----------------------------------------------------------------AQUI MERO X2       | YA          
+                g = GenReal()
+                g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
+                genes.append(g)
             else:
                 #  Representación entera
                 g = GenEntero()
@@ -309,6 +311,8 @@ class Cromosoma:
             cad = cad + str(gen) + "\n"
         return cad
 
+# -------------------------------------------------------------------ESTE MERO
+# NO AGREGA NADA    
     def fenotipo(self):
         '''
         :returns: Valores del cromosoma
