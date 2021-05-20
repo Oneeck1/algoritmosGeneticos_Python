@@ -18,7 +18,7 @@ DESCRIPCIÓN: Área máxima de un triángulo
 @author: gustavo
 """
 
-from Cromosomas import Cromosoma 
+from CromosomasFull import Cromosoma 
 import numpy as np
 import copy
 import random

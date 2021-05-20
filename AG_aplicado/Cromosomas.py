@@ -210,7 +210,34 @@ class GenReal(GenNum):
         :param `gray`: Valor para indicar si el gen 
                     representa valores en Gray o en Binario
         '''
-        pass
+        super().inicializa(vMin, vMax)
+        self.gray = gray
+
+        v = max([np.abs(vMin), np.abs(vMax)])
+        self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
+        
+        self.cromosoma = random.choices([0, 1], k=self.nbits)
+        # Generar un indivividuo factible
+        while not self.isFactible():
+            self.cromosoma = random.choices([0, 1], k=self.nbits)
+    
+    def fenotipo(self):
+        if not self.gray:  # Representación en binario
+            cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        else:  # Representación en Gray
+            binario = self.cromosoma.copy()
+            for i in range(2, len(self.cromosoma)):
+                a = self.cromosoma[i - 1]
+                b = self.cromosoma[i]
+                if a == b:
+                    binario[i] = 0
+                else:
+                    binario[i] = 1
+            cad = str(binario[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        if self.cromosoma[0] == 0:
+            return int(cad, 2)
+        else:
+            return -int(cad, 2)    
 
 
 class Cromosoma:

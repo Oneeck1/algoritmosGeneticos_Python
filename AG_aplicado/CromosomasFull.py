@@ -248,7 +248,7 @@ class GenReal(GenNum):
                 else:
                     binario[i] = 1                            
                     
-            cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+        cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
 
     
         '''
