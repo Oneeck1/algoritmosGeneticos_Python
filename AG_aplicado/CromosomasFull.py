@@ -253,9 +253,9 @@ class GenReal(GenNum):
                     binario[i] = 1                            
                     
             cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
-            int c1 = 0
-            int c2 = 0
-
+        int c1 = 0
+        int c2 = 0
+    
         if(cadenaa[0]==0):
             for i in range(0,self.nbits):
                 c1[i] = cadenaa[i] 
