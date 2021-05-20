@@ -221,13 +221,64 @@ class GenReal(GenNum):
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
       
-        #self.cromosoma = entero,decimal
-        # self.entero_decimal(NumAl)
-        entero = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
+        # entero = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+        # decimal = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+
+        cadena = str(entero)+"."+str(decimal)
+        self.cromosoma = list(cadena)
+        
+        while not self.isFactible():
+            self.cromosoma = random.choices([0, 1], k=self.nbits)
+
+        
+    def fenotipo(self):         
+        if not self.gray :  #  Representación en binario
+            cro = str(entero)+"."+str(decimal)
+            cad = str(cro[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
+            
+        else:  # Representación en Gray
+            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         #entero22 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
-        decimal = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+    
+            binario = self.cromosoma.copy()
+            binario2 = self.cromosoma.copy()
+            # PARTE ENTERA
+            for i in range(2,len(entero2)):
+                a = entero2[i-1]
+                b = entero2[i]
+    
+                if a == b:
+                    binario[i] = 0
+                    
+                elif a == '.' or b == '.': # Si tiene un . que lo pase
+                    pass
+                else:
+                    binario[i] = 1                                
+            cade = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+            # PARTE DECIMAL
+            for i in range(2, len(decimal2)):
+                aa = decimal2[i-1]
+                bb = decimal2[i]
+                if aa == bb:
+                    binario2[i] = 0
+                elif  aa == '.' or bb == '.':
+                    pass
+                else:
+                    binario2[i] = 1
 
-
+        if(entero2[0]==0):
+            c = int(entero2,2)
+            C1 = int(decimal2,2)
+            cad1 = str(c)+"."+str(C1)
+            return float(cad1)
+        else:
+            c2 = int(entero2,2)
+            C22 = int(decimal2,2)
+            cad2 = str(c2)+"."+str(C22)
+            return -float(cad2)
+        
 
 class Cromosoma:
     '''
