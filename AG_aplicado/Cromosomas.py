@@ -222,7 +222,7 @@ class GenReal(GenNum):
             self.cromosoma = random.choices([0, 1], k=self.nbits)
     
     def fenotipo(self):
-        if not self.gray:  # Representación en binario
+        if not self.gray:
             cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         else:  # Representación en Gray
             binario = self.cromosoma.copy()
@@ -235,6 +235,7 @@ class GenReal(GenNum):
                     binario[i] = 1
             cad = str(binario[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         if self.cromosoma[0] == 0:
+            fraccionaria = random.choices([0, 1], k=self.nbits) # AQUI ME QUEDE
             return int(cad, 2)
         else:
             return -int(cad, 2)    
