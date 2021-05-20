@@ -223,6 +223,8 @@ class GenReal(GenNum):
         entero = random.choices([0, 1], k = self.nbits)
         decimal = random.choices([0, 1], k = self.nbits)
       
+        
+        
         cadena = str(entero)+"."+str(decimal)
         self.cromosoma = list(cadena)
         
@@ -239,8 +241,8 @@ class GenReal(GenNum):
 
             # PARTE ENTERA
             for i in range(2,len(entero)):
-                a = entero2[i-1]
-                b = entero2[i]
+                a = entero[i-1]
+                b = entero[i]
     
                 if a == b:
                     binario[i] = 0
@@ -251,17 +253,28 @@ class GenReal(GenNum):
                     binario[i] = 1                            
                     
             cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
+            int c1 = 0
+            int c2 = 0
 
-
-        if(entero2[0]==0):
-            c = int(entero2,2)
-            C1 = int(decimal2,2)
-            cad1 = str(c)+"."+str(C1)
+        if(cadenaa[0]==0):
+            for i in range(0,self.nbits):
+                c1[i] = cadenaa[i] 
+            c1 = int(c1,2)
+            
+            for i in range(self.nbits+1, self.nbits):
+                c2[i] = cadenaa[i]
+            c2 = int(c2,2)
+            cad1 = c1+"."+c2
             return float(cad1)
         else:
-            c2 = int(entero2,2)
-            C22 = int(decimal2,2)
-            cad2 = str(c2)+"."+str(C22)
+            for i in range(0,self.nbits):
+                c1[i] = cadenaa[i] 
+            c1 = int(c1,2)
+            
+            for i in range(self.nbits+1, self.nbits):
+                c2[i] = cadenaa[i]
+            c2 = int(c2,2)
+            cad2 = c1+"."+c2
             return -float(cad2)
         
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
