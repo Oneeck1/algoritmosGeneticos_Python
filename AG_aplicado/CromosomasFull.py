@@ -228,17 +228,16 @@ class GenReal(GenNum):
         cadena = str(entero)+"."+str(decimal)
         self.cromosoma = list(cadena)
         
-        while not self.isFactible():
-            self.cromosoma = random.choices([0, 1], k=self.nbits)
-
         
     def fenotipo(self):       
-        int c1 = 0
-        int c2 = 0
+        c1 = 0
+        c2 = 0
         if not self.gray :  #  Representación en binario
             cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
-        else:  # Representación en Gray    
+        else:  # Representación en Gray
+            entero2 = str(entero[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
+            decimal2 = str(decimal[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
             binario = self.cromosoma.copy()
 
             # PARTE ENTERA
@@ -257,33 +256,18 @@ class GenReal(GenNum):
             cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
 
     
-        if(cadenaa[0]==0):
-            for i in range(0,self.nbits):
-                c1[i] = cadenaa[i] 
-            c1 = int(c1,2)
-            
-            for i in range(self.nbits+1, self.nbits):
-                c2[i] = cadenaa[i]
-            c2 = int(c2,2)
-            cad1 = c1+"."+c2
+
+        if(entero2[0]==0):
+            c = int(entero2,2)
+            C1 = int(decimal2,2)
+            cad1 = str(c)+"."+str(C1)
             return float(cad1)
         else:
-            for i in range(0,self.nbits):
-                c1[i] = cadenaa[i] 
-            c1 = int(c1,2)
-            
-            for i in range(self.nbits+1, self.nbits):
-                c2[i] = cadenaa[i]
-            c2 = int(c2,2)
-            cad2 = c1+"."+c2
+            c2 = int(entero2,2)
+            C22 = int(decimal2,2)
+            cad2 = str(c2)+"."+str(C22)
             return -float(cad2)
-        
-    #  Regresa True si el individuo representa una solucion factible, y False en otro caso
-    def isFactible(self):
-        if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
-            return True
-        else:
-            return False
+    
 
     def mutar(self, nbits):
         while True:
