@@ -69,12 +69,7 @@ class GenNum:
         pass
 
     def __str__():
-        '''
-        Imprime como una cadena el gen.
 
-        :returns: Una cadena que representa al gen
-        :rtype: str
-        '''
         pass
 
     def fenotipo():
@@ -386,28 +381,20 @@ class Cromosoma:
             gen.mutar(nbits)
 
     def cruzar(self, otro):
-        '''
-        Operador de cruza con otro gen
-
-        :param `otro`: Otro cromosoma con la misma estuctura
-        :returns: Dos hijos
-        :rtype: Cromosma
-        '''
         h1 = copy.deepcopy(self)
-        h2 = copy.deepcopy(otro)
+        h2 = copy.deepcopy(otro)        
         genesHijos1 = []
         genesHijos2 = []
+
         for i in range(len(self.genes)):
-            genPadre = self.genes[i]
-            genMadre = otro.genes[i]
-            genHijos = genPadre.cruzar(genMadre)
+            GenPadre = self.genes[i]
+            GenMadre = otro.genes[i]
+            genHijos = GenPadre.cruzar(GenMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
         h1.genes = genesHijos1
         h2.genes = genesHijos2
         return [h1, h2]
-        # LABORATORIO: Implementar la cruza con función de aptitud
-        # para producir siempre mejores hijos.
 
     def __str__(self):
         '''
