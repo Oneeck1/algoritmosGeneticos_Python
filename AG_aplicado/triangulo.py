@@ -25,9 +25,9 @@ import random
 
 class Triangulo:
     def __init__(self, perimetro):
-        self.a = 0
-        self.b = 0
-        self.c = 0
+        self.a = 0.0
+        self.b = 0.0
+        self.c = 0.0
         
         self.perimetro = perimetro
     def __str__(self):
@@ -94,14 +94,14 @@ class TrianguloAG(Triangulo):
 class FitnessFunctionTriangulo:
     def evaluate(self, individuo):
         TOL = 0.5
-        alfa = 1
+        alfa = 1.0
         area = individuo.area()
         perimetroRequerido = individuo.perimetro
         perimetroInd = individuo.a + individuo.b + individuo.c
         difPerimetro = np.abs(perimetroInd - perimetroRequerido)
-        if area <= 0:
-            return -1
-        if area > 0:
+        if area <= 0.0:
+            return -1.0
+        if area > 0.0:
             if difPerimetro < TOL:
                 return area
             else:
