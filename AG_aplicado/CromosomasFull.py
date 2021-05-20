@@ -232,7 +232,9 @@ class GenReal(GenNum):
             self.cromosoma = random.choices([0, 1], k=self.nbits)
 
         
-    def fenotipo(self):         
+    def fenotipo(self):       
+        int c1 = 0
+        int c2 = 0
         if not self.gray :  #  Representación en binario
             cad = str(self.cromosoma[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             
@@ -253,8 +255,7 @@ class GenReal(GenNum):
                     binario[i] = 1                            
                     
             cadenaa = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','').replace("'","")
-        int c1 = 0
-        int c2 = 0
+
     
         if(cadenaa[0]==0):
             for i in range(0,self.nbits):
