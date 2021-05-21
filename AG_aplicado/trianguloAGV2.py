@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Mon May 17 13:09:21 2021
+
 UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MÉXICO
 CENTRO UNIVERSITARIO UAEM ZUMPANGO
 INGENIERÍA EN COMPUTACIÓN
 ALGORITMOS GENÉTICOS 2021
-TEMA: Solución de problemas con AG
-ALUMNO: tu nombre
+TEMA: Representación de soluciones numéricas para AG con POO
+ALUMNO: GUSTAVO RODRIGUEZ CALZADA
 PROFESOR: ASDRÚBAL LÓPEZ CHAU
 
-DESCRIPCIÓN: área máxima de un triangulo
-de perímetro P  
+DESCRIPCIÓN: Área máxima de un triángulo
 
-Created on Mon May 17 13:08:30 2021
 
-@author: asdruballopezchau
+
+@author: gustavo
 """
 
 # Agrega la ruta donde se encuentra el arhcivo que contiene
@@ -187,5 +188,8 @@ class ProblemaTrianguloAG:
         self.poblacion = sigPoblacion
     
 prob = ProblemaTrianguloAG(20, 12)
+print("-------------------------------POBLACION ORIGINAL--------------")
+prob.printPoblacion()
 #prob.evolve()
+print("\n\n------------------------------POBLACION EVOLUCIONADA-----------")
 prob.printPoblacion()

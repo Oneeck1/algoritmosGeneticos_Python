@@ -7,14 +7,14 @@ CENTRO UNIVERSITARIO UAEM ZUMPANGO
 INGENIERÍA EN COMPUTACIÓN
 ALGORITMOS GENÉTICOS 2021
 TEMA: Representación de soluciones numéricas para AG con POO
-ALUMNO: tu nombre
+ALUMNO: GUSTAVO RODRIGUEZ CALZADA
 PROFESOR: ASDRÚBAL LÓPEZ CHAU
 
 DESCRIPCIÓN: Super clase de todas las cromosomas numéricas
 
 Created on Mon Mar  8 16:49:47 2021
 
-@author: asdruballopezchau
+@author: gustavo
 """
 import numpy as np
 import random
