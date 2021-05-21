@@ -30,6 +30,7 @@ class Triangulo:
         self.c = 0
         
         self.perimetro = perimetro
+        
     def __str__(self):
         return "a = {:.3f}, b = {:.3f}, c = {:.3f}".format(self.a, self.b, self.c)
     
