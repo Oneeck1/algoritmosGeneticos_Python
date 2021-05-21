@@ -66,7 +66,7 @@ class TrianguloAG(Triangulo):
         '''
     
     def cruzar(self, madre):        
-        hijos = self.cromo.cruzar(madre)
+        hijos = (self.cromo).cruzar(madre)
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
@@ -115,6 +115,8 @@ class TecnicaSeleccion:
         return selected
     
 class ProblemaTrianguloAG:
+    
+    
     
     def __init__(self, tamanoPoblacion, perimetro):
         self.N = tamanoPoblacion
@@ -185,6 +187,8 @@ class ProblemaTrianguloAG:
             clon = copy.deepcopy(seleccionado)
             sigPoblacion.append(clon)
         self.poblacion = sigPoblacion
+    
+    
     
 prob = ProblemaTrianguloAG(20, 12)
 print("-------------------------------POBLACION ORIGINAL--------------")

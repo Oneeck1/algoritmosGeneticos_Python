@@ -324,7 +324,7 @@ class GenReal(GenNum):
         padre = self.cromosoma
         madre = otro.cromosoma
         # Crear hijos con cruza por dos puntos
-        cp1 = int(np.ceil(len(pEnteraC)/3))
+        cp1 = int(np.ceil(int(pEnteraC)/3))
         cp2 = int(2*cp1)
         hijo1 = padre.copy()
         hijo2 = madre.copy()
@@ -432,7 +432,7 @@ class Cromosoma:
         
         for i in range(len(self.genes)):
             GenPadre = self.genes[i]
-            GenMadre = otro.genes[i]
+            GenMadre = self.genes[i]
             genHijos = GenPadre.cruzar(GenMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
