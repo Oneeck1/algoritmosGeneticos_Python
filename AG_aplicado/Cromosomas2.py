@@ -294,7 +294,7 @@ class GenReal(GenNum):
             h1.inicializa(self.vMin, self.vMax)
             h2 = GenEntero()
             h2.inicializa(otro.vMin, otro.vMax)
-            return [h1, h2]
+        return [h1, h2]
 
     def __str__(self):
         return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"

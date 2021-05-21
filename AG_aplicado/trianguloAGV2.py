@@ -30,9 +30,9 @@ class Triangulo:
     def __init__(self, perimetro):
         self.a = 0
         self.b = 0
-        self.c = 0
-        
+        self.c = 0        
         self.perimetro = perimetro
+        
     def __str__(self):
         return "a = {:.3f}, b = {:.3f} c = {:.3f}".format(self.a, self.b, self.c)
     
@@ -67,7 +67,7 @@ class TrianguloAG(Triangulo):
         
     
     def cruzar(self, madre):        
-        hijos = (self.cromo).cruzar(madre)
+        hijos = self.cromo.cruzar(madre)
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
@@ -190,6 +190,6 @@ class ProblemaTrianguloAG:
 prob = ProblemaTrianguloAG(20, 12)
 print("-------------------------------POBLACION ORIGINAL--------------")
 prob.printPoblacion()
-#prob.evolve()
+prob.evolve()
 print("\n\n------------------------------POBLACION EVOLUCIONADA-----------")
 prob.printPoblacion()
