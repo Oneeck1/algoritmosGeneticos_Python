@@ -327,7 +327,7 @@ class GenReal(GenNum):
         while True:
             bits_cambiar = random.choices(range(len(binaM)), k=nbits)
             for i in bits_cambiar:
-                binaM[i] = 1 - binaM[i]
+                binaM[i] = 1.0 - binaM[i]
             
             binaM = str(binaM)
             binaM = int(binaM,2)
