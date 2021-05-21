@@ -187,5 +187,5 @@ class ProblemaTrianguloAG:
         self.poblacion = sigPoblacion
     
 prob = ProblemaTrianguloAG(20, 12)
-prob.evolve()
-#prob.printPoblacion()
+#prob.evolve()
+prob.printPoblacion()

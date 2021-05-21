@@ -19,7 +19,7 @@ Created on Mon Mar  8 16:49:47 2021
 import numpy as np
 import random
 import copy
-
+import math
 
 class GenNum:
 
@@ -237,14 +237,17 @@ class GenReal(GenNum):
                 else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
-        if self.cromosoma[0] == 0: 
-            return int(cad, 2)
-        else: 
-            return -int(cad, 2)
-
+        num = random.SystemRandom()
+        valor = num.uniform(0,self.vMax)
+        pDecimal, pEntera = math.modf(valor)
+        valor = str(pDecimal)
+        cad = str(int(cad, 2))
+        cad1 = cad+"."+valor
+        return cad1
+        
     #  Regresa True si el individuo representa una solucion factible, y False en otro caso
     def isFactible(self):
-        if self.fenotipo() >= self.vMin and self.fenotipo() <= self.vMax:
+        if int(self.fenotipo()) >= self.vMin and int(self.fenotipo()) <= self.vMax:
             return True
         else:
             return False
@@ -331,6 +334,7 @@ class Cromosoma:
 
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
+
                 g = GenReal()
                 g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
                 genes.append(g)
@@ -351,6 +355,7 @@ class Cromosoma:
         return True
 
     def mutar(self, nbits=1):
+        
         '''
         Aplica mutación al individuo completo
         '''
@@ -369,6 +374,7 @@ class Cromosoma:
         h2 = copy.deepcopy(otro)
         genesHijos1 = []
         genesHijos2 = []
+        
         for i in range(len(self.genes)):
             genPadre = self.genes[i]
             genMadre = otro.genes[i]
