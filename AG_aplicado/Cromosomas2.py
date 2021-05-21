@@ -19,7 +19,7 @@ Created on Mon Mar  8 16:49:47 2021
 import numpy as np
 import random
 import copy
-import math
+
 
 class GenNum:
 
@@ -201,7 +201,7 @@ class GenReal(GenNum):
     PUEDAS DE LA SUPERCLASE
     '''
 
-    def inicializa(self, vMin=1, vMax=15, gray=True):
+    def inicializa(self, vMin=0, vMax=15, gray=True):
         '''
         Inicializa de manera pseudo aleatoria al inidividuo.
 
@@ -227,167 +227,12 @@ class GenReal(GenNum):
             #self.cromosoma = random.choices([0, 1], k=self.nbits)
             #self.cromosoma = str(self.cromosoma[:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '').replace("'","")
             self.cromosoma = valor    
-    
-     # PARTE ENTERA
-    def binario(num):
-        co=0
-        resto = 0
-        numero_binario = []
-     
-        if num <= 1:
-            print("no se puede convertir")
-        else:
-            while num > 1:
-                #co = num //2
-                resto=num%2
-                numero_binario.append(resto)
-                num=num//2
-            numero_binario.append(1)
-            numero_binario.reverse()
-            return numero_binario
-     
-        
-    # PARTE FRACCIONARIA    
-    def binario_decimal(decimal):
-     
-        aux=decimal*2
-        decimal_binario=[]
-        lista=[]
-        valor=0
-        while aux not in lista :
-                lista.append(aux)
-                partes=math.modf(aux)
-                valor= int(round(partes[1],2))
-                decimal_binario.append(valor)
-                if int(round(partes[1],2)) == 1 and round(partes[0],2)== 0.0:
-                    break
-                aux=round(partes[0],2) * 2
-     
-        return decimal_binario
-     
- 
-    def fenotipo(self):
-        if not self.gray: #Binario
-            cad = self.cromosoma
-            #pDecimal, pEntera = math.modf(float(cad))
-        else:  # Representación en Gray, EMPIZA NORMAL
-            cad = self.cromosoma
-            #pDecimal, pEntera = math.modf(float(c_gray))
-# YA LO CONVERTI EN BINARIO Y AJUSTO A GRAY
-            '''
-            pEntera = int(pEntera)
-            bina = bin(pEntera)
-            val = "0b"
-            bina = bina.replace(val,"")
-            '''
-            '''            
-            pDecima = int(pDecimal)
-            bina2 = bin(pDecimal)
-            bina2 = bina2.replace(val,"")
-            '''            
-            '''
-            for i in range(2, len(bina)):
-                a = bina[i - 1]
-                b = bina[i]
-                if a == b:
-                    bina[i] = 0
-                else:
-                    bina[i] = 1
-            pEntera = round(bina,2)
-            
-        cad = pEntera+"."+pDecimal
-        '''
-        return cad
 
 
-    def mutar(self, nbits):
-        
-        cadM = self.cromosoma
-        pDecimalM, pEnteraM = math.modf(cadM)
-        pEnteraM = int(pEnteraM)
-        binaM = bin(pEnteraM)
-        val = "0b"
-        binaM = binaM.replace(val,"")
-        #binaM = float(binaM)
-        '''
-        while True:
-            if binaM[1] == '1':
-                binaM[1] = '0'
-                pEnteraM = round(binaM,2)
-                cadM = pEnteraM+"."+pDecimalM
-                self.cromosoma = cadM
-            else:
-                binaM[1] = '1'
-                pEnteraM = round(binaM,2)
-                cadM = pEnteraM+"."+pDecimalM
-                self.cromosoma = cadM
-            
-            if self.isFactible():
-                break
-'''
-        while True:
-            
-            if binaM[nbits] == '1':
-                binaM = binaM[:].replace(binaM[nbits],'0')
-            elif binaM[nbits] == '0':
-                binaM = binaM[:].replace(binaM[nbits],'1')
-            else:
-                binaM = binaM[:].replace(binaM[nbits+1],'1')
-            
-            binaM = str(binaM)
-            binaM = int(binaM,2)
-            binaM = str(binaM)
-            cadM = binaM+"."+str(pDecimalM)
-            self.cromosoma = cadM
-
-            if self.isFactible():
-                break
 
 
-    def cruzar(self, otro, FuncionAptitud=None):
-        cadC = self.cromosoma
-        pDecimalC, pEnteraC = math.modf(cadC)
-        padre = self.cromosoma
-        madre = otro.cromosoma
-        padre = str(padre)
-        madre = str(madre)
-        # Crear hijos con cruza por dos puntos
-        cp1 = int(np.ceil(int(pEnteraC)/3))
-        cp2 = int(2*cp1)
-        hijo1 = padre
-        hijo2 = madre
-        medio1 = madre[cp1:cp2]
-        medio2 = padre[cp1:cp2]
-        # Extremos del padre y centro de la madre
-        #hijo1[cp1:cp2]medio1        
-        hijo1 = hijo1.replace(hijo1[cp1:cp2],medio1)
-        hijo2 = hijo2.replace(hijo2[cp1:cp2],medio2)
-        # Extremos de la madre y centro del padre
-        #hijo2[cp1:cp2] = medio2
-        # Crea una copia exacta
-        h1 = copy.deepcopy(self)
-        h1.cromosoma = hijo1
-        # Clonado de un objeto, incluyendo metodos y funciones, etc
-        h2 = copy.deepcopy(otro)
-        h2.cromosoma = hijo2
-        
-        if FuncionAptitud is None:
-            return [h1, h2]
-        aptitudPadre = FuncionAptitud(self)
-        aptitudMadre = FuncionAptitud(otro)
-        aptitudHijo1 = FuncionAptitud(h1)
-        aptitudHijo2 = FuncionAptitud(h2)            
 
-        # Genera hijos mejores siempre
-        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
-            h1 = GenReal()
-            h1.inicializa(self.vMin, self.vMax)
-            h2 = GenReal()
-            h2.inicializa(otro.vMin, otro.vMax)
-            return [h1, h2]
 
-    def __str__(self):
-        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
 
 
 
@@ -421,17 +266,16 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si
         la codificación es gray o binaria para cada gen
         '''
-        
         genes = []
         if len(vMins) != len(vMaxs):
             return
 
         for i in range(len(vMins)):
             if type(vMins[i]) is float or type(vMaxs[i]) is float:
-# -----------------------------------------------------------------AQUI MERO X2       | YA          
                 g = GenReal()
                 g.inicializa(vMins[i], vMaxs[i], gray=grays[i])
                 genes.append(g)
+                
             else:
                 #  Representación entera
                 g = GenEntero()
@@ -455,15 +299,21 @@ class Cromosoma:
             gen.mutar(nbits)
 
     def cruzar(self, otro):
+        '''
+        Operador de cruza con otro gen
+
+        :param `otro`: Otro cromosoma con la misma estuctura
+        :returns: Dos hijos
+        :rtype: Cromosma
+        '''
         h1 = copy.deepcopy(self)
         h2 = copy.deepcopy(otro)
         genesHijos1 = []
         genesHijos2 = []
-        
         for i in range(len(self.genes)):
-            GenPadre = self.genes[i]
-            GenMadre = self.genes[i]
-            genHijos = GenPadre.cruzar(GenMadre)
+            genPadre = self.genes[i]
+            genMadre = otro.genes[i]
+            genHijos = genPadre.cruzar(genMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
         h1.genes = genesHijos1
@@ -484,8 +334,6 @@ class Cromosoma:
             cad = cad + str(gen) + "\n"
         return cad
 
-# -------------------------------------------------------------------ESTE MERO
-# NO AGREGA NADA    
     def fenotipo(self):
         '''
         :returns: Valores del cromosoma

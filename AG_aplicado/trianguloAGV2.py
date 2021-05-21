@@ -1,38 +1,39 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Mon May 17 13:09:21 2021
-
 UNIVERSIDAD AUTÓNOMA DEL ESTADO DE MÉXICO
 CENTRO UNIVERSITARIO UAEM ZUMPANGO
 INGENIERÍA EN COMPUTACIÓN
 ALGORITMOS GENÉTICOS 2021
-TEMA: Representación de soluciones numéricas para AG con POO
-ALUMNO: GUSTAVO RODRIGUEZ CALZADA
+TEMA: Solución de problemas con AG
+ALUMNO: tu nombre
 PROFESOR: ASDRÚBAL LÓPEZ CHAU
 
-DESCRIPCIÓN: Área máxima de un triángulo
+DESCRIPCIÓN: área máxima de un triangulo
+de perímetro P  
 
+Created on Mon May 17 13:08:30 2021
 
-
-@author: gustavo
+@author: asdruballopezchau
 """
 
-from Cromosomas import Cromosoma 
+# Agrega la ruta donde se encuentra el arhcivo que contiene
+# la clase.
+
+from Cromosomas2 import Cromosoma 
 import numpy as np
 import copy
 import random
 
 class Triangulo:
     def __init__(self, perimetro):
-        self.a = 0.0
-        self.b = 0.0
-        self.c = 0.0
+        self.a = 0
+        self.b = 0
+        self.c = 0
         
         self.perimetro = perimetro
-        
     def __str__(self):
-        return "a = {:.3f}, b = {:.3f}, c = {:.3f}".format(self.a, self.b, self.c)
+        return "a = {:.3f}, b = {:.3f} c = {:.3f}".format(self.a, self.b, self.c)
     
     def setLados(self, a, b, c):
         self.a = a
@@ -40,16 +41,9 @@ class Triangulo:
         self.c = c
     
     def area(self):
-        s = 0.0
-        
-        s = float(self.a) + float(self.b) + float(self.c)
-        s = float(s/2.0)
-        sa = s-float(self.a)
-        sb = s-float(self.b)
-        sc = s-float(self.c)
-        
-        tempo = s*(sa)*(sb)*(sc)
-        
+        s = self.a + self.a + self.c
+        s = s/2.0
+        tempo = s*(s-self.a)*(s-self.b)*(s-self.c)
         if tempo < 0:
             area =  -1.0
         else:
@@ -73,7 +67,7 @@ class TrianguloAG(Triangulo):
         '''
     
     def cruzar(self, madre):        
-        hijos = (self.cromo).cruzar(madre)
+        hijos = self.cromo.cruzar(madre)
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
@@ -81,7 +75,7 @@ class TrianguloAG(Triangulo):
         hijo1 = copy.deepcopy(self)
         hijo1.setLados(a, b, c)
         hijo2 = copy.deepcopy(madre)
-#        lados = hijos[1].fenotipo()
+        lados = hijos[1].fenotipo()
         a = lados[0]
         b = lados[1]
         c = lados[2]
@@ -89,9 +83,8 @@ class TrianguloAG(Triangulo):
         return [hijo1, hijo2]
     
     def mutar(self):
-        mutante = self.cromo
-        mutante = mutante.mutar(1)
-        lados = self.cromo.fenotipo()
+        mutante = self.cromo.mutar(1)
+        lados = mutante.fenotipo()
         a = lados[0]
         b = lados[1]
         c = lados[2]
@@ -105,8 +98,8 @@ class FitnessFunctionTriangulo:
         alfa = 1
         area = individuo.area()
         perimetroRequerido = individuo.perimetro
-        perimetroInd = float(individuo.a) + float(individuo.b) + float(individuo.c)
-        difPerimetro = np.abs(float(perimetroInd) - float(perimetroRequerido))
+        perimetroInd = individuo.a + individuo.b + individuo.c
+        difPerimetro = np.abs(perimetroInd - perimetroRequerido)
         if area <= 0:
             return -1
         if area > 0:
@@ -123,8 +116,6 @@ class TecnicaSeleccion:
         return selected
     
 class ProblemaTrianguloAG:
-    
-    
     
     def __init__(self, tamanoPoblacion, perimetro):
         self.N = tamanoPoblacion
@@ -196,11 +187,6 @@ class ProblemaTrianguloAG:
             sigPoblacion.append(clon)
         self.poblacion = sigPoblacion
     
-    
-    
 prob = ProblemaTrianguloAG(20, 12)
-print("-------------------------------POBLACION ORIGINAL--------------")
-prob.printPoblacion()
 prob.evolve()
-print("------------------------------POBLACION EVOLUCIONADA-----------")
-prob.printPoblacion()
+#prob.printPoblacion()
