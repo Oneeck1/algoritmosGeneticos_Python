@@ -391,6 +391,7 @@ class Cromosoma:
         :param `grays`: Lista de valores bool indicando si
         la codificación es gray o binaria para cada gen
         '''
+        
         genes = []
         if len(vMins) != len(vMaxs):
             return
@@ -428,10 +429,11 @@ class Cromosoma:
         h2 = copy.deepcopy(otro)
         genesHijos1 = []
         genesHijos2 = []
+        
         for i in range(len(self.genes)):
-            genPadre = self.genes[i]
-            genMadre = otro.genes[i]
-            genHijos = genPadre.cruzar(genMadre)
+            GenPadre = self.genes[i]
+            GenMadre = otro.genes[i]
+            genHijos = GenPadre.cruzar(GenMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
         h1.genes = genesHijos1
