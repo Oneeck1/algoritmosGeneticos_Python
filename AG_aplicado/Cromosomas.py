@@ -308,6 +308,7 @@ class GenReal(GenNum):
         binaM = bin(pEnteraM)
         val = "0b"
         binaM = binaM.replace(val,"")
+        binaM = str(binaM)
         '''
         while True:
             if binaM[1] == '1':
