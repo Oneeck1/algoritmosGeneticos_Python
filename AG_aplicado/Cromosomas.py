@@ -301,12 +301,14 @@ class GenReal(GenNum):
 
 
     def mutar(self, nbits):
+        
         cadM = self.cromosoma
-        caden = pDecimalM, pEnteraM = math.modf(cadM)
+        pDecimalM, pEnteraM = math.modf(cadM)
         pEnteraM = int(pEnteraM)
         binaM = bin(pEnteraM)
         val = "0b"
         binaM = binaM.replace(val,"")
+        '''
         while True:
             if binaM[1] == '1':
                 binaM[1] = '0'
@@ -321,6 +323,18 @@ class GenReal(GenNum):
             
             if self.isFactible():
                 break
+'''
+        while True:
+            bits_cambiar = random.choices(range(len(binaM)), k=nbits)
+            for i in bits_cambiar:
+                binaM[i] = 1 - binaM[i]
+            
+            binaM = str(binaM)
+            binaM = int(binaM,2)
+                    
+            if self.isFactible():
+                break
+
 
     def cruzar(self, otro, FuncionAptitud=None):
         cadC = self.cromosoma
