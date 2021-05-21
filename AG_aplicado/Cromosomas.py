@@ -326,16 +326,13 @@ class GenReal(GenNum):
                 break
 '''
         while True:
-            bits_cambiar = random.choices([0,4], k=1)            
-            bits_cambiar = str(bits_cambiar[:]).replace('[', '').replace(']', '')
-            bits_cambiar = int(bits_cambiar)
             
-            if binaM[bits_cambiar] == '1':
-                binaM = binaM[:].replace(binaM[bits_cambiar],'0')
+            if binaM[nbits] == '1':
+                binaM = binaM[:].replace(binaM[nbits],'0')
             elif binaM[bits_cambiar] == '0':
-                binaM = binaM[:].replace(binaM[bits_cambiar],'1')
+                binaM = binaM[:].replace(binaM[nbits],'1')
             else:
-                binaM = binaM[:].replace(binaM[bits_cambiar+1],'1')
+                binaM = binaM[:].replace(binaM[nbits+1],'1')
             
             binaM = str(binaM)
             binaM = int(binaM,2)
