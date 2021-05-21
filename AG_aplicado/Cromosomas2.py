@@ -218,9 +218,7 @@ class GenReal(GenNum):
         v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
-        # Generar un individuo factible
-        while not self.isFactible():
-            self.cromosoma = random.choices([0, 1], k = self.nbits)
+
 
     # Regresa el fenotipo: El valor que representa el cromosoma
     def fenotipo(self):
@@ -237,23 +235,22 @@ class GenReal(GenNum):
                 else:
                     binario[i] = 1
             cad = str(binario[1:]).replace('[','').replace(']','').replace(',','').replace(' ','')
+        
         num = random.SystemRandom()
         valor = num.uniform(0,self.vMax)
         pDecimal, pEntera = math.modf(valor)
+        '''
         val = "0."
         pDecimal = str(pDecimal)
         pDecimal = pDecimal.replace(val,"")
         valor = str(pDecimal)
         cad = str(int(cad, 2))
         cad1 = cad+"."+valor
+        '''
+        cad = int(cad,2)
+        cad1 = cad+pDecimal
         return cad1
         
-    #  Regresa True si el individuo representa una solucion factible, y False en otro caso
-    def isFactible(self):
-        if int(self.fenotipo()) >= self.vMin and int(self.fenotipo()) <= self.vMax:
-            return True
-        else:
-            return False
 
     def mutar(self, nbits):
         while True:
