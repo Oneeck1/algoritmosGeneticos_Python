@@ -40,7 +40,7 @@ class Triangulo:
         self.c = c
     
     def area(self):
-        s = self.a + self.a + self.c
+        s = float(self.a) + float(self.b) + float(self.c)
         s = s/2.0
         tempo = s*(s-self.a)*(s-self.b)*(s-self.c)
         if tempo < 0:
@@ -74,7 +74,7 @@ class TrianguloAG(Triangulo):
         hijo1 = copy.deepcopy(self)
         hijo1.setLados(a, b, c)
         hijo2 = copy.deepcopy(madre)
-        lados = hijos[1].fenotipo()
+#        lados = hijos[1].fenotipo()
         a = lados[0]
         b = lados[1]
         c = lados[2]
