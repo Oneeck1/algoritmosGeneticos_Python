@@ -60,13 +60,13 @@ class TrianguloAG(Triangulo):
         p = self.perimetro
         pm = p/100.0
         self.cromo.inicializa([pm, pm, pm], [p, p, p], [True, True, True])
-        '''self.a = self.cromo.fenotipo()[0]
+        self.a = self.cromo.fenotipo()[0]
         self.b = self.cromo.fenotipo()[1]
         self.c = self.cromo.fenotipo()[2]
-        '''
+        
     
     def cruzar(self, madre):        
-        hijos = self.cromo.cruzar(madre)
+        hijos = (self.cromo).cruzar(madre)
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
