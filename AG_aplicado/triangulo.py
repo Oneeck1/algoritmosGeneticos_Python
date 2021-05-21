@@ -44,9 +44,9 @@ class Triangulo:
         
         s = float(self.a) + float(self.b) + float(self.c)
         s = float(s/2.0)
-        sa = s-self.a
-        sb = s-self.b
-        sc = s-self.c
+        sa = s-float(self.a)
+        sb = s-float(self.b)
+        sc = s-float(self.c)
         
         tempo = s*(sa)*(sb)*(sc)
         
@@ -104,8 +104,8 @@ class FitnessFunctionTriangulo:
         alfa = 1
         area = individuo.area()
         perimetroRequerido = individuo.perimetro
-        perimetroInd = individuo.a + individuo.b + individuo.c
-        difPerimetro = np.abs(perimetroInd - perimetroRequerido)
+        perimetroInd = float(individuo.a) + float(individuo.b) + float(individuo.c)
+        difPerimetro = np.abs(float(perimetroInd) - float(perimetroRequerido))
         if area <= 0:
             return -1
         if area > 0:
