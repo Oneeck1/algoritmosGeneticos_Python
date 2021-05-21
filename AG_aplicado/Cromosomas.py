@@ -308,7 +308,7 @@ class GenReal(GenNum):
         binaM = bin(pEnteraM)
         val = "0b"
         binaM = binaM.replace(val,"")
-        binaM = str(binaM)
+        #binaM = float(binaM)
         '''
         while True:
             if binaM[1] == '1':
@@ -326,13 +326,20 @@ class GenReal(GenNum):
                 break
 '''
         while True:
-            bits_cambiar = random.choices(range(len(binaM)), k=nbits)
-            for i in bits_cambiar:
-                binaM[i] = 1.0 - binaM[i]
+            bits_cambiar = random.choices([0,1-self.nbits], k=1)            
+            bits_cambiar = str(bits_cambiar[:]).replace('[', '').replace(']', '')
+            
+            if binaM[bits_cambiar] == 1:
+                binaM = binaM[:].replace(binaM[bits_cambiar],'0')
+            elif binaM[bits_cambiar] == 0:
+                binaM = binaM[:].replace(binaM[bits_cambiar],'1')
+
             
             binaM = str(binaM)
             binaM = int(binaM,2)
-                    
+            cadM = binaM+"."+pDecimalM
+            self.cromosoma = cadM
+
             if self.isFactible():
                 break
 
