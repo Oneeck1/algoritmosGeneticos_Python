@@ -292,10 +292,73 @@ class GenReal(GenNum):
                     bina[i] = 1
             pEntera = round(bina,2)
             
-        cad = bina
+        cad = pEntera+"."+pDecimal
+        return cad
 
 
-        return int(cad, 2)
+    def mutar(self, nbits):
+        cadM = self.cromosoma
+        caden = pDecimalM, pEnteraM = math.modf(cadM)
+        pEnteraM = int(pEnteraM)
+        binaM = bin(pEnteraM)
+        val = "0b"
+        binaM = binaM.replace(val,"")
+        while True:
+            if binaM[1] == '1':
+                binaM[1] = '0'
+                pEnteraM = round(binaM,2)
+                cadM = pEnteraM+"."+pDecimalM
+                self.cromosoma = cadM
+            else:
+                binaM[1] = '1'
+                pEnteraM = round(binaM,2)
+                cadM = pEnteraM+"."+pDecimalM
+                self.cromosoma = cadM
+            
+            if self.isFactible():
+                break
+
+    def cruzar(self, otro, FuncionAptitud=None):
+        cadC = self.cromosoma
+        pDecimalC, pEnteraC = math.modf(cadC)
+        padre = self.cromosoma
+        madre = otro.cromosoma
+        # Crear hijos con cruza por dos puntos
+        cp1 = int(np.ceil(len(pEnteraC)/3))
+        cp2 = int(2*cp1)
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+        medio1 = madre[cp1:cp2]
+        medio2 = padre[cp1:cp2]
+        # Extremos del padre y centro de la madre
+        hijo1[cp1:cp2] = medio1        
+        # Extremos de la madre y centro del padre
+        hijo2[cp1:cp2] = medio2
+        # Crea una copia exacta
+        h1 = copy.deepcopy(self)
+        h1.cromosoma = hijo1
+        # Clonado de un objeto, incluyendo metodos y funciones, etc
+        h2 = copy.deepcopy(otro)
+        h2.cromosoma = hijo2
+        
+        if FuncionAptitud is None:
+            return [h1, h2]
+        aptitudPadre = FuncionAptitud(self)
+        aptitudMadre = FuncionAptitud(otro)
+        aptitudHijo1 = FuncionAptitud(h1)
+        aptitudHijo2 = FuncionAptitud(h2)            
+
+        # Genera hijos mejores siempre
+        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
+            h1 = GenReal()
+            h1.inicializa(self.vMin, self.vMax)
+            h2 = GenReal()
+            h2.inicializa(otro.vMin, otro.vMax)
+            return [h1, h2]
+
+    def __str__(self):
+        return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+
 
 
 class Cromosoma:
@@ -361,13 +424,6 @@ class Cromosoma:
             gen.mutar(nbits)
 
     def cruzar(self, otro):
-        '''
-        Operador de cruza con otro gen
-
-        :param `otro`: Otro cromosoma con la misma estuctura
-        :returns: Dos hijos
-        :rtype: Cromosma
-        '''
         h1 = copy.deepcopy(self)
         h2 = copy.deepcopy(otro)
         genesHijos1 = []
