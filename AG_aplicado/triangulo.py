@@ -25,9 +25,9 @@ import random
 
 class Triangulo:
     def __init__(self, perimetro):
-        self.a = 0
-        self.b = 0
-        self.c = 0
+        self.a = 0.0
+        self.b = 0.0
+        self.c = 0.0
         
         self.perimetro = perimetro
         
@@ -40,9 +40,16 @@ class Triangulo:
         self.c = c
     
     def area(self):
+        s = 0.0
+        
         s = float(self.a) + float(self.b) + float(self.c)
-        s = s/2.0
-        tempo = s*(s-self.a)*(s-self.b)*(s-self.c)
+        s = float(s/2.0)
+        sa = s-self.a
+        sb = s-self.b
+        sc = s-self.c
+        
+        tempo = s*(sa)*(sb)*(sc)
+        
         if tempo < 0:
             area =  -1.0
         else:
