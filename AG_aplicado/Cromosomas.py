@@ -323,11 +323,13 @@ class GenReal(GenNum):
         pDecimalC, pEnteraC = math.modf(cadC)
         padre = self.cromosoma
         madre = otro.cromosoma
+        padre = str(padre)
+        madre = str(madre)
         # Crear hijos con cruza por dos puntos
         cp1 = int(np.ceil(int(pEnteraC)/3))
         cp2 = int(2*cp1)
-        hijo1 = padre.copy()
-        hijo2 = madre.copy()
+        hijo1 = padre
+        hijo2 = madre
         medio1 = madre[cp1:cp2]
         medio2 = padre[cp1:cp2]
         # Extremos del padre y centro de la madre
