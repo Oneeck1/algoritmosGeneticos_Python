@@ -269,20 +269,23 @@ class GenReal(GenNum):
     def fenotipo(self):
         if not self.gray: #Binario
             cad = self.cromosoma
-            pDecimal, pEntera = math.modf(cad)
+            #pDecimal, pEntera = math.modf(float(cad))
         else:  # Representación en Gray, EMPIZA NORMAL
-            c_gray = self.cromosoma.copy()
-            pDecimal, pEntera = math.modf(c_gray)
+            cad = self.cromosoma
+            #pDecimal, pEntera = math.modf(float(c_gray))
 # YA LO CONVERTI EN BINARIO Y AJUSTO A GRAY
+            '''
             pEntera = int(pEntera)
             bina = bin(pEntera)
             val = "0b"
             bina = bina.replace(val,"")
+            '''
             '''            
             pDecima = int(pDecimal)
             bina2 = bin(pDecimal)
             bina2 = bina2.replace(val,"")
             '''            
+            '''
             for i in range(2, len(bina)):
                 a = bina[i - 1]
                 b = bina[i]
@@ -293,6 +296,7 @@ class GenReal(GenNum):
             pEntera = round(bina,2)
             
         cad = pEntera+"."+pDecimal
+        '''
         return cad
 
 
