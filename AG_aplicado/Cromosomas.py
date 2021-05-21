@@ -333,9 +333,11 @@ class GenReal(GenNum):
         medio1 = madre[cp1:cp2]
         medio2 = padre[cp1:cp2]
         # Extremos del padre y centro de la madre
-        hijo1[cp1:cp2] = ''.join(medio1)        
+        #hijo1[cp1:cp2]medio1        
+        hijo1 = hijo1.replace(hijo1[cp1:cp2],medio1)
+        hijo2 = hijo2.replace(hijo2[cp1:cp2],medio2)
         # Extremos de la madre y centro del padre
-        hijo2[cp1:cp2] = ''.join(medio2)        
+        #hijo2[cp1:cp2] = medio2
         # Crea una copia exacta
         h1 = copy.deepcopy(self)
         h1.cromosoma = hijo1
