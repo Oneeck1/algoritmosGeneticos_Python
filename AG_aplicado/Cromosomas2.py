@@ -240,6 +240,9 @@ class GenReal(GenNum):
         num = random.SystemRandom()
         valor = num.uniform(0,self.vMax)
         pDecimal, pEntera = math.modf(valor)
+        val = "0."
+        pDecimal = str(pDecimal)
+        pDecimal = pDecimal.replace(val,"")
         valor = str(pDecimal)
         cad = str(int(cad, 2))
         cad1 = cad+"."+valor
