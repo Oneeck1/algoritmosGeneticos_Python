@@ -37,6 +37,7 @@ print('Padre: ')
 print(p)
 print('Madre: ')
 print(m)
+'''
 hijos = p.cruzar(m)
 print('Hijo 0: ')
 print(hijos[0])
@@ -46,7 +47,7 @@ print(hijos[1])
 print('Mutación al Primer Hijo\n')
 print('Original: ')
 print(hijos[0])
-
+'''
 """
 print('Modificado: ')
 hijos[1].mutar()

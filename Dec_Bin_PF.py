@@ -10,8 +10,8 @@ import numpy as np
 import random
 import math
 
-vMin = -1.0
-vMax = 4
+vMin = 0
+vMax = 20
 
 v = max([vMin, vMax])
 
@@ -23,15 +23,12 @@ nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
 print(nbits)
 
 #print("Numeros 0 y 1")
-cromosoma = random.choices([0, 1], k = nbits)
+#cromosoma = random.choices([0, 1], k = nbits)
 #print(cromosoma)
 
 print("Numeros aleatorios punto flotante")
 cromosoma = random.uniform (vMin, vMax)
 print(cromosoma)
-
-
-
 
 
 
@@ -78,9 +75,9 @@ def entero_decimal(numero):
     global decimal
 #    global numero
     partes=math.modf(numero)
-    decimal=round(partes[0],2)
-    entero=int(partes[1])
-    if decimal == 0.0:
+    decimal=int(partes[0])
+    entero=round(partes[1],2)
+    if entero == 0:
         adada = str(binario(entero))
         print("NUMERO ENTERO: ",entero)
         cad = str(adada[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
@@ -91,11 +88,11 @@ def entero_decimal(numero):
         adada = str(parte_entera)+str(".")+str(parte_decimal)
         cad = str(adada[1:]).replace('[', '').replace(']', '').replace(',', '').replace(' ', '')
         print(cad)
- 
+    return cad
 
 print("\n\n\nHaber convertido")
 conv = entero_decimal(cromosoma)
-print(conv)
+#print(conv)
 
 
 

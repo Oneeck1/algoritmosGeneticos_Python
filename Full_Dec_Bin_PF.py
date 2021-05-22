@@ -9,7 +9,7 @@ Created on Sat Apr 10 15:44:04 2021
 
 import math
 
-
+# PARTE ENTERA
 def binario(num):
     co=0
     resto = 0
@@ -19,7 +19,7 @@ def binario(num):
         print("no se puede convertir")
     else:
         while num > 1:
-            co = num //2
+            #co = num //2
             resto=num%2
             numero_binario.append(resto)
             num=num//2
@@ -27,6 +27,8 @@ def binario(num):
         numero_binario.reverse()
         return numero_binario
  
+    
+# PARTE FRACCIONARIA    
 def binario_decimal(decimal):
  
     aux=decimal*2

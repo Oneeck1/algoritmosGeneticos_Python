@@ -403,7 +403,7 @@ class Cromosoma:
     TODO: LA CLASE CROMOSOMA TIENE GENES" APROVECHA LO QUE 
     PUEDAS DE LAS CLASES GenNum, GenEntero y GenReal.
     '''
-    pass
+    
 
     def __init__(self):
         
@@ -459,13 +459,6 @@ class Cromosoma:
 
 
     def cruzar(self, otro):
-        '''
-        Operador de cruza con otro gen
-
-        :param `otro`: Otro cromosoma con la misma estuctura
-        :returns: Dos hijos
-        :rtype: Cromosma
-        '''
         h1 = copy.deepcopy(self)
         h2 = copy.deepcopy(otro)        
         genesHijos1 = []
