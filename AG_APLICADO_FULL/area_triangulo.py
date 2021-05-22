@@ -202,6 +202,6 @@ nPer = int(input("Digite el perimetro a desear: "))
 prob = ProblemaTrianguloAG(tPob, nPer)
 print("--------------------POBLACION ORIGINAL--------")
 prob.printPoblacion()
-prob.evolve()  # LO SIENTO PROFE NO PUDE, CON ESTA PARTE :c
+prob.evolve()
 print("\n\n---------------POBLACION EVOLUCIONADA-----")
 prob.printPoblacion()
