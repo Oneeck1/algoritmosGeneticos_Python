@@ -218,6 +218,40 @@ class GenReal(GenNum):
         v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
+        
+    def binario(num):
+        resto = 0
+        numero_binario = []
+     
+        if num <= 1:
+            print("no se puede convertir")
+        else:
+            while num > 1:
+                #co = num //2
+                resto=num%2
+                numero_binario.append(resto)
+                num=num//2
+            numero_binario.append(1)
+            numero_binario.reverse()
+            return numero_binario
+     
+        
+    # PARTE FRACCIONARIA    
+    def binario_decimal(decimal):
+        aux=decimal*2
+        decimal_binario=[]
+        lista=[]
+        valor=0
+        while aux not in lista :
+                lista.append(aux)
+                partes=math.modf(aux)
+                valor= int(round(partes[1],2))
+                decimal_binario.append(valor)
+                if int(round(partes[1],2)) == 1 and round(partes[0],2)== 0.0:
+                    break
+                aux=round(partes[0],2) * 2
+        return decimal_binario
+             
 
 
     # Regresa el fenotipo: El valor que representa el cromosoma

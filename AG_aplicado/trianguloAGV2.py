@@ -188,8 +188,8 @@ class ProblemaTrianguloAG:
         self.poblacion = sigPoblacion
     
 prob = ProblemaTrianguloAG(20, 12)
-print("-------------------------------POBLACION ORIGINAL--------------")
+print("--------------------POBLACION ORIGINAL--------")
 prob.printPoblacion()
-prob.evolve()
-print("\n\n------------------------------POBLACION EVOLUCIONADA-----------")
+#prob.evolve()  # LO SIENTO PROFE NO PUDE, CON ESTA PARTE :c
+print("\n\n---------------POBLACION EVOLUCIONADA-----")
 prob.printPoblacion()
