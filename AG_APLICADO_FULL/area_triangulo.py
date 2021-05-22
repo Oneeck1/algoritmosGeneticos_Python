@@ -196,8 +196,10 @@ class ProblemaTrianguloAG:
             clon = copy.deepcopy(seleccionado)
             sigPoblacion.append(clon)
         self.poblacion = sigPoblacion
-    
-prob = ProblemaTrianguloAG(20, 12)
+
+tPob = int(input("Digite el tamaño de la poblacion: "))
+nPer = int(input("Digite el perimetro a desear: "))
+prob = ProblemaTrianguloAG(tPob, nPer)
 print("--------------------POBLACION ORIGINAL--------")
 prob.printPoblacion()
 prob.evolve()  # LO SIENTO PROFE NO PUDE, CON ESTA PARTE :c
