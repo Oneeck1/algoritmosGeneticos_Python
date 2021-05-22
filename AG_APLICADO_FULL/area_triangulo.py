@@ -107,7 +107,7 @@ class FitnessFunctionTriangulo:
                 return area * np.exp(-difPerimetro*alfa)
 
 
-class TecnicaSeleccion:    
+class TecnicaSeleccion:  # ESTA TECNICA ES PARA SELECCIONAR LOS MEJORES INDIVIDUOS  
     def selecciona(self, poblacion, aptitudes, cuantos):
         probs = np.exp(aptitudes)/ np.sum(np.exp(aptitudes))
         selected = random.choices(poblacion, probs, k=cuantos)
