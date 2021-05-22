@@ -372,7 +372,6 @@ class Cromosoma:
     def mutar(self, nbits=1):
         for gen in self.genes:
             gen.mutar(nbits)
-        self.genes = gen
 
     def cruzar(self, otro):
         h1 = copy.deepcopy(self)

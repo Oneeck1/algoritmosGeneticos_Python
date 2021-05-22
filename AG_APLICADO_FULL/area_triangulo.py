@@ -64,7 +64,7 @@ class TrianguloAG(Triangulo):
         
     
     def cruzar(self, madre):        
-        hijos = self.cromo.cruzar(madre)
+        hijos = self.cromo.cruzar(madre.cromo)
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
@@ -80,7 +80,8 @@ class TrianguloAG(Triangulo):
         return [hijo1, hijo2]
     
     def mutar(self):
-        mutante = self.cromo.mutar(1)
+        mutante = self.cromo
+        mutante.mutar(1)
         lados = mutante.fenotipo()
         a = lados[0]
         b = lados[1]
@@ -186,6 +187,6 @@ class ProblemaTrianguloAG:
 prob = ProblemaTrianguloAG(20, 12)
 print("--------------------POBLACION ORIGINAL--------")
 prob.printPoblacion()
-#prob.evolve()  # LO SIENTO PROFE NO PUDE, CON ESTA PARTE :c
+prob.evolve()  # LO SIENTO PROFE NO PUDE, CON ESTA PARTE :c
 print("\n\n---------------POBLACION EVOLUCIONADA-----")
 prob.printPoblacion()
