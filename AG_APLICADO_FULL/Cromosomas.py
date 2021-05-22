@@ -213,12 +213,12 @@ class GenReal(GenNum):
         '''
         super().inicializa(vMin, vMax)
         self.gray = gray
-        # Calculo del número mínimo de bits para representar un valor entre
-        # vMin y vMax
+        # SACAR LOS N BITS PARA QUE TENGAN EL MISMO TAMAÑO EN BINARIO
         v = max([np.abs(vMin), np.abs(vMax)])
         self.nbits = int(np.ceil(np.log(v + 1)/np.log(2)) + 1)
         self.cromosoma = random.choices([0, 1], k = self.nbits)
         
+    # FUNCION PARA CONVERTIR A BINARIO    
     def binario(num):
         resto = 0
         numero_binario = []
@@ -236,7 +236,7 @@ class GenReal(GenNum):
             return numero_binario
      
         
-    # PARTE FRACCIONARIA    
+    # FUNCION  PARTE FRACCIONARIA    
     def binario_decimal(decimal):
         aux=decimal*2
         decimal_binario=[]
@@ -282,22 +282,24 @@ class GenReal(GenNum):
         cad1 = cad+"."+valor
         '''
         cad = int(cad,2)
-        cad1 = cad+pDecimal
+        cad1 = cad+pDecimal # RETORNO DE LA CADENA FLOTANTE
         return cad1
         
 
-    def mutar(self, nbits):
+    def mutar(self, nbits): # SE MUTA UN nbits AL CROMOSOMA 
         bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
         for i in bits_cambiar:
-            self.cromosoma[i] = 1 - self.cromosoma[i]
+            self.cromosoma[i] = 1 - self.cromosoma[i] # SE RESTA 1 PARA QUE QUEDE 0 o 1
 
 
     def cruzar(self, otro, FuncionAptitud=None):
+        # CREACION DE LOS PADRES
         padre = self.cromosoma
         madre = otro.cromosoma
         # Crear hijos con cruza por dos puntos
         cp1 = int(np.ceil(len(padre)/3))
         cp2 = int(2*cp1)
+        # HACER UNA COPIA DE LOS PADRES
         hijo1 = padre.copy()
         hijo2 = madre.copy()
         medio1 = madre[cp1:cp2]
