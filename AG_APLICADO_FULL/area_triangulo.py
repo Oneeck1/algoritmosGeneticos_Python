@@ -58,24 +58,32 @@ class TrianguloAG(Triangulo):
         p = self.perimetro
         pm = p/100.0
         self.cromo.inicializa([pm, pm, pm], [p, p, p], [True, True, True])
+        # SE LES AGREGA EL FENOTIPO A CADA LADO
         self.a = self.cromo.fenotipo()[0]
         self.b = self.cromo.fenotipo()[1]
         self.c = self.cromo.fenotipo()[2]
         
     
     def cruzar(self, madre):        
+        # SE GENERAN LOS HIJOS 
         hijos = self.cromo.cruzar(madre.cromo)
+        # SELECCIONA LOS LADOS DEL HIJO0
         lados = hijos[0].fenotipo()
         a = lados[0]
         b = lados[1]
         c = lados[2]
+        # SE HACE UNA COPIA DEL GEN ACTUAL
         hijo1 = copy.deepcopy(self)
+        # SE AGREGAN LOS LADOS A LA FUNCION DE setLados
         hijo1.setLados(a, b, c)
+        # SE HACE UNA COPIA DE LA MADRE
         hijo2 = copy.deepcopy(madre)
+        # SELECCION DE LOS LADOS DEL HIJO1
         lados = hijos[1].fenotipo()
         a = lados[0]
         b = lados[1]
         c = lados[2]
+        # SE AGREGAN LOS LADOS A LA FUNCION DE setLados
         hijo2.setLados(a, b, c)
         return [hijo1, hijo2]
     
