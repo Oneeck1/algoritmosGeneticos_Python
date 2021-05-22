@@ -88,8 +88,11 @@ class TrianguloAG(Triangulo):
         return [hijo1, hijo2]
     
     def mutar(self):
+        # SE CREA UN OBJETO DE TIPO CROMO LLAMADO MUTANTE
         mutante = self.cromo
+        # SE MANDA A LLAMAR SU FUNCION MUTAR, Y SOLO SE MUTA 1 BIT
         mutante.mutar(1)
+        # SE GENERA SU RESPECTIVO FENOTIPO
         lados = mutante.fenotipo()
         a = lados[0]
         b = lados[1]
@@ -102,7 +105,9 @@ class FitnessFunctionTriangulo:
     def evaluate(self, individuo):
         TOL = 0.5
         alfa = 1
+        # SE GENERA SU AREA
         area = individuo.area()
+        # PERIMETRO
         perimetroRequerido = individuo.perimetro
         perimetroInd = individuo.a + individuo.b + individuo.c
         difPerimetro = np.abs(perimetroInd - perimetroRequerido)
