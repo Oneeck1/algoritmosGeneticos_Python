@@ -253,12 +253,10 @@ class GenReal(GenNum):
         
 
     def mutar(self, nbits):
-        while True:
-            bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
-            for i in bits_cambiar:
-                self.cromosoma[i] = 1 - self.cromosoma[i]
-            if self.isFactible():
-                break
+        bits_cambiar = random.choices(range(len(self.cromosoma)), k=nbits)
+        for i in bits_cambiar:
+            self.cromosoma[i] = 1 - self.cromosoma[i]
+
 
     def cruzar(self, otro, FuncionAptitud=None):
         padre = self.cromosoma
@@ -298,18 +296,9 @@ class GenReal(GenNum):
 
     def __str__(self):
         return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
+
+
 class Cromosoma:
-    '''
-    La clase representa soluciones con uno o más genes
-    que son parte de un Algoritmo genético.
-
-    Cada cromosoma puede tener uno o más genes de tipo numérico, ya
-    sean enteros o reales, con representación binaria o Gray.
-
-    TODO: LA CLASE CROMOSOMA TIENE GENES" APROVECHA LO QUE 
-    PUEDAS DE LAS CLASES GenNum, GenEntero y GenReal.
-    '''
-
     def __init__(self):
         '''
         Forma un cromosoma con los genes del inidividuo en la lista.
@@ -319,15 +308,6 @@ class Cromosoma:
         pass
 
     def inicializa(self, vMins, vMaxs, grays):
-        '''
-        Inicializa de manera pseudo aleatoria a cada uno de los genes 
-        del inidividuo.
-
-        :param `vMins`: Lista de valores mínimos para cada gen
-        :param `vMax`:  Lista de valores máximos para cada gen
-        :param `grays`: Lista de valores bool indicando si
-        la codificación es gray o binaria para cada gen
-        '''
         genes = []
         if len(vMins) != len(vMaxs):
             return
@@ -355,21 +335,11 @@ class Cromosoma:
         return True
 
     def mutar(self, nbits=1):
-        
-        '''
-        Aplica mutación al individuo completo
-        '''
         for gen in self.genes:
             gen.mutar(nbits)
+        self.genes = gen
 
     def cruzar(self, otro):
-        '''
-        Operador de cruza con otro gen
-
-        :param `otro`: Otro cromosoma con la misma estuctura
-        :returns: Dos hijos
-        :rtype: Cromosma
-        '''
         h1 = copy.deepcopy(self)
         h2 = copy.deepcopy(otro)
         genesHijos1 = []
@@ -400,10 +370,6 @@ class Cromosoma:
         return cad
 
     def fenotipo(self):
-        '''
-        :returns: Valores del cromosoma
-        :rtype: int o float
-        '''
         fenotipos = []
         for gen in self.genes:
             fenotipos.append(gen.fenotipo())
