@@ -302,6 +302,7 @@ class GenReal(GenNum):
         # HACER UNA COPIA DE LOS PADRES
         hijo1 = padre.copy()
         hijo2 = madre.copy()
+        # SE TOMAN LOS DATOS MEDIOS
         medio1 = madre[cp1:cp2]
         medio2 = padre[cp1:cp2]
         # Extremos del padre y centro de la madre
@@ -317,7 +318,7 @@ class GenReal(GenNum):
         
         if FuncionAptitud is None:
             return [h1, h2]
-        else:
+        else: # GENERAN MEJORES HIJOS
             aptitudPadre = FuncionAptitud(self)
             aptitudMadre = FuncionAptitud(otro)
             aptitudHijo1 = FuncionAptitud(h1)

@@ -126,14 +126,14 @@ class ProblemaTrianguloAG:
             tag.inicializa()
             self.poblacion.append(tag)
     
-    def getAptitudes(self, pob=None):
+    def getAptitudes(self, pob=None): # OBTENER LA APTITUD DE CADA INDIVIDUO PARA LAS GENERACIONES
         if pob is None:
             pob = self.poblacion
         aptitudes = []
         for ind in pob:
             apt = self.ff.evaluate(ind)
             aptitudes.append(apt)
-        return aptitudes
+        return aptitudes # SE RETORNAN LAS APTITUDES
     
     def elitismo(self):
         # Calcula todas las aptitudes
@@ -147,7 +147,7 @@ class ProblemaTrianguloAG:
         clon =  copy.deepcopy(mejor)
         return clon
         
-    def printPoblacion(self):
+    def printPoblacion(self): # SE IMPRIME TODA LA POBLACION GENERADA
         for ind in self.poblacion:
             print(ind)
     
