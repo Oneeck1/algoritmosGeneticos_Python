@@ -281,18 +281,19 @@ class GenReal(GenNum):
         
         if FuncionAptitud is None:
             return [h1, h2]
-        aptitudPadre = FuncionAptitud(self)
-        aptitudMadre = FuncionAptitud(otro)
-        aptitudHijo1 = FuncionAptitud(h1)
-        aptitudHijo2 = FuncionAptitud(h2)            
-
-        # Genera hijos mejores siempre
-        while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
-            h1 = GenEntero()
-            h1.inicializa(self.vMin, self.vMax)
-            h2 = GenEntero()
-            h2.inicializa(otro.vMin, otro.vMax)
-        return [h1, h2]
+        else:
+            aptitudPadre = FuncionAptitud(self)
+            aptitudMadre = FuncionAptitud(otro)
+            aptitudHijo1 = FuncionAptitud(h1)
+            aptitudHijo2 = FuncionAptitud(h2)            
+        
+            # Genera hijos mejores siempre
+            while aptitudHijo1 < aptitudPadre or aptitudHijo1 < aptitudMadre or aptitudHijo2 < aptitudPadre or aptitudHijo2 < aptitudMadre:
+                h1 = GenEntero()
+                h1.inicializa(self.vMin, self.vMax)
+                h2 = GenEntero()
+                h2.inicializa(otro.vMin, otro.vMax)
+            return [h1, h2]
 
     def __str__(self):
         return str(self.cromosoma) +  " (" + str(self.fenotipo()) + ")"
