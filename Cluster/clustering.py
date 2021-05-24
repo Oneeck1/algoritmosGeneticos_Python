@@ -7,6 +7,11 @@ Created on Mon May 24 15:04:45 2021
 """
 
 
+class funcionAptitudCluster:
+    def evaluate(self, ind, datos):
+        pass
+
+
 class IndividuoCluster:
     def __init__(self):
         pass
