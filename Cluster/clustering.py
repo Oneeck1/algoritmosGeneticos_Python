@@ -16,20 +16,39 @@ DESCRIPCIÓN: Implementa clustering con un AG
 @author: gustavo
 """
 
+import pandas as pd
+from matplotlib import pyplot as plt
+import random
 
 class funcionAptitudCluster:
-    def evaluate(self, ind, datos):
+    def evaluate(self, indiv, datos):
         pass
-
 
 class IndividuoCluster:
-    def __init__(self):
-        pass
+    def __init__(self, datos):
+        self.datos = datos  # guardo los datos 
+    
     def inicializa(self, K):
-        pass
+        longitud = len(self.datos)
+        valoresAlelicos = list(range(1, K+1))
+        self.cromosoma = random.choices(valoresAlelicos,
+                                        k=longitud)
+
     def cruzar(self, madre):
         pass
+    
     def mutar(self):
         pass
-    def print(self):
-        pass
+    
+    def printIt(self):
+        print(self.cromosoma)
+
+##########################################################
+#PRUEBAS
+datos = pd.read_csv('iris.csv')
+datos = datos.iloc[:,0:2]
+plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
+ind1 = IndividuoCluster(datos)
+K = 3
+ind1.inicializa(K)
+ind1.printIt()
