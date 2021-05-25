@@ -19,10 +19,20 @@ DESCRIPCIÓN: Implementa clustering con un AG
 import pandas as pd
 from matplotlib import pyplot as plt
 import random
+import numpy as np
 
 class funcionAptitudCluster:
     def evaluate(self, indiv, datos):
         pass
+    
+    def computerCentroids(self, k):
+        '''
+        Calcular los K centroides
+        return = una lista de centroides
+        '''
+        cK = k
+        
+        
 
 class IndividuoCluster:
     def __init__(self, datos):
