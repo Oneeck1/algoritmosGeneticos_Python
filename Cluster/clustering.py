@@ -174,7 +174,9 @@ hijos[1].mutar()
 hijos[1].printIt()
 
 
-
+# Aptitud
+print("Aptitud")
+hijos[1].aptitud
 
 # Graficando el INDIVIDUO1
 # Graficando los HIJOS
