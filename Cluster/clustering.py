@@ -94,6 +94,8 @@ plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
 # Creación de 2 individuos
 ind1 = IndividuoCluster(datos)
 ind2 = IndividuoCluster(datos)
+
+# Inicialización de 3 Clusters
 K = 3
 ind1.inicializa(K)
 ind2.inicializa(K)
