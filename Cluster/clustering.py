@@ -76,7 +76,7 @@ class IndividuoCluster:
         h2.cromosoma = hijo2
         return [h1, h2]
         
-    def mutar(self, k):
+    def mutar(self):
         # Mutación al 5%
         
         porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
@@ -85,8 +85,16 @@ class IndividuoCluster:
         for i in range(porcentaje):
             indices = random.randint(1,len(self.cromosoma))
             if self.cromosoma[indices] == 1:
-                valoresAlelicosM = list(range(2, K+1))
-                indices2 = random.choices(valoresAlelicosM, k= porcentaje)        
+                indices2 = random.randint(2,3)            
+                self.cromosoma[indices] = self.cromosoma[indices2]
+                
+            elif self.cromosoma[indices] == 2:
+                print("aun no ")
+                
+            elif self.cromosoma[indices] == 3:
+                indices2 = random.randint(1,2)
+                self.cromosoma[indices] = self.cromosoma[indices2]
+                
                                  
     
     def printIt(self):
