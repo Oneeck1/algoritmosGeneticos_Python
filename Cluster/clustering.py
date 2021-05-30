@@ -86,6 +86,8 @@ class IndividuoCluster:
 
 # Se lee el conjunto de datos de iris
 datos = pd.read_csv('iris.csv')
+
+# Selección de las dos columnas para los datos
 datos = datos.iloc[:,0:2]
 plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
 ind1 = IndividuoCluster(datos)
