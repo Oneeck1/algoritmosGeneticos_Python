@@ -90,6 +90,8 @@ datos = pd.read_csv('iris.csv')
 # Selección de las dos columnas para los datos
 datos = datos.iloc[:,0:2]
 plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
+
+# Creación de 2 individuos
 ind1 = IndividuoCluster(datos)
 ind2 = IndividuoCluster(datos)
 K = 3
