@@ -98,7 +98,7 @@ class IndividuoCluster:
                 indices2 = random.randint(1,2)
                 self.cromosoma[indices] = self.cromosoma[indices2]
             else:
-                self.cromosoma[indices] = self.cromosoma[indices]
+                print("ERROR")
                 
                 
         return self.cromosoma
@@ -148,8 +148,8 @@ print("Segundo hijo")
 hijos[1].printIt()
 
 # Mutando al Hijo1
-print("Mutacion al Padre")
-hijos[1].graficar()
+print("Mutacion al hijo1")
+hijos[1].mutar()
 hijos[1].printIt()
 
 
