@@ -36,6 +36,7 @@ class funcionAptitudCluster:
         ELEGIR CENTROIDES ALEATORIAMENTE
         '''        
         centroides = sample(range(0,len(self.indiv)),k)
+        # Devuelve el inidice de cada centroide 
         return centroides
         
         
