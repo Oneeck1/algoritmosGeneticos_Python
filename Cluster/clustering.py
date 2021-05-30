@@ -50,7 +50,7 @@ class IndividuoCluster:
 
     def Aptitud(self):
         self.aptitud = funcionAptitudCluster()    
-        centroide = self.aptitud.computerCentroids(self.k)
+        centroide = self.aptitud.computerCentroids(self.cromosoma, self.k)
         
     
     def graficar(self):
