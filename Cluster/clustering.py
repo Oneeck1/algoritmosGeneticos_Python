@@ -59,6 +59,7 @@ class IndividuoCluster:
             plt.plot(self.datos.iloc[index, 0],
                      self.datos.iloc[index, 1],
                      labels[cluster])
+            
     def cruzar(self, Madre):    
         padre = self.cromosoma
         madre = Madre.cromosoma
@@ -96,8 +97,11 @@ class IndividuoCluster:
             elif self.cromosoma[indices] == 3:
                 indices2 = random.randint(1,2)
                 self.cromosoma[indices] = self.cromosoma[indices2]
+            else:
+                self.cromosoma[indices] = self.cromosoma[indices]
                 
-        return self.cromosoma
+                
+        #return self.cromosoma
                 
                                  
     
@@ -144,9 +148,8 @@ print("Segundo hijo")
 hijos[1].printIt()
 
 # Mutando al Hijo1
-print("Mutacion al Segundo Hijo")
-hijos[1].mutar()
-hijos[1].printIt()
+print("Mutacion al Padre")
+ind1.mutar()
 
 
 # Graficando el INDIVIDUO1
