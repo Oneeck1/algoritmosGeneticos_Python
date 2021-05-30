@@ -104,8 +104,12 @@ ind2.inicializa(K)
 
 # Creación de los hijos, cruzando los 2 individuos
 hijos = ind1.cruzar(ind2)
+
+# Imprimiendo INDIVIDUO 1
 print("Papá")
 ind1.printIt()
+
+# Imprimiendo INDIVIDUO 2
 print("Mamá")
 ind2.printIt()
 print("Primer hijo")
