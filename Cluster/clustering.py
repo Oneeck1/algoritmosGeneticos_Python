@@ -76,9 +76,11 @@ class IndividuoCluster:
         h2.cromosoma = hijo2
         return [h1, h2]
         
-    def mutar(self):
+    def mutar(self,k):
         # Mutación al 5%
+        valoresAlelicosM = list(range(1, K+1))
         porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
+        indices = random.choices(valoresAlelicosM,porcentaje)
                                  
     
     def printIt(self):
