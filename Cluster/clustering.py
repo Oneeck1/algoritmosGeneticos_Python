@@ -24,15 +24,7 @@ from random import sample
 import copy
 
 class funcionAptitudCluster:
-    def evaluate(self, indiv, datos):
-        self.indiv = indiv # Cromosoma
-        self.datos = datos # Centroides 
-        
-        for i in range(len(self.datos)):
-            for j in range(len(self.indiv)):
-               E = min( pow( ( abs(self.indiv[j] - self.datos[i]) ) ,2 ) )
-        return E
-                
+    
     def computerCentroids(self,k):
         '''
         Calcular los K centroides
@@ -42,22 +34,40 @@ class funcionAptitudCluster:
         centroides = sample(range(0,len(self.indiv)),k)
         # Devuelve el inidice de cada centroide 
         return centroides
+    
+    
+    def evaluate(self,indiv,datos):
+        self.indiv = indiv # Cromosoma
+        self.datos = datos # Centroides 
+        E = []
+        S = []
+        for i in range(len(self.datos)):
+            for j in range(len(self.indiv)):
+                E[j] = ( pow( ( abs(self.indiv[j] - self.indiv[self.datos[i]]) ) ,2 ) )
+            S[i] = min(E)
         
+        res = min(S)
+        return res
+
+        
+    
         
 class IndividuoCluster:
     def __init__(self, datos):
         self.datos = datos
+        self.fac = funcionAptitudCluster()
+        
     
     def inicializa(self, k):
         self.k = k
         longitud = len(self.datos)
         valoresAlelicos = list(range(1, self.k+1))
         self.cromosoma = random.choices(valoresAlelicos, k=longitud)
+        
 
-    def aptitud(self):
-        self.aptitud = funcionAptitudCluster()    
-        centroide = self.aptitud.computerCentroids(self.cromosoma, self.k)
-        aptitudC = self.aptitud.evaluate(self.cromosoma,centroide)
+    def aptitud(self,k):
+        centroide = self.fac.computerCentroids(k)  
+        aptitudC = self.fac.evaluate(self.cromosoma, centroide)
         return aptitudC        
     
     def graficar(self):
@@ -100,7 +110,7 @@ class IndividuoCluster:
         
         
         for i in range(porcentaje):
-            indices = random.randint(1,len(self.cromosoma))
+            indices = random.randint(1,len(self.cromosoma)-1)
             if self.cromosoma[indices] == 1:
                 indices2 = random.randint(2,3)            
                 self.cromosoma[indices] = self.cromosoma[indices2]
@@ -176,7 +186,9 @@ hijos[1].printIt()
 
 # Aptitud
 print("Aptitud")
-hijos[1].aptitud()
+hijos[1].aptitud(K)
+
+
 
 # Graficando el INDIVIDUO1
 # Graficando los HIJOS
