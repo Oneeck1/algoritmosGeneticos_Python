@@ -80,7 +80,8 @@ class IndividuoCluster:
         # Mutación al 5%
         valoresAlelicosM = list(range(1, K+1))
         porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
-        indices = random.choices(valoresAlelicosM,porcentaje)
+        indices = random.choices(valoresAlelicosM, k= porcentaje)
+        
                                  
     
     def printIt(self):
