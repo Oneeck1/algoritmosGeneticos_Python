@@ -123,6 +123,8 @@ hijos[1].printIt()
 
 # Graficando el INDIVIDUO1
 ind1.graficar()
+
+# Graficando los HIJOS
 hijos[0].graficar()
 hijos[1].graficar()        
         
