@@ -31,12 +31,9 @@ class funcionAptitudCluster:
         return = una lista de centroides
         '''
         cK = k
-        
-        
-
 class IndividuoCluster:
     def __init__(self, datos):
-        self.datos = datos  # guardo los datos 
+        self.datos = datos
     
     def inicializa(self, K):
         longitud = len(self.datos)
@@ -44,9 +41,39 @@ class IndividuoCluster:
         self.cromosoma = random.choices(valoresAlelicos,
                                         k=longitud)
 
-    def cruzar(self, madre):
-        pass
-    
+        
+    def graficar(self):
+        labels=['','or', 'ob', 'og', 'oc', 'ok']
+        clusters = list(set(self.cromosoma))
+        clusters.sort()
+        for cluster in clusters:
+            i = 0
+            index = []
+            for gen in self.cromosoma:
+                if gen == cluster:
+                    index.append(i)
+                i+=1    
+
+            plt.plot(self.datos.iloc[index, 0],
+                     self.datos.iloc[index, 1],
+                     labels[cluster])
+    def cruzar(self, Madre):    
+        padre = self.cromosoma
+        madre = Madre.cromosoma
+        cp1 = int(np.ceil(len(padre)/3.0))
+        cp2 = cp1*2
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+        medio1 = madre[cp1:cp2]
+        medio2 = padre[cp1:cp2]
+        hijo1[cp1:cp2] = medio1
+        hijo2[cp1:cp2] = medio2
+        h1 = copy.deepcopy(self)  # Crea una copia exacta
+        h1.cromosoma = hijo1
+        h2 = copy.deepcopy(Madre)
+        h2.cromosoma = hijo2
+        return [h1, h2]
+        
     def mutar(self):
         pass
     
@@ -59,6 +86,21 @@ datos = pd.read_csv('iris.csv')
 datos = datos.iloc[:,0:2]
 plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
 ind1 = IndividuoCluster(datos)
+ind2 = IndividuoCluster(datos)
 K = 3
 ind1.inicializa(K)
+ind2.inicializa(K)
+hijos = ind1.cruzar(ind2)
+print("Papá")
 ind1.printIt()
+print("Mamá")
+ind2.printIt()
+print("Primer hijo")
+hijos[0].printIt()
+print("Segundo hijo")
+hijos[1].printIt()
+ind1.graficar()
+hijos[0].graficar()
+hijos[1].graficar()        
+        
+
