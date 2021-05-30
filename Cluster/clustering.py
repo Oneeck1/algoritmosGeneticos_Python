@@ -28,26 +28,29 @@ class funcionAptitudCluster:
         self.datos = datos
         pass
     
-    def computerCentroids(self):
+    def computerCentroids(self,k):
         '''
         Calcular los K centroides
         return = una lista de centroides
         ELEGIR CENTROIDES ALEATORIAMENTE
         '''        
-        centroides = random.sample(self.indiv,)
+        centroides = random.sample(self.indiv,k)
+        return centroides
         
         
 class IndividuoCluster:
     def __init__(self, datos):
         self.datos = datos
     
-    def inicializa(self, K):
+    def inicializa(self, k):
+        self.k = k
         longitud = len(self.datos)
-        valoresAlelicos = list(range(1, K+1))
+        valoresAlelicos = list(range(1, self.k+1))
         self.cromosoma = random.choices(valoresAlelicos, k=longitud)
 
-    def Aptitud(self,k):
-        self.aptitud = funcionAptitudCluster()        
+    def Aptitud(self):
+        self.aptitud = funcionAptitudCluster()    
+        centroide = self.aptitud.computerCentroids(self.k)
         
     
     def graficar(self):
