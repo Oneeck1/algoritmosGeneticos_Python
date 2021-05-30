@@ -41,8 +41,7 @@ class IndividuoCluster:
     def inicializa(self, K):
         longitud = len(self.datos)
         valoresAlelicos = list(range(1, K+1))
-        self.cromosoma = random.choices(valoresAlelicos,
-                                        k=longitud)
+        self.cromosoma = random.choices(valoresAlelicos, k=longitud)
 
         
     def graficar(self):
@@ -84,7 +83,8 @@ class IndividuoCluster:
         print(self.cromosoma)
 
 ##########################################################
-#PRUEBAS
+
+# Se lee el conjunto de datos de iris
 datos = pd.read_csv('iris.csv')
 datos = datos.iloc[:,0:2]
 plt.scatter(datos.iloc[:, 0], datos.iloc[:, 1])
