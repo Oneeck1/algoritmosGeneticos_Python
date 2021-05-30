@@ -117,9 +117,11 @@ ind2.printIt()
 print("Primer hijo")
 hijos[0].printIt()
 
-
+# Imprimiwndo HIJO1
 print("Segundo hijo")
 hijos[1].printIt()
+
+
 ind1.graficar()
 hijos[0].graficar()
 hijos[1].graficar()        
