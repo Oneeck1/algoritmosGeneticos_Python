@@ -20,6 +20,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import random
 import numpy as np
+import copy
 
 class funcionAptitudCluster:
     def evaluate(self, indiv, datos):
@@ -31,6 +32,8 @@ class funcionAptitudCluster:
         return = una lista de centroides
         '''
         cK = k
+        
+        
 class IndividuoCluster:
     def __init__(self, datos):
         self.datos = datos
