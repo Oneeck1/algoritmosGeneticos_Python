@@ -89,11 +89,13 @@ class IndividuoCluster:
                 self.cromosoma[indices] = self.cromosoma[indices2]
                 
             elif self.cromosoma[indices] == 2:
-                print("aun no ")
+                indices = random.sample([1,3],1)
+                
                 
             elif self.cromosoma[indices] == 3:
                 indices2 = random.randint(1,2)
                 self.cromosoma[indices] = self.cromosoma[indices2]
+                
         return self.cromosoma
                 
                                  
