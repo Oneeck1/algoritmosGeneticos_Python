@@ -121,7 +121,7 @@ hijos[0].printIt()
 print("Segundo hijo")
 hijos[1].printIt()
 
-
+# Graficando el INDIVIDUO1
 ind1.graficar()
 hijos[0].graficar()
 hijos[1].graficar()        
