@@ -25,10 +25,14 @@ import copy
 
 class funcionAptitudCluster:
     def evaluate(self, indiv, datos):
-        self.indiv = indiv
-        self.datos = datos
-        pass
-    
+        self.indiv = indiv # Cromosoma
+        self.datos = datos # Centroides 
+        
+        for i in range(len(self.datos)):
+            for j in range(len(self.indiv)):
+                min( (self.indiv[j] - self.datos[i]) )
+        
+                
     def computerCentroids(self,k):
         '''
         Calcular los K centroides
