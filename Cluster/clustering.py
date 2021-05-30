@@ -20,6 +20,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 import random
 import numpy as np
+from random import sample
 import copy
 
 class funcionAptitudCluster:
@@ -34,7 +35,7 @@ class funcionAptitudCluster:
         return = una lista de centroides
         ELEGIR CENTROIDES ALEATORIAMENTE
         '''        
-        centroides = random.sample(self.indiv,k)
+        centroides = sample(range(0,len(self.indiv)),k)
         return centroides
         
         
