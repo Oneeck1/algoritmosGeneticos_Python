@@ -31,8 +31,8 @@ class funcionAptitudCluster:
         Calcular los K centroides
         return = una lista de centroides
         ELEGIR CENTROIDES ALEATORIAMENTE
-        '''
-        cK = k
+        '''        
+        
         
         
 class IndividuoCluster:
@@ -44,7 +44,11 @@ class IndividuoCluster:
         valoresAlelicos = list(range(1, K+1))
         self.cromosoma = random.choices(valoresAlelicos, k=longitud)
 
+    def Aptitud(self,k):
+        super().evaluate(self.cromosoma,self.datos)
+        super().computerCentroids(k)
         
+    
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
         clusters = list(set(self.cromosoma))
