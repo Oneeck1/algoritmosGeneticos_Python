@@ -24,15 +24,17 @@ import copy
 
 class funcionAptitudCluster:
     def evaluate(self, indiv, datos):
+        self.indiv = indiv
+        self.datos = datos
         pass
     
-    def computerCentroids(self, k):
+    def computerCentroids(self):
         '''
         Calcular los K centroides
         return = una lista de centroides
         ELEGIR CENTROIDES ALEATORIAMENTE
         '''        
-        
+        centroides = random.sample(self.indiv,)
         
         
 class IndividuoCluster:
@@ -45,8 +47,7 @@ class IndividuoCluster:
         self.cromosoma = random.choices(valoresAlelicos, k=longitud)
 
     def Aptitud(self,k):
-        super().evaluate(self.cromosoma,self.datos)
-        super().computerCentroids(k)
+        self.aptitud = funcionAptitudCluster()        
         
     
     def graficar(self):
