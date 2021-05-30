@@ -30,6 +30,7 @@ class funcionAptitudCluster:
         '''
         Calcular los K centroides
         return = una lista de centroides
+        ELEGIR CENTROIDES ALEATORIAMENTE
         '''
         cK = k
         
