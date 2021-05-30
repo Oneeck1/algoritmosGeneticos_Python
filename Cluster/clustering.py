@@ -102,7 +102,7 @@ K = 3
 ind1.inicializa(K)
 ind2.inicializa(K)
 
-
+# Creación de los hijos
 hijos = ind1.cruzar(ind2)
 print("Papá")
 ind1.printIt()
