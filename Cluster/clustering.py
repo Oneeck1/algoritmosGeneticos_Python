@@ -112,8 +112,12 @@ ind1.printIt()
 # Imprimiendo INDIVIDUO 2
 print("Mamá")
 ind2.printIt()
+
+# Imprimiendo HIJO0
 print("Primer hijo")
 hijos[0].printIt()
+
+
 print("Segundo hijo")
 hijos[1].printIt()
 ind1.graficar()
