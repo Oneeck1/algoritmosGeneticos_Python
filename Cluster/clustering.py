@@ -89,8 +89,9 @@ class IndividuoCluster:
                 self.cromosoma[indices] = self.cromosoma[indices2]
                 
             elif self.cromosoma[indices] == 2:
-                indices = random.sample([1,3],1)
-                
+                indices2 = random.sample([1,3],1)
+                indices2 = int(indices2[0])
+                self.comosoma[indices] = self.cromosoma[indices2]
                 
             elif self.cromosoma[indices] == 3:
                 indices2 = random.randint(1,2)
@@ -141,6 +142,12 @@ hijos[0].printIt()
 # Imprimiwndo HIJO1
 print("Segundo hijo")
 hijos[1].printIt()
+
+# Mutando al Hijo1
+print("Mutacion al Segundo Hijo")
+hijos[1].mutar()
+hijos[1].printIt()
+
 
 # Graficando el INDIVIDUO1
 ind1.graficar()
