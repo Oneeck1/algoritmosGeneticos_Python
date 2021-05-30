@@ -97,8 +97,12 @@ ind2 = IndividuoCluster(datos)
 
 # Inicialización de 3 Clusters
 K = 3
+
+# Inicializando los 2 individuos
 ind1.inicializa(K)
 ind2.inicializa(K)
+
+
 hijos = ind1.cruzar(ind2)
 print("Papá")
 ind1.printIt()
