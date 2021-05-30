@@ -78,7 +78,8 @@ class IndividuoCluster:
         
     def mutar(self):
         # Mutación al 5%
-        porcentaje = int( np.ceil(len(self.cromosoma)*0.05)
+        porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
+                                 
     
     def printIt(self):
         print(self.cromosoma)
