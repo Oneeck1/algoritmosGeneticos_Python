@@ -54,7 +54,7 @@ class IndividuoCluster:
         valoresAlelicos = list(range(1, self.k+1))
         self.cromosoma = random.choices(valoresAlelicos, k=longitud)
 
-    def Aptitud(self):
+    def aptitud(self):
         self.aptitud = funcionAptitudCluster()    
         centroide = self.aptitud.computerCentroids(self.cromosoma, self.k)
         aptitudC = self.aptitud.evaluate(self.cromosoma,centroide)
@@ -176,7 +176,7 @@ hijos[1].printIt()
 
 # Aptitud
 print("Aptitud")
-hijos[1].aptitud
+hijos[1].aptitud()
 
 # Graficando el INDIVIDUO1
 # Graficando los HIJOS
