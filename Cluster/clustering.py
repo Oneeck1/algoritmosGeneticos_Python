@@ -30,8 +30,8 @@ class funcionAptitudCluster:
         
         for i in range(len(self.datos)):
             for j in range(len(self.indiv)):
-                min( (self.indiv[j] - self.datos[i]) )
-        
+               E = min( pow( ( abs(self.indiv[j] - self.datos[i]) ) ,2 ) )
+        return E
                 
     def computerCentroids(self,k):
         '''
@@ -57,7 +57,8 @@ class IndividuoCluster:
     def Aptitud(self):
         self.aptitud = funcionAptitudCluster()    
         centroide = self.aptitud.computerCentroids(self.cromosoma, self.k)
-        
+        aptitudC = self.aptitud.evaluate(self.cromosoma,centroide)
+        return aptitudC        
     
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
