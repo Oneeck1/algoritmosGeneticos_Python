@@ -147,7 +147,7 @@ hijos[0].printIt()
 print("Segundo hijo")
 hijos[1].printIt()
 
-# Mutando al Hijo1
+# Mutando al Hijo0
 print("Mutacion al hijo0")
 hijos[0].mutar()
 hijos[0].printIt()
@@ -161,10 +161,8 @@ hijos[1].printIt()
 
 
 # Graficando el INDIVIDUO1
-
-
 # Graficando los HIJOS
-#hijos[0].graficar()
-#hijos[1].graficar()        
+hijos[0].graficar()
+hijos[1].graficar()        
         
 
