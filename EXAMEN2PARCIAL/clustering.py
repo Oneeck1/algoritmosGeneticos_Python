@@ -32,11 +32,26 @@ class Cluster:
         self.k = k
         pass
     
+    
     def aptitud(self):
         pass
     
-    def cruzar(self):
-        pass
+    def cruzar(self,Madre):
+        padre = self.cromosoma
+        madre = Madre.cromosoma
+        cp1 = int(np.ceil(len(padre)/3.0))
+        cp2 = cp1*2
+        hijo1 = padre.copy()
+        hijo2 = madre.copy()
+        medio1 = madre[cp1:cp2]
+        medio2 = padre[cp1:cp2]
+        hijo1[cp1:cp2] = medio1
+        hijo2[cp1:cp2] = medio2
+        h1 = copy.deepcopy(self)  # Crea una copia exacta
+        h1.cromosoma = hijo1
+        h2 = copy.deepcopy(Madre)
+        h2.cromosoma = hijo2
+        return [h1, h2]        
     
     def mutar(self):
         pass
