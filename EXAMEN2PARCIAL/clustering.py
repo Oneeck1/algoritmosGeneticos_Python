@@ -75,14 +75,14 @@ class Cluster:
         h1.cromosoma = hijo1
         h2 = copy.deepcopy(Madre)
         h2.cromosoma = hijo2
+        # Retorno de los hijos
         return [h1, h2]        
     
     def mutar(self):
         # Mutación al 5%
-        
         porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
         
-        
+        # Mutar aleatoriamente a los alelos por 1,2 o 3, pero no el mismo
         for i in range(porcentaje):
             indices = random.randint(1,len(self.cromosoma)-1)
             if self.cromosoma[indices] == 1:
