@@ -42,7 +42,6 @@ class Cluster:
     
     
     def aptitud(self):
-
         self.datos = sample(range(0,len(self.cromosoma)),k)
         E = []
         S = []
@@ -71,7 +70,28 @@ class Cluster:
         return [h1, h2]        
     
     def mutar(self):
-        pass
+        # Mutación al 5%
+        
+        porcentaje = int( np.ceil(len(self.cromosoma)*0.05) )
+        
+        
+        for i in range(porcentaje):
+            indices = random.randint(1,len(self.cromosoma)-1)
+            if self.cromosoma[indices] == 1:
+                indices2 = random.randint(2,3)            
+                self.cromosoma[indices] = self.cromosoma[indices2]
+                
+            elif self.cromosoma[indices] == 2:
+                indices2 = random.sample([1,3],1)
+                indices2 = int(indices2[0])
+                self.cromosoma[indices] = self.cromosoma[indices2]
+                
+            elif self.cromosoma[indices] == 3:
+                indices2 = random.randint(1,2)
+                self.cromosoma[indices] = self.cromosoma[indices2]
+            else:
+                self.cromosoma = self.cromosoma
+        return self.cromosoma
     
     def printIt(self):
         print(self.cromosoma)
