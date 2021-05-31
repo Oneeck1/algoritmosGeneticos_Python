@@ -178,6 +178,7 @@ class Cromosoma:
         # Importamos los datos del csv    
         datos = pd.read_csv('datosExamen.csv')    
         
+        #----------------AQUI SE ASIGNAN LOS NUMEROS DE CLUSTERS---------------
         # K = 3, el núero de clusters
         k = 3
 
