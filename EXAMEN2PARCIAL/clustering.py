@@ -84,9 +84,12 @@ class Cluster:
         
         # Mutar aleatoriamente a los alelos por 1,2 o 3, pero no el mismo
         for i in range(porcentaje):
+            #Seleccion de los indices para modificarlos
             indices = random.randint(1,len(self.cromosoma)-1)
             if self.cromosoma[indices] == 1:
+                # Si en ese indice el alelo del cromosoma es == 1(Cluster) 
                 indices2 = random.randint(2,3)            
+                # Le asigna un valor aleatorio entre 2 y 3, pero NO 1
                 self.cromosoma[indices] = self.cromosoma[indices2]
                 
             elif self.cromosoma[indices] == 2:
