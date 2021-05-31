@@ -129,7 +129,7 @@ class Cluster:
             plt.legend(labels[cluster])
              
     def __str__(self):
-# -------------------Imprimir cada uno de los individuos-------------------
+        # Imprimir el cromosoma con su respectiva aptitud
         inds = str(self.cromosoma)+str(self.aptitud())
         
         # Declarar variables para el contador de cuantos clusters hay
