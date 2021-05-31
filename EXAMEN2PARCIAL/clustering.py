@@ -86,22 +86,29 @@ class Cluster:
         for i in range(porcentaje):
             #Seleccion de los indices para modificarlos
             indices = random.randint(1,len(self.cromosoma)-1)
-            if self.cromosoma[indices] == 1:
-                # Si en ese indice el alelo del cromosoma es == 1(Cluster) 
-                indices2 = random.randint(2,3)            
+            
+            # Si en ese indice el alelo del cromosoma es == 1(Cluster) 
+            if self.cromosoma[indices] == 1:                
                 # Le asigna un valor aleatorio entre 2 y 3, pero NO 1
+                indices2 = random.randint(2,3)                            
                 self.cromosoma[indices] = self.cromosoma[indices2]
-                
-            elif self.cromosoma[indices] == 2:
+
+                # Si en ese indice el alelo del cromosoma es == 2(Cluster)                
+
+            elif self.cromosoma[indices] == 2:                                
+                # Le asigna valores de 1 y 3 aleatorios, pero NO 2                
                 indices2 = random.sample([1,3],1)
                 indices2 = int(indices2[0])
                 self.cromosoma[indices] = self.cromosoma[indices2]
                 
+                # Si en ese indice el alelo del cromosoma es == 3(Cluster)
             elif self.cromosoma[indices] == 3:
+                # Le asigna valores de 1 y 2 aleatorios, pero NO 3
                 indices2 = random.randint(1,2)
                 self.cromosoma[indices] = self.cromosoma[indices2]
             else:
                 self.cromosoma = self.cromosoma
+        # Se retorna el cromosoma                
         return self.cromosoma
 
     
