@@ -25,6 +25,11 @@ import copy
 
 class Cluster:
     def __init__(self, datos, k):
+        # Inicializando los datos 
+        self.datos = datos
+        
+        # Inicializando los k clusters
+        self.k = k
         pass
     
     def aptitud(self):
@@ -48,21 +53,21 @@ datos = pd.read_csv('datosExamen.csv')
 k = 3
 
 # Creación del individuo 1 
-individuo1 =  Cluster(datos)
+individuo1 =  Cluster(datos,k)
 
 # Creación del individuo 2
-individuo2 =  Cluster(datos)
+individuo2 =  Cluster(datos,k)
     
 # Creación de los hijos, cruzando los 2 individuos
 hijos = individuo1.cruzar(individuo2)
 
 # Imprimiendo INDIVIDUO 1
 print("Papá")
-ind1.printIt()
+individuo1.printIt()
 
 # Imprimiendo INDIVIDUO 2
 print("Mamá")
-ind2.printIt()
+individuo2.printIt()
 
 # Imprimiendo HIJO0
 print("Primer hijo")
