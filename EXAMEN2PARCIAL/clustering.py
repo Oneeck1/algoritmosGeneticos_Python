@@ -49,8 +49,8 @@ class Cluster:
         # Seleccionar la suma minima
         for i in range(0,len(self.datos)):
             for j in range(0,len(self.cromosoma)-1):
-                E[j].append( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
-            S[i].append(min(E))
+                E.append( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
+            S.append(min(E))
         res = min(S)
         return res
     
@@ -129,7 +129,7 @@ class Cluster:
                      labels[cluster])
              
     def __str__(self):
-        cadena = str(self.cromosoma)
+        cadena = str(self.cromosoma)+str(self.aptitud())
         return cadena   
     
     
