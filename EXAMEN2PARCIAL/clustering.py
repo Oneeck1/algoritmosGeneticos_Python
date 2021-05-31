@@ -171,6 +171,9 @@ class Cromosoma:
             cad = cad + str(gen) + "\n"
         return cad
     
+    def graficar(self):
+        for gen in self.ind:
+            gen.graficar()
     
 p = Cromosoma()
 m = Cromosoma()
@@ -199,38 +202,5 @@ hijos[1].mutar()
 print(hijos[1])    
 
 
+hijos[1].graficar()
 
-
-'''
-
-#-------------------------------CREACION DE LOS HIJOS------------------------    
-# Creación de los hijos, cruzando los 2 individuos
-hijos = individuo1.cruzar(individuo2)
-
-#-------------------------------IMPRIMIENDO LOS INDIVIDUOS------------------
-# Imprimiendo INDIVIDUO 1
-print("Papá")
-individuo1.printIt()
-
-# Imprimiendo INDIVIDUO 2
-print("Mamá")
-individuo2.printIt()
-
-#-------------------------------IMPRIMIENDO LOS HIJOS-----------------------
-# Imprimiendo HIJO0
-print("Primer hijo")
-hijos[0].printIt()
-
-# Imprimiwndo HIJO1
-print("Segundo hijo")
-hijos[1].printIt()    
-
-#-------------------------------MUTANDO DE LOS HIJOS-------------------------
-hijos[0].mutar()
-hijos[1].mutar()
-
-#-------------------------------GRAFICANDO DE LOS HIJOS----------------------
-hijos[0].graficar()
-hijos[1].graficar()  
-
-'''
