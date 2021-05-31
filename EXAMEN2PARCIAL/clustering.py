@@ -238,9 +238,9 @@ class Cromosoma:
 p = Cromosoma()
 m = Cromosoma()
 
-# INICIALIZARLO CON N INDIVIDUOS, EN ESTE CASO 2 (PUEDEN SER N)
-p.inicializa(2)    
-m.inicializa(2)    
+# INICIALIZARLO CON N INDIVIDUOS, EN ESTE CASO 1 (PUEDEN SER N)
+p.inicializa(1)    
+m.inicializa(1)    
 
 print('-------------Padre:-------------')
 print(p)
