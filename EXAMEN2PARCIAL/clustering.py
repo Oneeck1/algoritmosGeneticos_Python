@@ -43,9 +43,14 @@ class Cluster:
     
 # Importamos los datos del csv    
 datos = pd.read_csv('datosExamen.csv')    
+
 # K = 3, el núero de clusters
 k = 3
+
 # Creación del individuo 1 
 individuo1 =  Cluster(datos)
+
+# Creación del individuo 2
+individuo2 =  Cluster(datos)
     
     
