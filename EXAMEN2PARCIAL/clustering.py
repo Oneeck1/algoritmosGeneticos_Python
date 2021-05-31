@@ -42,10 +42,11 @@ class Cluster:
     
     
     def aptitud(self):
-        
+        # Seleccion de los indices de los elementos para el cluster
         self.datos = sample(range(0,len(self.cromosoma)),k = self.k)
         E = []
         S = []
+        # Seleccionar la suma minima
         for i in range(0,len(self.datos)):
             for j in range(0,len(self.cromosoma)-1):
                 E[j].append( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
@@ -54,17 +55,23 @@ class Cluster:
         return res
     
     def cruzar(self,Madre):
+        # Creacion de los padres y madres
         padre = self.cromosoma
         madre = Madre.cromosoma
+        # Selección de las capas1 y 2 para la cruza entre dos puntod
         cp1 = int(np.ceil(len(padre)/3.0))
         cp2 = cp1*2
+        # Copia de los padres y madres para modificar las copias
         hijo1 = padre.copy()
         hijo2 = madre.copy()
+        # Sacar los medios
         medio1 = madre[cp1:cp2]
         medio2 = padre[cp1:cp2]
+        # Asignar a los medios los puntos en los hijos 
         hijo1[cp1:cp2] = medio1
         hijo2[cp1:cp2] = medio2
-        h1 = copy.deepcopy(self)  # Crea una copia exacta
+        # Crea una copia exacta
+        h1 = copy.deepcopy(self)  
         h1.cromosoma = hijo1
         h2 = copy.deepcopy(Madre)
         h2.cromosoma = hijo2
