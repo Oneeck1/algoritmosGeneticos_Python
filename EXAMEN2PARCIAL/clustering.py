@@ -175,8 +175,8 @@ class Cromosoma:
 p = Cromosoma()
 m = Cromosoma()
 
-p.inicializa(1)    
-m.inicializa(1)    
+p.inicializa(2)    
+m.inicializa(2)    
 
 print('Padre: ')
 print(p)
