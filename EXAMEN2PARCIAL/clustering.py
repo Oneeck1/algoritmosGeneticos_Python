@@ -36,7 +36,7 @@ class Cluster:
     def mutar(self):
         pass
     
-    def __str__(self):
+    def printIt(self):
         pass
     
     
