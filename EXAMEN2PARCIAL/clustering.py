@@ -59,6 +59,22 @@ class Cluster:
     def printIt(self):
         pass
     
+    def graficar(self):
+        labels=['','or', 'ob', 'og', 'oc', 'ok']
+        clusters = list(set(self.cromosoma))
+        clusters.sort()
+        for cluster in clusters:
+            i = 0
+            index = []
+            for gen in self.cromosoma:
+                if gen == cluster:
+                    index.append(i)
+                i+=1    
+
+            plt.plot(self.datos.iloc[index, 0],
+                     self.datos.iloc[index, 1],
+                     labels[cluster])
+            
     
     
 # Importamos los datos del csv    
