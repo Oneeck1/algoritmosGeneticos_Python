@@ -42,13 +42,14 @@ class Cluster:
     
     
     def aptitud(self):
+        
         self.datos = sample(range(0,len(self.cromosoma)),k)
         E = []
         S = []
         for i in range(0,len(self.datos)):
             for j in range(0,len(self.cromosoma)-1):
-                E[j] = ( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
-            S[i] = min(E)        
+                E[j].append( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
+            S[i].append(min(E))
         res = min(S)
         return res
     
@@ -94,7 +95,8 @@ class Cluster:
         return self.cromosoma
     
     def printIt(self):
-        print(self.cromosoma)
+        cadena = str(self.cromosoma)
+        print(cadena)
     
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
@@ -115,18 +117,59 @@ class Cluster:
     
     
     
-# Importamos los datos del csv    
-datos = pd.read_csv('datosExamen.csv')    
-
-# K = 3, el núero de clusters
-k = 3
+    
+class Cromosoma:
+    def inicializa(self,numI):
+        # Importamos los datos del csv    
+        datos = pd.read_csv('datosExamen.csv')    
+        
+        # K = 3, el núero de clusters
+        k = 3
 
 #-------------------------------CREACION DE LOS INDIVIDUOS------------------
-# Creación del individuo 1 
-individuo1 =  Cluster(datos,k)
+        ind = []
+        for i in numI:
+            c = Cluster(datos, k)
+            ind.append(c)
+        self.ind = ind
+    
+    def mutar(self):
+        '''
+        Aplica mutación al individuo completo
+        '''
+        for gen in self.ind:
+            gen.mutar()
+            
+    def cruzar(self, otro):
+        h1 = copy.deepcopy(self)
+        h2 = copy.deepcopy(otro)        
+        genesHijos1 = []
+        genesHijos2 = []
 
-# Creación del individuo 2
-individuo2 =  Cluster(datos,k)
+        for i in range(len(self.ind)):
+            GenPadre = self.ind[i]
+            GenMadre = otro.genes[i]
+            genHijos = GenPadre.cruzar(GenMadre)
+            genesHijos1.append(genHijos[0])
+            genesHijos2.append(genHijos[1])
+        h1.genes = genesHijos1
+        h2.genes = genesHijos2
+        return [h1, h2]
+
+    def __str__(self):
+        
+        '''
+        Imprime como una cadena el cromosoma.
+
+        :returns: Una cadena que representa al cromosoma completo
+        :rtype: str
+        '''
+        cad = ""
+        for gen in self.ind:
+            cad = cad + str(gen) + "\n"
+        return cad
+
+'''
 
 #-------------------------------CREACION DE LOS HIJOS------------------------    
 # Creación de los hijos, cruzando los 2 individuos
@@ -150,6 +193,12 @@ hijos[0].printIt()
 print("Segundo hijo")
 hijos[1].printIt()    
 
+#-------------------------------MUTANDO DE LOS HIJOS-------------------------
+hijos[0].mutar()
+hijos[1].mutar()
+
 #-------------------------------GRAFICANDO DE LOS HIJOS----------------------
 hijos[0].graficar()
 hijos[1].graficar()  
+
+'''
