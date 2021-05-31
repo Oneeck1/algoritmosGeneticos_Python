@@ -167,8 +167,8 @@ class Cluster:
             cadena1 = "Cluster1: {}, Cluster2: {}, Cluster3: {}".format(len(countC1),len(countC2), len(countC3))
             # Se imprimen los indices de los clusters
             cadena2 = "Indices C1: {},\nIndices C2: {},\nIndices C3: {}".format(indC1, indC2, indC3)
-            cadt = str(cadena1)+"\n"+str(cadena2)
-        return inds
+            cadt = "\nCUANTOS ELEMENTOS DE CADA CLUSTER HAY:\n"+str(cadena1)+"\n\nINDICES DE CADA CLUSTER:\n"+str(cadena2)+"\n\nCROMOSOMA:\n"+str(inds)
+        return cadt
     
     
     
