@@ -29,20 +29,17 @@ class funcionAptitudCluster:
     def evaluate(self,indiv, k):
         self.indiv = indiv # Cromosoma
         # self.datos = datos # Centroides 
-        centroides = sample(range(0,len(self.indiv)),k)
-        self.datos = centroides
+        
+        self.datos = sample(range(0,len(self.indiv)),k)
         E = []
         S = []
-        for i in range(len(self.datos)):
-            for j in range(len(self.indiv)):
+        for i in range(0,len(self.datos)):
+            for j in range(0,len(self.indiv)-1):
                 E[j] = ( pow( ( abs(self.indiv[j] - self.indiv[self.datos[i]]) ) ,2 ) )
             S[i] = min(E)
         
         res = min(S)
         return res
-    
-    
-
     
         
 class IndividuoCluster:
