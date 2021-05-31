@@ -235,26 +235,36 @@ m = Cromosoma()
 p.inicializa(2)    
 m.inicializa(2)    
 
-print('Padre: ')
+print('-------------Padre:-------------')
 print(p)
-print('Madre: ')
+print('-------------Madre:-------------')
 print(m)
     
 hijos = p.cruzar(m)
-print('Hijo 0: ')
+print('-------------Hijo 0:-------------')
 print(hijos[0])
-print('Hijo 1: ')
+print('-------------Hijo 1:-------------')
 print(hijos[1])
 
-# Muta el primero hijo
-print('Mutación al Primer Hijo\n')
-print('Original: ')
+# Muta el primer hijo
+print('-------------Mutación al Primer Hijo\n-------------')
+print('-------------Original:-------------')
 print(hijos[0])
 
-print('Modificado: ')
+print('-------------Modificado:-------------')
+hijos[0].mutar()
+print(hijos[0])    
+
+# Muta el segundo hijo
+print('-------------Mutación al Segundo Hijo\n-------------')
+print('-------------Original:-------------')
+print(hijos[1])
+
+print('-------------Modificado:-------------')
 hijos[1].mutar()
 print(hijos[1])    
 
-
+# GRAFICAR HIJOS
+hijos[0].graficar()
 hijos[1].graficar()
 
