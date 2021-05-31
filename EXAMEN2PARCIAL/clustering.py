@@ -49,7 +49,7 @@ class Cluster:
         S = []
         # Seleccionar la suma minima
         for i in range(0,len(datos)):
-            for j in range(0,len(self.cromosoma)-1):
+            for j in range(0,len(self.cromosoma)):
                 E.append( pow( ( abs(self.cromosoma[j] - self.cromosoma[datos[i]]) ) ,2 ) )
             S.append(min(E))
         res = min(S)
@@ -112,7 +112,7 @@ class Cluster:
         # Se retorna el cromosoma                
         return self.cromosoma
 
-    
+     
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
         clusters = list(set(self.cromosoma))
@@ -125,13 +125,25 @@ class Cluster:
                     index.append(i)
                 i+=1    
             
-            plt.plot(self.datos.iloc[index, 0],
-                     self.datos.iloc[index, 1],
-                     labels[cluster])
+            plt.plot(self.datos.iloc[index, 0], self.datos.iloc[index, 1], labels[cluster])
+            plt.legend(labels[cluster])
              
     def __str__(self):
-        cadena = str(self.cromosoma)+str(self.aptitud())
-        return cadena   
+        # Imprimir cada uno de los individuos
+        # cadena = str(self.cromosoma)+str(self.aptitud())
+        countC1 = 0
+        countC2 = 0
+        countC3 = 0
+        
+        for i in self.cromosoma:
+            if i == 1:
+                countC1 += 1
+            elif i == 2:
+                countC2  += 1
+            else:
+                countC3 += 3
+            cadena1 = "Cluster1: {}, Cluster2: {}, Cluster3: {}".format(countC1,countC2, countC3)
+        return cadena1   
     
     
     
