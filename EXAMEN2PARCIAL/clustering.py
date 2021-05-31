@@ -188,18 +188,18 @@ class Cromosoma:
         self.ind = ind
     
     def mutar(self):
-        '''
-        Aplica mutación al individuo completo
-        '''
+        # Mutar cada uno de los individuos que hay 
         for gen in self.ind:
             gen.mutar()
             
     def cruzar(self, otro):
+        # Hacer la cruza del padre y madre, que retorna 2 hijos
+        # Se hace copia exacta de los objetos
         h1 = copy.deepcopy(self)
         h2 = copy.deepcopy(otro)        
         genesHijos1 = []
         genesHijos2 = []
-
+        # Siempre genera mejores hijos
         for i in range(len(self.ind)):
             GenPadre = self.ind[i]
             GenMadre = otro.ind[i]
@@ -210,9 +210,9 @@ class Cromosoma:
         h2.ind = genesHijos2
         return [h1, h2]
 
-
     
     def aptitudes(self):
+        # Calcular su Aptitud de cada uno
         apt = []
         for gen in self.ind:
             apt.append(gen.aptitud())
@@ -220,12 +220,14 @@ class Cromosoma:
 
 
     def __str__(self):
+        # Imprimirlos dando 2 saltos de línea
         cad = ""
         for gen in self.ind:
             cad = cad + str(gen) + "\n\n"
         return cad
     
     def graficar(self):
+        # Graficar cada uno de los individuos
         for gen in self.ind:
             gen.graficar()
     
@@ -244,6 +246,7 @@ print(p)
 print('-------------Madre:-------------')
 print(m)
     
+# Cruza del padre y madre, para la generación de 2 hijos
 hijos = p.cruzar(m)
 print('-------------Hijo 0:-------------')
 print(hijos[0])
