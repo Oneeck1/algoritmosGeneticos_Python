@@ -229,9 +229,13 @@ class Cromosoma:
         for gen in self.ind:
             gen.graficar()
     
+    
+    
+# CREACION DE PADRES Y MADRES    
 p = Cromosoma()
 m = Cromosoma()
 
+# INICIALIZARLO CON N INDIVIDUOS, EN ESTE CASO 2 (PUEDEN SER N)
 p.inicializa(2)    
 m.inicializa(2)    
 
