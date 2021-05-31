@@ -136,6 +136,9 @@ class Cluster:
         countC1 = []
         countC2 = []
         countC3 = []
+        indC1 = []
+        indC2 = []
+        indC3 = []
         
         for i in self.cromosoma:
             # Si hay un elemento que es del cluster 1, que lo agregue
@@ -147,9 +150,24 @@ class Cluster:
             # Si hay un elemento que es del cluster 3, que lo agregue
             else:
                 countC3.append(1)
+                
+                    
+        for i in range(len(self.cromosoma)):
+            # Si en el indice i de cromosoma es 1: entonces que agregue i
+            if self.cromosoma[i] == 1:
+                indC1.append(i)
+            # Si en el indice i de cromosoma es 2: entonces que agregue i
+            elif self.cromosoma[i] == 2:
+                indC2.append(i)
+            # Si en el indice i de cromosoma es 3: entonces que agregue i
+            else:
+                indC3.append(i)
+            
             # Se imprime la longitud de cada cluster, para ver cuandos hay de cada uno                
             cadena1 = "Cluster1: {}, Cluster2: {}, Cluster3: {}".format(len(countC1),len(countC2), len(countC3))
-        return cadena1   
+            cadena2 = "Indices C1: {},\nIndices C2: {},\nIndices C3: {}".format(indC1, indC2, indC3)
+            cadt = str(cadena1)+"\n"+str(cadena2)
+        return cadt
     
     
     
@@ -204,7 +222,7 @@ class Cromosoma:
     def __str__(self):
         cad = ""
         for gen in self.ind:
-            cad = cad + str(gen) + "\n"
+            cad = cad + str(gen) + "\n\n"
         return cad
     
     def graficar(self):
