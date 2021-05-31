@@ -30,7 +30,15 @@ class Cluster:
         
         # Inicializando los k clusters
         self.k = k
-        pass
+ 
+        # Calcular la longitud de todos los datos       
+        longitud = len(self.datos)
+        
+        # Valores alelicos que son numeros aleatorios del 1 al Numero de clusters
+        valoresAlelicos = list(range(1, self.k+1))
+        
+        # Se asigna al cromosoma los valores alelicos
+        self.cromosoma = random.choices(valoresAlelicos, k=longitud)
     
     
     def aptitud(self):
