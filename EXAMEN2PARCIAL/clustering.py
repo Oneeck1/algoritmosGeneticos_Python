@@ -24,7 +24,7 @@ from random import sample
 import copy
 
 class Cluster:
-    def __init__(self):
+    def __init__(self, datos, k):
         pass
     
     def aptitud(self):
@@ -36,9 +36,14 @@ class Cluster:
     def mutar(self):
         pass
     
+    def __str__(self):
+        pass
     
     
     
-    
+# Importamos los datos del csv    
+datos = pd.read_csv('datosExamen.csv')    
+k = 3
+individuo1 =  Cluster(datos)
     
     
