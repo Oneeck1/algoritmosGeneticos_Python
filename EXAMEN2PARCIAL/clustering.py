@@ -65,7 +65,7 @@ class Cluster:
         pass
     
     def printIt(self):
-        pass
+        print(self.cromosoma)
     
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
