@@ -43,6 +43,7 @@ class Cluster:
     
     def aptitud(self):
         # Seleccion de los indices de los elementos para el cluster
+        
         datos = sample(range(0,len(self.cromosoma)),k = self.k)
         E = []
         S = []
@@ -123,7 +124,7 @@ class Cluster:
                 if gen == cluster:
                     index.append(i)
                 i+=1    
-
+            
             plt.plot(self.datos.iloc[index, 0],
                      self.datos.iloc[index, 1],
                      labels[cluster])
