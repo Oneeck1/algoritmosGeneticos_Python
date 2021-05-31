@@ -91,15 +91,18 @@ datos = pd.read_csv('datosExamen.csv')
 # K = 3, el núero de clusters
 k = 3
 
+#-------------------------------CREACION DE LOS INDIVIDUOS------------------
 # Creación del individuo 1 
 individuo1 =  Cluster(datos,k)
 
 # Creación del individuo 2
 individuo2 =  Cluster(datos,k)
-    
+
+#-------------------------------CREACION DE LOS HIJOS------------------------    
 # Creación de los hijos, cruzando los 2 individuos
 hijos = individuo1.cruzar(individuo2)
 
+#-------------------------------IMPRIMIENDO LOS INDIVIDUOS------------------
 # Imprimiendo INDIVIDUO 1
 print("Papá")
 individuo1.printIt()
@@ -108,6 +111,7 @@ individuo1.printIt()
 print("Mamá")
 individuo2.printIt()
 
+#-------------------------------IMPRIMIENDO LOS HIJOS-----------------------
 # Imprimiendo HIJO0
 print("Primer hijo")
 hijos[0].printIt()
@@ -115,3 +119,4 @@ hijos[0].printIt()
 # Imprimiwndo HIJO1
 print("Segundo hijo")
 hijos[1].printIt()    
+
