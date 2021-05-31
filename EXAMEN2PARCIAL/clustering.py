@@ -43,7 +43,7 @@ class Cluster:
     
     def aptitud(self):
         
-        self.datos = sample(range(0,len(self.cromosoma)),k)
+        self.datos = sample(range(0,len(self.cromosoma)),k = self.k)
         E = []
         S = []
         for i in range(0,len(self.datos)):
@@ -93,10 +93,7 @@ class Cluster:
             else:
                 self.cromosoma = self.cromosoma
         return self.cromosoma
-    
-    def printIt(self):
-        cadena = str(self.cromosoma)
-        print(cadena)
+
     
     def graficar(self):
         labels=['','or', 'ob', 'og', 'oc', 'ok']
@@ -113,7 +110,10 @@ class Cluster:
             plt.plot(self.datos.iloc[index, 0],
                      self.datos.iloc[index, 1],
                      labels[cluster])
-            
+             
+    def __str__(self):
+        cadena = str(self.cromosoma)
+        return cadena   
     
     
     
@@ -126,9 +126,9 @@ class Cromosoma:
         # K = 3, el núero de clusters
         k = 3
 
-#-------------------------------CREACION DE LOS INDIVIDUOS------------------
+        #CREACION DE LOS INDIVIDUOS
         ind = []
-        for i in numI:
+        for i in range(numI):
             c = Cluster(datos, k)
             ind.append(c)
         self.ind = ind
@@ -148,26 +148,58 @@ class Cromosoma:
 
         for i in range(len(self.ind)):
             GenPadre = self.ind[i]
-            GenMadre = otro.genes[i]
+            GenMadre = otro.ind[i]
             genHijos = GenPadre.cruzar(GenMadre)
             genesHijos1.append(genHijos[0])
             genesHijos2.append(genHijos[1])
-        h1.genes = genesHijos1
-        h2.genes = genesHijos2
+        h1.ind = genesHijos1
+        h2.ind = genesHijos2
         return [h1, h2]
 
-    def __str__(self):
-        
-        '''
-        Imprime como una cadena el cromosoma.
 
-        :returns: Una cadena que representa al cromosoma completo
-        :rtype: str
-        '''
+    
+    def aptitudes(self):
+        apt = []
+        for gen in self.ind:
+            apt.append(gen.aptitud())
+        return apt
+
+
+    def __str__(self):
         cad = ""
         for gen in self.ind:
             cad = cad + str(gen) + "\n"
         return cad
+    
+    
+p = Cromosoma()
+m = Cromosoma()
+
+p.inicializa(1)    
+m.inicializa(1)    
+
+print('Padre: ')
+print(p)
+print('Madre: ')
+print(m)
+    
+hijos = p.cruzar(m)
+print('Hijo 0: ')
+print(hijos[0])
+print('Hijo 1: ')
+print(hijos[1])
+
+# Muta el primero hijo
+print('Mutación al Primer Hijo\n')
+print('Original: ')
+print(hijos[0])
+
+print('Modificado: ')
+hijos[1].mutar()
+print(hijos[1])    
+
+
+
 
 '''
 
