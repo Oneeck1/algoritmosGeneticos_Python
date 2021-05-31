@@ -43,13 +43,13 @@ class Cluster:
     
     def aptitud(self):
         # Seleccion de los indices de los elementos para el cluster
-        self.datos = sample(range(0,len(self.cromosoma)),k = self.k)
+        datos = sample(range(0,len(self.cromosoma)),k = self.k)
         E = []
         S = []
         # Seleccionar la suma minima
-        for i in range(0,len(self.datos)):
+        for i in range(0,len(datos)):
             for j in range(0,len(self.cromosoma)-1):
-                E.append( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
+                E.append( pow( ( abs(self.cromosoma[j] - self.cromosoma[datos[i]]) ) ,2 ) )
             S.append(min(E))
         res = min(S)
         return res
