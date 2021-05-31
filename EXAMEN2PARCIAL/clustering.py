@@ -129,20 +129,26 @@ class Cluster:
             plt.legend(labels[cluster])
              
     def __str__(self):
-        # Imprimir cada uno de los individuos
+# -------------------Imprimir cada uno de los individuos-------------------
         # cadena = str(self.cromosoma)+str(self.aptitud())
-        countC1 = 0
-        countC2 = 0
-        countC3 = 0
+        
+        # Declarar variables para el contador de cuantos clusters hay
+        countC1 = []
+        countC2 = []
+        countC3 = []
         
         for i in self.cromosoma:
+            # Si hay un elemento que es del cluster 1, que lo agregue
             if i == 1:
-                countC1 += 1
+                countC1.append(1)
+            # Si hay un elemento que es del cluster 2, que lo agregue
             elif i == 2:
-                countC2  += 1
+                countC2.append(1)
+            # Si hay un elemento que es del cluster 3, que lo agregue
             else:
-                countC3 += 3
-            cadena1 = "Cluster1: {}, Cluster2: {}, Cluster3: {}".format(countC1,countC2, countC3)
+                countC3.append(1)
+            # Se imprime la longitud de cada cluster, para ver cuandos hay de cada uno                
+            cadena1 = "Cluster1: {}, Cluster2: {}, Cluster3: {}".format(len(countC1),len(countC2), len(countC3))
         return cadena1   
     
     
