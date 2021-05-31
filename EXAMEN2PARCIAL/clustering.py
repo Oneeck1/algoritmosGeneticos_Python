@@ -42,7 +42,16 @@ class Cluster:
     
     
     def aptitud(self):
-        pass
+
+        self.datos = sample(range(0,len(self.cromosoma)),k)
+        E = []
+        S = []
+        for i in range(0,len(self.datos)):
+            for j in range(0,len(self.cromosoma)-1):
+                E[j] = ( pow( ( abs(self.cromosoma[j] - self.cromosoma[self.datos[i]]) ) ,2 ) )
+            S[i] = min(E)        
+        res = min(S)
+        return res
     
     def cruzar(self,Madre):
         padre = self.cromosoma
@@ -83,6 +92,7 @@ class Cluster:
                      self.datos.iloc[index, 1],
                      labels[cluster])
             
+    
     
     
 # Importamos los datos del csv    
