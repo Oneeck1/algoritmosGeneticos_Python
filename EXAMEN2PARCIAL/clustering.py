@@ -23,3 +23,22 @@ import numpy as np
 from random import sample
 import copy
 
+class Cluster:
+    def __init__(self):
+        pass
+    
+    def aptitud(self):
+        pass
+    
+    def cruzar(self):
+        pass
+    
+    def mutar(self):
+        pass
+    
+    
+    
+    
+    
+    
+    
