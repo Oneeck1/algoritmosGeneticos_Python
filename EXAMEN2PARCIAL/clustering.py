@@ -48,7 +48,7 @@ class Cluster:
         E = []
         S = []
         # Seleccionar la suma minima
-        for i in range(0,len(datos)):
+        for i in range(1,len(datos)):
             for j in range(0,len(self.cromosoma)):
                 E.append( pow( ( abs(self.cromosoma[j] - self.cromosoma[datos[i]]) ) ,2 ) )
             S.append(min(E))
@@ -130,7 +130,7 @@ class Cluster:
              
     def __str__(self):
 # -------------------Imprimir cada uno de los individuos-------------------
-        # cadena = str(self.cromosoma)+str(self.aptitud())
+        inds = str(self.cromosoma)+str(self.aptitud())
         
         # Declarar variables para el contador de cuantos clusters hay
         countC1 = []
@@ -168,7 +168,7 @@ class Cluster:
             # Se imprimen los indices de los clusters
             cadena2 = "Indices C1: {},\nIndices C2: {},\nIndices C3: {}".format(indC1, indC2, indC3)
             cadt = str(cadena1)+"\n"+str(cadena2)
-        return cadt
+        return inds
     
     
     
@@ -255,8 +255,9 @@ print(hijos[0])
 print('-------------Hijo 1:-------------')
 print(hijos[1])
 
+# --------------------SE HACE LA MUTACIÓN AL 5% -----------------------
 # Muta el primer hijo
-print('-------------Mutación al Primer Hijo\n-------------')
+print('-------------Mutación al Primer Hijo--------------')
 print('-------------Original:-------------')
 print(hijos[0])
 
@@ -265,7 +266,7 @@ hijos[0].mutar()
 print(hijos[0])    
 
 # Muta el segundo hijo
-print('-------------Mutación al Segundo Hijo\n-------------')
+print('-------------Mutación al Segundo Hijo-------------')
 print('-------------Original:-------------')
 print(hijos[1])
 
