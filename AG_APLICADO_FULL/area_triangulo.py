@@ -56,7 +56,7 @@ class TrianguloAG(Triangulo):
    
     def inicializa(self):
         p = self.perimetro
-        pm = p/100.0
+        pm = p/100
         self.cromo.inicializa([pm, pm, pm], [p, p, p], [True, True, True])
         # SE LES AGREGA EL FENOTIPO A CADA LADO
         self.a = self.cromo.fenotipo()[0]
