@@ -40,10 +40,10 @@ class Triangulo:
     
     def area(self):
         s = self.a + self.a + self.c
-        s = s/2.0
+        s = s/2
         tempo = s*(s-self.a)*(s-self.b)*(s-self.c)
         if tempo < 0:
-            area =  -1.0
+            area =  -1
         else:
             area =  np.sqrt(tempo)
         return area
