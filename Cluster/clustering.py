@@ -113,9 +113,8 @@ class IndividuoCluster:
             elif self.cromosoma[indices] == 3:
                 indices2 = random.randint(1,2)
                 self.cromosoma[indices] = self.cromosoma[indices2]
-            else:
-                print("ERROR")
-                
+	    else:
+		self.cromosoma = self.cromosoma
                 
         return self.cromosoma
                 
